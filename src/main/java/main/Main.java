@@ -50,6 +50,8 @@ public class Main {
 			if(e.state() == DigitalState.LOW) {
 				pressCount++;
 				console.println("Button was pressed for the " + pressCount + "th time");
+			} else {
+				console.println("DigitalState is NOT low... Current State: " + e.state().getName());
 			}
 		});
 		
