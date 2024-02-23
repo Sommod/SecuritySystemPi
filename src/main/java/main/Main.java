@@ -55,6 +55,10 @@ public class Main {
 			}
 		});
 		
+		// Checks if the button is offline.
+		if(button.isOff())
+			console.println("The Button is Currently Offline...");
+		
 		// Create LED configure
 		DigitalOutputConfigBuilder docb = DefaultDigitalOutputConfigBuilder.newInstance(context);
 		docb.id("led").name("LED Flasher").address(PIN_LED).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
