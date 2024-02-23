@@ -56,8 +56,12 @@ public class Main {
 		});
 		
 		// Checks if the button is offline.
-		if(button.isOff())
-			console.println("The Button is Currently Offline...");
+		if(button.isOff()) {
+			button.initialize(context);
+			
+			if(button.isOn())
+				console.println("The Button has been turned on...");
+		}
 		
 		// Create LED configure
 		DigitalOutputConfigBuilder docb = DefaultDigitalOutputConfigBuilder.newInstance(context);
