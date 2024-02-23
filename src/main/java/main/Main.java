@@ -1,15 +1,10 @@
 package main;
 
 import com.pi4j.Pi4J;
-import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalInput;
-import com.pi4j.io.gpio.digital.DigitalInputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalOutput;
-import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.PullResistance;
-import com.pi4j.io.gpio.digital.impl.DefaultDigitalInputConfigBuilder;
-import com.pi4j.io.gpio.digital.impl.DefaultDigitalOutputConfigBuilder;
 import com.pi4j.platform.Platforms;
 import com.pi4j.util.Console;
 
@@ -28,18 +23,53 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// Main Class for Entire Pi4J usage. This must be the first object created.
-		Context context = Pi4J.newAutoContext();
+		var context = Pi4J.newAutoContext();
 		
 		// Used for printing to the console.
 		Platforms platforms = context.platforms();
-		Console console = new Console();
+		var console = new Console();
 		
 		console.box("Pi4J PLATFORMS");
 		console.println();
 		platforms.describe().print(System.out);
 		console.println();
 		
+		var buttonConfig = DigitalInput.newConfigBuilder(context).id("button").name("Press Button").address(PIN_BUTTON).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
+		var button = context.create(buttonConfig);
 		
+		button.addListener(e -> {
+			if(e.state() == DigitalState.LOW) {
+				pressCount++;
+				console.println("Button was pressed for the " + pressCount + "th time");
+			}
+		});
+
+		var ledConfig = DigitalOutput.newConfigBuilder(context)
+		      .id("led")
+		      .name("LED Flasher")
+		      .address(PIN_LED)
+		      .shutdown(DigitalState.LOW)
+		      .initial(DigitalState.LOW)
+		      .provider("pigpio-digital-output");
+		      
+		var led = context.create(ledConfig);
+
+		while (pressCount < 5) {
+		      if (led.equals(DigitalState.HIGH)) {
+		           led.low();
+		      } else {
+		           led.high();
+		      }
+		      try {
+				Thread.sleep(500 / (pressCount + 1));
+			} catch(InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+		
+		/*
 		// Create an InputConfig for button handling.
 		DigitalInputConfigBuilder ddicb = DefaultDigitalInputConfigBuilder.newInstance(context);
 		ddicb.id("button").name("Press Button").address(PIN_BUTTON).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
@@ -54,14 +84,6 @@ public class Main {
 				console.println("DigitalState is NOT low... Current State: " + e.state().getName());
 			}
 		});
-		
-		// Checks if the button is offline.
-		if(button.isOff()) {
-			button.initialize(context);
-			
-			if(button.isOn())
-				console.println("The Button has been turned on...");
-		}
 		
 		// Create LED configure
 		DigitalOutputConfigBuilder docb = DefaultDigitalOutputConfigBuilder.newInstance(context);
@@ -85,6 +107,8 @@ public class Main {
 		}
 		
 		// Method to shutdown Pi4J threads. Must call at end.
+		 *
+		 */
 		context.shutdown();
 	}
 }
