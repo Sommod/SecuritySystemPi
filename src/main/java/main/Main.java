@@ -3,14 +3,10 @@ package main;
 import java.util.concurrent.TimeUnit;
 
 import com.pi4j.Pi4J;
-import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalInput;
-import com.pi4j.io.gpio.digital.DigitalInputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalOutput;
-import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.PullResistance;
-import com.pi4j.platform.Platforms;
 import com.pi4j.util.Console;
 
 /**
@@ -79,15 +75,15 @@ public class Main {
 //			}
 //		}
 		
-		Context context = Pi4J.newAutoContext();
-		Platforms platforms = context.platforms();
+		var context = Pi4J.newAutoContext();
+		var platforms = context.platforms();
 		platforms.describe().print(System.out);
 		Console console = new Console();
 		
-		DigitalInputConfigBuilder buttonConfig = DigitalInput.newConfigBuilder(context).id("button_1").name("Change Button Type")
+		var buttonConfig = DigitalInput.newConfigBuilder(context).id("button_1").name("Change Button Type")
 				.address(PIN_BUTTON_1).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
 		
-		DigitalInput button_1 = context.create(buttonConfig);
+		var button_1 = context.create(buttonConfig);
 		button_1.addListener(b_1 -> {
 			LED_CHOICE = !LED_CHOICE;
 			exitCount = 0;
@@ -97,7 +93,7 @@ public class Main {
 		buttonConfig = DigitalInput.newConfigBuilder(context).id("button_2").name("Change LED Property").address(PIN_BUTTON_2)
 				.pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
 		
-		DigitalInput button_2 = context.create(buttonConfig);
+		var button_2 = context.create(buttonConfig);
 		button_2.addListener(b_2 -> {
 			if(LED_CHOICE) {
 				pressCount++;
@@ -114,13 +110,13 @@ public class Main {
 			}
 		});
 		
-		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led_1").name("LED Brightness")
+		var ledConfig = DigitalOutput.newConfigBuilder(context).id("led_1").name("LED Brightness")
 				.address(PIN_LED_2).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
-		DigitalOutput led_1 = context.create(ledConfig);
+		var led_1 = context.create(ledConfig);
 		
-		ledConfig = DigitalOutput.newConfigBuilder(context).id("led_2").name("LED Flasher").address(PIN_LED_1).
+		var ledConfig2 = DigitalOutput.newConfigBuilder(context).id("led_2").name("LED Flasher").address(PIN_LED_1).
 				shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
-		DigitalOutput led_2 = context.create(ledConfig);
+		var led_2 = context.create(ledConfig2);
 		
 		short mode_1 = 1;
 		
