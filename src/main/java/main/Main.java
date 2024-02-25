@@ -1,12 +1,11 @@
 package main;
 
-import java.util.concurrent.TimeUnit;
-
 import com.pi4j.Pi4J;
 import com.pi4j.io.gpio.digital.DigitalInput;
 import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.PullResistance;
+import com.pi4j.platform.Platforms;
 import com.pi4j.util.Console;
 
 /**
@@ -29,52 +28,52 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-//		// Main Class for Entire Pi4J usage. This must be the first object created.
-//		var context = Pi4J.newAutoContext();
-//		
-//		// Used for printing to the console.
-//		Platforms platforms = context.platforms();
-//		var console = new Console();
-//		
-//		console.box("Pi4J PLATFORMS");
-//		console.println();
-//		platforms.describe().print(System.out);
-//		console.println();
-//		
-//		var buttonConfig = DigitalInput.newConfigBuilder(context).id("button").name("Press Button").address(PIN_BUTTON).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
-//		var button = context.create(buttonConfig);
-//		
-//		button.addListener(e -> {
-//			if(e.state() == DigitalState.LOW) {
-//				pressCount[0]++;
-//				console.println("Button was pressed for the " + pressCount + "th time");
-//			}
-//		});
-//
-//		var ledConfig = DigitalOutput.newConfigBuilder(context)
-//		      .id("led")
-//		      .name("LED Flasher")
-//		      .address(PIN_LED)
-//		      .shutdown(DigitalState.LOW)
-//		      .initial(DigitalState.LOW)
-//		      .provider("pigpio-digital-output");
-//		      
-//		var led = context.create(ledConfig);
-//
-//		while (pressCount[0] < 5) {
-//		      if (led.equals(DigitalState.HIGH)) {
-//		           led.low();
-//		      } else {
-//		           led.high();
-//		      }
-//		      try {
-//				Thread.sleep(500 / (pressCount[0] + 1));
-//			} catch(InterruptedException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//		}
+		// Main Class for Entire Pi4J usage. This must be the first object created.
+		var context = Pi4J.newAutoContext();
 		
+		// Used for printing to the console.
+		Platforms platforms = context.platforms();
+		var console = new Console();
+		
+		console.box("Pi4J PLATFORMS");
+		console.println();
+		platforms.describe().print(System.out);
+		console.println();
+		
+		var buttonConfig = DigitalInput.newConfigBuilder(context).id("button").name("Press Button").address(PIN_BUTTON_2).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
+		var button = context.create(buttonConfig);
+		
+		button.addListener(e -> {
+			if(e.state() == DigitalState.LOW) {
+				pressCount++;
+				console.println("Button was pressed for the " + pressCount + "th time");
+			}
+		});
+
+		var ledConfig = DigitalOutput.newConfigBuilder(context)
+		      .id("led")
+		      .name("LED Flasher")
+		      .address(PIN_LED_1)
+		      .shutdown(DigitalState.LOW)
+		      .initial(DigitalState.LOW)
+		      .provider("pigpio-digital-output");
+		      
+		var led = context.create(ledConfig);
+
+		while (pressCount < 5) {
+		      if (led.equals(DigitalState.HIGH)) {
+		           led.low();
+		      } else {
+		           led.high();
+		      }
+		      try {
+				Thread.sleep(500 / (pressCount + 1));
+			} catch(InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		/*
 		var context = Pi4J.newAutoContext();
 		var platforms = context.platforms();
 		platforms.describe().print(System.out);
@@ -140,7 +139,7 @@ public class Main {
 			
 			// LED 1
 			led_2.pulse(pressCount, TimeUnit.SECONDS);
-		}
+		}*/
 		
 		context.shutdown();
 	}
