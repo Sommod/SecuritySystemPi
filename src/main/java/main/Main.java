@@ -91,6 +91,7 @@ public class Main {
 		button_1.addListener(b_1 -> {
 			LED_CHOICE = !LED_CHOICE;
 			exitCount = 0;
+			console.println("Changed LED handler to " + (LED_CHOICE ? "Flasher" : "Dimmer"));
 		});
 		
 		buttonConfig = DigitalInput.newConfigBuilder(context).id("button_2").name("Change LED Property").address(PIN_BUTTON_2)
@@ -101,22 +102,23 @@ public class Main {
 			if(LED_CHOICE) {
 				pressCount++;
 				
-				if(pressCount >= 5)
+				if(pressCount > 5)
 					pressCount = 1;
 				
-				console.println("## Current Light Mode: " + (pressCount + 1) + " / 5");
+				console.println("## Current Light Mode: " + (pressCount) + " / 5");
 			} else {
 				stopBlinkChange = !stopBlinkChange;
 				console.println("## The LED Blinker auto-change is currently set to: " + (LED_CHOICE ? "True" : "False"));
 				exitCount++;
+				console.println("-- Exit Count is: " + exitCount);
 			}
 		});
 		
 		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led_1").name("LED Brightness")
-				.address(PIN_LED_1).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
+				.address(PIN_LED_2).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		DigitalOutput led_1 = context.create(ledConfig);
 		
-		ledConfig = DigitalOutput.newConfigBuilder(context).id("led_2").name("LED Flasher").address(PIN_LED_2).
+		ledConfig = DigitalOutput.newConfigBuilder(context).id("led_2").name("LED Flasher").address(PIN_LED_1).
 				shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		DigitalOutput led_2 = context.create(ledConfig);
 		
