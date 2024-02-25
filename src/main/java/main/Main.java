@@ -122,10 +122,10 @@ public class Main {
 		
 		while(exitCount < 5) {
 			// LED 2
-			if(led_2.equals(DigitalState.HIGH))
-				led_2.low();
+			if(led_1.equals(DigitalState.HIGH))
+				led_1.low();
 			else
-				led_2.high();
+				led_1.high();
 			
 			try {
 				Thread.sleep((500 / (mode_1 <= 4 ? 1 : mode_1 <= 8 ? 2 : mode_1 <= 20 ? 5 : 1)));
@@ -137,7 +137,7 @@ public class Main {
 			if(!stopBlinkChange) { mode_1++; }
 			
 			// LED 1
-			led_1.pulse(pressCount, TimeUnit.MILLISECONDS);
+			led_2.pulse(pressCount, TimeUnit.MILLISECONDS);
 		}
 		
 		context.shutdown();
