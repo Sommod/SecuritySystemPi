@@ -16,12 +16,12 @@ import com.pi4j.util.Console;
  */
 public class Main {
 	
-	private static int pressCount = 0;
+	private static int pressCount = 1;
 	private static int exitCount = 0;
 	private static boolean LED_CHOICE = true;
 	private static boolean stopBlinkChange = false;
-	private static final int PIN_BUTTON_1 = 23; // I think this is the pin #
-	private static final int PIN_BUTTON_2 = 24; // PIN 18 = BCM 24
+	private static final int PIN_BUTTON_2 = 23; // I think this is the pin #
+	private static final int PIN_BUTTON_1 = 24; // PIN 18 = BCM 24
 	private static final int PIN_LED_1 = 22; // Pin 15 = BCM 22
 	private static final int PIN_LED_2 = 10; // Pin 19 = BCM 10
 	//private static final int TEMP_SENSOR = 20; // PIN 38 = BCM 20
@@ -40,16 +40,34 @@ public class Main {
 		platforms.describe().print(System.out);
 		console.println();
 		
-		var buttonConfig = DigitalInput.newConfigBuilder(context).id("button").name("Press Button").address(PIN_BUTTON_2).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
+		var buttonConfig = DigitalInput.newConfigBuilder(context).id("button_1").name("Flasher Button").address(PIN_BUTTON_1).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
 		var button = context.create(buttonConfig);
 		
 		button.addListener(e -> {
 			if(e.state() == DigitalState.LOW) {
-				if(pressCount == 0)
-					pressCount = 1;
-				else
-					pressCount = 0;
-				console.println("Button was pressed for the " + pressCount + "th time");
+				if(!LED_CHOICE) { // If FALSE
+					stopBlinkChange = !stopBlinkChange;
+					console.println("Auto-Change Flasher is currently: " + (stopBlinkChange ? "Paused" : "Auto-Changing"));
+					console.println("-- Exit Count is: " + exitCount + " / 5");
+					exitCount++;
+				} else { // If TRUE
+					pressCount++;
+					
+					if(pressCount >= 6)
+						pressCount = 1;
+					
+					console.println("Current Dim setting: " + pressCount + " / 5");
+				}
+			}
+		});
+		
+		buttonConfig = DigitalInput.newConfigBuilder(context).id("button_2").name("Dimmer Buttom").address(PIN_BUTTON_2).pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
+		var button_2 = context.create(buttonConfig);
+		
+		button_2.addListener(e2 -> {
+			if(e2.state() == DigitalState.LOW) {
+				LED_CHOICE = !LED_CHOICE;
+				console.println("Current Config of Button (1) is set to: " + (LED_CHOICE ? "Dimmer" : "Auto-Change Flasher"));
 			}
 		});
 
@@ -65,7 +83,7 @@ public class Main {
 		
 		short mode_1 = 1;
 
-		while (pressCount < 5) {
+		while (exitCount < 5) {
 		      if (led.equals(DigitalState.HIGH)) {
 		           led.low();
 		      } else {
@@ -74,7 +92,7 @@ public class Main {
 		      try {
 				Thread.sleep(500 / (mode_1 <= 4 ? 1 : mode_1 <= 8 ? 2 : 5));
 				
-				if(pressCount == 0)
+				if(!stopBlinkChange)
 					mode_1++;
 				
 				if(mode_1 >= 20)
