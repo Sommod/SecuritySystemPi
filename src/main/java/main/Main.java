@@ -85,9 +85,11 @@ public class Main {
 		
 		var button_1 = context.create(buttonConfig);
 		button_1.addListener(b_1 -> {
-			LED_CHOICE = !LED_CHOICE;
-			exitCount = 0;
-			console.println("Changed LED handler to " + (LED_CHOICE ? "Flasher" : "Dimmer"));
+			if(b_1.state() == DigitalState.LOW) {
+				LED_CHOICE = !LED_CHOICE;
+				exitCount = 0;
+				console.println("Changed LED handler to " + (LED_CHOICE ? "Flasher" : "Dimmer"));
+			}
 		});
 		
 		buttonConfig = DigitalInput.newConfigBuilder(context).id("button_2").name("Change LED Property").address(PIN_BUTTON_2)
