@@ -123,10 +123,9 @@ public class Main {
 		while(exitCount < 5) {
 			// LED 2
 			if(led_1.equals(DigitalState.HIGH)) {
-				//led_1.low();
-				led_1.on();
+				led_1.low();
 			} else {
-				led_1.off();
+				led_1.high();
 			}
 			
 			try {
