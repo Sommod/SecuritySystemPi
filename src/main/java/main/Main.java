@@ -5,6 +5,7 @@ import com.pi4j.io.gpio.digital.DigitalInput;
 import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.PullResistance;
+import com.pi4j.io.pwm.Pwm;
 import com.pi4j.platform.Platforms;
 import com.pi4j.util.Console;
 
@@ -16,11 +17,11 @@ import com.pi4j.util.Console;
  */
 public class Main {
 	
-	private static int pressCount = 1;
+	private static int dimAmount = 25;
 	private static int exitCount = 0;
 	private static boolean LED_CHOICE = true;
 	private static boolean stopBlinkChange = false;
-	private static final int PIN_BUTTON_2 = 23; // I think this is the pin #
+	private static final int PIN_BUTTON_2 = 23; // PIN 16 = BCM 23
 	private static final int PIN_BUTTON_1 = 24; // PIN 18 = BCM 24
 	private static final int PIN_LED_1 = 22; // Pin 15 = BCM 22
 	private static final int PIN_LED_2 = 10; // Pin 19 = BCM 10
@@ -51,12 +52,12 @@ public class Main {
 					console.println("-- Exit Count is: " + exitCount + " / 5");
 					exitCount++;
 				} else { // If TRUE
-					pressCount++;
+					if(dimAmount + 25 > 100)
+						dimAmount = 25;
+					else
+						dimAmount += 25;
 					
-					if(pressCount >= 6)
-						pressCount = 1;
-					
-					console.println("Current Dim setting: " + pressCount + " / 5");
+					console.println("Current Dim setting: " + dimAmount + "%");
 				}
 			}
 		});
@@ -81,25 +82,31 @@ public class Main {
 		      
 		var led = context.create(ledConfig);
 		
-		ledConfig = DigitalOutput.newConfigBuilder(context)
-				.id("led_1")
-				.name("LED Dimmer")
-				.address(PIN_LED_2)
-				.shutdown(DigitalState.LOW)
-				.initial(DigitalState.LOW)
-				.provider("pigpio-digital-output");
-		var led_2 = context.create(ledConfig);
+		var pwmConfig = Pwm.newConfigBuilder(context).id("led_1-2").address(PIN_LED_2).initial(0).shutdown(0).provider("pigpio-pwm");
+		var pwmLed = context.create(pwmConfig);
+		
+//		ledConfig = DigitalOutput.newConfigBuilder(context)
+//				.id("led_1")
+//				.name("LED Dimmer")
+//				.address(PIN_LED_2)
+//				.shutdown(DigitalState.LOW)
+//				.initial(DigitalState.LOW)
+//				.provider("pigpio-digital-output");
+//		var led_2 = context.create(ledConfig);
 		
 		short mode_1 = 1;
 
 		while (exitCount < 5) {
 		      if (led.equals(DigitalState.HIGH)) {
 		           led.low();
-		           led_2.low();
+//		           led_2.low();
 		      } else {
 		           led.high();
-		           led_2.high();
+//		           led_2.high();
 		      }
+		      
+		      pwmLed.on(dimAmount);
+		      
 		      try {
 				Thread.sleep(500 / (mode_1 <= 4 ? 1 : mode_1 <= 8 ? 2 : 5));
 				
