@@ -110,11 +110,11 @@ public class Main {
 			}
 		});
 		
-		var ledConfig = DigitalOutput.newConfigBuilder(context).id("led_1").name("LED Brightness")
-				.address(PIN_LED_2).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
+		var ledConfig = DigitalOutput.newConfigBuilder(context).id("led_1").name("LED Flasher")
+				.address(PIN_LED_1).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		var led_1 = context.create(ledConfig);
 		
-		var ledConfig2 = DigitalOutput.newConfigBuilder(context).id("led_2").name("LED Flasher").address(PIN_LED_1).
+		var ledConfig2 = DigitalOutput.newConfigBuilder(context).id("led_2").name("LED Dimmer").address(PIN_LED_2).
 				shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		var led_2 = context.create(ledConfig2);
 		
@@ -122,10 +122,12 @@ public class Main {
 		
 		while(exitCount < 5) {
 			// LED 2
-			if(led_1.equals(DigitalState.HIGH))
-				led_1.low();
-			else
-				led_1.high();
+			if(led_1.equals(DigitalState.HIGH)) {
+				//led_1.low();
+				led_1.on();
+			} else {
+				led_1.off();
+			}
 			
 			try {
 				Thread.sleep((500 / (mode_1 <= 4 ? 1 : mode_1 <= 8 ? 2 : mode_1 <= 20 ? 5 : 1)));
@@ -137,7 +139,7 @@ public class Main {
 			if(!stopBlinkChange) { mode_1++; }
 			
 			// LED 1
-			led_2.pulse(pressCount, TimeUnit.MILLISECONDS);
+			led_2.pulse(pressCount, TimeUnit.SECONDS);
 		}
 		
 		context.shutdown();
