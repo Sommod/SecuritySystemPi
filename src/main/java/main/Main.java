@@ -95,18 +95,20 @@ public class Main {
 		
 		var button_2 = context.create(buttonConfig);
 		button_2.addListener(b_2 -> {
-			if(LED_CHOICE) {
-				pressCount++;
-				
-				if(pressCount > 5)
-					pressCount = 1;
-				
-				console.println("## Current Light Mode: " + (pressCount) + " / 5");
-			} else {
-				stopBlinkChange = !stopBlinkChange;
-				console.println("## The LED Blinker auto-change is currently set to: " + (LED_CHOICE ? "True" : "False"));
-				exitCount++;
-				console.println("-- Exit Count is: " + exitCount);
+			if(b_2.state() == DigitalState.LOW) {
+				if(LED_CHOICE) {
+					pressCount++;
+					
+					if(pressCount > 5)
+						pressCount = 1;
+					
+					console.println("## Current Light Mode: " + (pressCount) + " / 5");
+				} else {
+					stopBlinkChange = !stopBlinkChange;
+					console.println("## The LED Blinker auto-change is currently set to: " + (LED_CHOICE ? "True" : "False"));
+					exitCount++;
+					console.println("-- Exit Count is: " + exitCount);
+				}
 			}
 		});
 		
