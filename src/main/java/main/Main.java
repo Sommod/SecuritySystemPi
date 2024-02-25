@@ -120,27 +120,24 @@ public class Main {
 				shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		DigitalOutput led_2 = context.create(ledConfig);
 		
-		int blinkSpeed = 1000;
 		short mode_1 = 1;
 		
 		while(exitCount < 5) {
 			// LED 2
-			if(!stopBlinkChange) {
-				led_2.blink(blinkSpeed, TimeUnit.MILLISECONDS);
-				
-				try {
-					Thread.sleep(3000L);
-					mode_1++;
-					if(mode_1 > 3)
-						mode_1 = 1;
-					
-					blinkSpeed = (1000 / mode_1);
-					
-				} catch(InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			if(led_2.equals(DigitalState.HIGH))
+				led_2.low();
+			else
+				led_2.high();
+			
+			try {
+				Thread.sleep((500 / (mode_1 <= 4 ? 1 : mode_1 <= 8 ? 2 : mode_1 <= 20 ? 5 : 1)));
+			} catch(InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			if(!stopBlinkChange) { mode_1++; }
+			
 			// LED 1
 			led_1.pulse(pressCount, TimeUnit.MILLISECONDS);
 		}
