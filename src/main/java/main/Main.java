@@ -16,7 +16,7 @@ import com.pi4j.util.Console;
  */
 public class Main {
 	
-	private static int pressCount = 1;
+	private static int pressCount = 0;
 	private static int exitCount = 0;
 	private static boolean LED_CHOICE = true;
 	private static boolean stopBlinkChange = false;
@@ -45,7 +45,10 @@ public class Main {
 		
 		button.addListener(e -> {
 			if(e.state() == DigitalState.LOW) {
-				pressCount++;
+				if(pressCount == 0)
+					pressCount = 1;
+				else
+					pressCount = 0;
 				console.println("Button was pressed for the " + pressCount + "th time");
 			}
 		});
@@ -59,6 +62,8 @@ public class Main {
 		      .provider("pigpio-digital-output");
 		      
 		var led = context.create(ledConfig);
+		
+		short mode_1 = 1;
 
 		while (pressCount < 5) {
 		      if (led.equals(DigitalState.HIGH)) {
@@ -67,7 +72,13 @@ public class Main {
 		           led.high();
 		      }
 		      try {
-				Thread.sleep(500 / (pressCount + 1));
+				Thread.sleep(500 / (mode_1 <= 4 ? 1 : mode_1 <= 8 ? 2 : 5));
+				
+				if(pressCount == 0)
+					mode_1++;
+				
+				if(mode_1 >= 20)
+					mode_1 = 1;
 			} catch(InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
