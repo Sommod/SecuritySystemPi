@@ -50,7 +50,7 @@ public class ProjectOneB {
 		// Infinite Loop
 		while(true) {
 			temp = getTemperature();
-			if(temp >= THRESHOLD_VALUE)
+			if(temp <= THRESHOLD_VALUE)
 				led.high();
 			else
 				led.low();

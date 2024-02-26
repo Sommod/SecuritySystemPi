@@ -1,0 +1,740 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x63424188, pid=3127, tid=3128
+#
+# JRE version: OpenJDK Runtime Environment (17.0.9+9) (build 17.0.9+9-Raspbian-1deb12u1rpt1)
+# Java VM: OpenJDK Client VM (17.0.9+9-Raspbian-1deb12u1rpt1, mixed mode, emulated-client, serial gc, linux-arm)
+# Problematic frame:
+# C  [libpigpio.so.1+0x14188]  gpioWrite+0x138
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   Unknown
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: target/school-work-0.0.1-SNAPSHOT.jar
+
+Host: rev 4 (v7l), 4 cores, 921M, Raspbian GNU/Linux 12 (bookworm)
+Time: Sun Feb 25 17:16:16 2024 EST elapsed time: 34.210350 seconds (0d 0h 0m 34s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x762102d0):  JavaThread "main" [_thread_in_native, id=3128, stack(0x76330000,0x76380000)]
+
+Stack: [0x76330000,0x76380000],  sp=0x7637e930,  free space=314k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libpigpio.so.1+0x14188]  gpioWrite+0x138
+C  0x7637ea4c
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  com.pi4j.library.pigpio.internal.PIGPIO.gpioWrite(II)I+0
+j  com.pi4j.library.pigpio.impl.PiGpioNativeImpl.gpioWrite(ILcom/pi4j/library/pigpio/PiGpioState;)V+53
+j  com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput.state(Lcom/pi4j/io/gpio/digital/DigitalState;)Lcom/pi4j/io/gpio/digital/DigitalOutput;+15
+j  com.pi4j.io.gpio.digital.DigitalOutput.high()Lcom/pi4j/io/gpio/digital/DigitalOutput;+4
+j  main.Main.main([Ljava/lang/String;)V+449
+v  ~StubRoutines::call_stub
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x00000007
+
+Registers:
+  r0  = 0x00000001
+  r1  = 0xffffffff
+  r2  = 0x0000000a
+  r3  = 0x00000002
+  r4  = 0x00000002
+  r5  = 0x00000001
+  r6  = 0x76fa3d7c
+  r7  = 0x00400000
+  r8  = 0x00000007
+  r9  = 0x0000002c
+  r10 = 0x762102d0
+  fp  = 0x7637ea14
+  r12 = 0x00000007
+  sp  = 0x7637e930
+  lr  = 0x7409e23c
+  pc  = 0x63424188
+  cpsr = 0x20000010
+
+
+Register to memory mapping:
+
+  r0  = 0x00000001 is an unknown value
+  r1  = 0xffffffff is an unknown value
+  r2  = 0x0000000a is an unknown value
+  r3  = 0x00000002 is an unknown value
+  r4  = 0x00000002 is an unknown value
+  r5  = 0x00000001 is an unknown value
+  r6  = 0x76fa3d7c: __stack_chk_guard+0x00000000 in /lib/ld-linux-armhf.so.3 at 0x76f7c000
+  r7  = 0x00400000 is an unknown value
+  r8  = 0x00000007 is an unknown value
+  r9  = 0x0000002c is an unknown value
+  r10 = 0x762102d0 is a thread
+  fp  = 0x7637ea14 is pointing into the stack for thread: 0x762102d0
+  r12 = 0x00000007 is an unknown value
+  sp  = 0x7637e930 is pointing into the stack for thread: 0x762102d0
+  lr  = 0x7409e23c is at code_begin+540 in an Interpreter codelet
+method entry point (kind = native)  [0x7409e020, 0x7409e370]  848 bytes
+  pc  = 0x63424188: gpioWrite+0x00000138 in /lib/libpigpio.so.1 at 0x63410000
+
+
+Top of Stack: (sp=0x7637e930)
+0x7637e930:   647077e8 7637e95c 65b9eed0 762102d0
+0x7637e940:   65b725d8 76d5c6a0 762102d0 00000000
+0x7637e950:   7637e9b8 76d5c6a0 7637e978 fffffffe
+0x7637e960:   7637e9ac 76acbcf4 76210090 f66bff00
+0x7637e970:   740b4790 63d239e8 7409ce38 00000000
+0x7637e980:   7637ea24 644e74b8 762102d0 7409e23c
+0x7637e990:   65cc6ab8 64409c40 00000000 7637e9a8
+0x7637e9a0:   7637e9d4 7409bc7c 00000000 6a56c648
+0x7637e9b0:   00000016 7637e9b4 644a7c40 7637e9f0
+0x7637e9c0:   644ad838 00000000 65cc1588 644a7cb8
+0x7637e9d0:   00000000 7637e9e8 7637ea18 7409bdcc
+0x7637e9e0:   00000035 00000000 00000000 00000016
+0x7637e9f0:   7637e9f0 00000000 7637ea24 644ef3d0
+0x7637ea00:   00000000 65a723d0 644e74b8 00000000
+0x7637ea10:   7637ea20 7637ea4c 7409bc7c 65a723d0
+0x7637ea20:   00000001 00000016 7637ea28 644a322d
+0x7637ea30:   7637ea60 644ae050 00000000 65cc15e8
+0x7637ea40:   644a32b0 7637ea20 7637ea58 7637ea88
+0x7637ea50:   7409c1b4 00000000 65b72560 00000016
+0x7637ea60:   6a5584f8 7637ea64 64709c37 7637ea98
+0x7637ea70:   6470bf40 00000000 65b8ac78 64709ca0
+0x7637ea80:   7637ea58 7637ea94 7637eac0 7409c010
+0x7637ea90:   00000000 65a69a38 65b8ae40 7637ea9c
+0x7637eaa0:   6445701c 7637eac8 64704b40 00000000
+0x7637eab0:   65cc39e8 64457040 7637ea94 7637eac8
+0x7637eac0:   7637eaf0 7409c010 65b8ae40 7637eacc
+0x7637ead0:   644009b1 7637eb24 64400f90 00000000
+0x7637eae0:   65cc7718 64400ae0 7637eac8 7637eb24
+0x7637eaf0:   7637eb28 74099244 00000000 00000010
+0x7637eb00:   65b958c0 65b8ae40 65b94d80 65b79270
+0x7637eb10:   65b4c1e0 65b78688 65a1e6d8 65d03aa8
+0x7637eb20:   65cea2e8 65cea340 7637ebd8 7637ed00 
+
+Instructions: (pc=0x63424188)
+0x63424088:   02 00 00 9a 34 10 92 e5 01 1b 11 e2 49 00 00 0a
+0x63424098:   44 33 9f e5 03 30 8f e0 0c 37 13 e5 00 00 53 e3
+0x634240a8:   9e 00 00 0a 35 00 54 e3 b1 00 00 8a 01 00 55 e3
+0x634240b8:   84 00 00 8a 84 90 a0 e1 20 33 9f e5 04 10 89 e0
+0x634240c8:   03 30 8f e0 01 31 83 e0 14 23 9f e5 b8 36 d3 e5
+0x634240d8:   01 70 a0 e3 02 20 8f e0 1f 00 04 e2 07 00 53 e1
+0x634240e8:   3c 10 92 e5 17 70 a0 e1 a4 82 a0 e1 19 00 00 0a
+0x634240f8:   00 00 55 e3 0a 20 88 02 07 20 88 12 02 30 43 e2
+0x63424108:   02 71 81 e7 03 00 53 e3 03 f1 8f 90 0b 00 00 ea
+0x63424118:   5c 00 00 ea 4b 00 00 ea 00 00 00 ea ff ff ff ea
+0x63424128:   c0 22 9f e5 04 00 89 e0 02 20 8f e0 6b 3e 82 e2
+0x63424138:   08 30 83 e2 00 31 83 e0 00 20 a0 e3 b2 20 c3 e1
+0x63424148:   a4 32 9f e5 04 90 89 e0 03 30 8f e0 09 91 83 e0
+0x63424158:   01 20 a0 e3 b8 26 c9 e5 90 32 9f e5 01 00 a0 e3
+0x63424168:   07 c0 a0 e3 93 24 83 e0 00 00 55 e3 a3 31 a0 e1
+0x63424178:   0a 80 88 02 03 21 83 e0 07 80 88 12 12 40 44 e0
+0x63424188:   03 21 91 e7 14 40 84 e0 1c 24 c2 e1 10 44 82 e1
+0x63424198:   05 00 a0 01 00 00 a0 13 03 41 81 e7 08 71 81 e7
+0x634241a8:   3c 20 9d e5 00 30 96 e5 03 00 52 e1 86 00 00 1a
+0x634241b8:   40 d0 8d e2 f0 87 bd e8 34 32 9f e5 34 82 9f e5
+0x634241c8:   08 a0 8d e2 03 30 97 e7 08 80 8f e0 0a 00 a0 e1
+0x634241d8:   00 90 93 e5 94 bf ff eb 08 31 98 e5 08 20 9d e5
+0x634241e8:   03 00 52 e1 0b 00 00 0a 0a 00 a0 e1 10 a0 8d e2
+0x634241f8:   0a 10 a0 e1 50 bf ff eb fc 21 9f e5 0a 30 a0 e1
+0x63424208:   02 20 8f e0 20 10 a0 e3 11 0e 88 e2 c2 bf ff eb
+0x63424218:   08 30 9d e5 08 31 88 e5 e0 31 9f e5 e0 21 9f e5
+0x63424228:   e0 11 9f e5 03 30 8f e0 02 20 8f e0 f0 40 cd e1
+0x63424238:   09 00 a0 e1 0e 3d 83 e2 11 2e 82 e2 01 10 8f e0
+0x63424248:   09 c0 ff eb 91 ff ff ea bc 21 9f e5 04 a0 89 e0
+0x63424258:   02 20 8f e0 6b 3e 82 e2 08 30 83 e2 0a a1 83 e0
+0x63424268:   00 20 a0 e3 b2 10 da e1 04 00 a0 e1 8a cb ff eb
+0x63424278:   98 31 9f e5 00 20 a0 e3 03 30 8f e0 b2 20 ca e1 
+
+
+Stack slot to memory mapping:
+stack at sp + 0 slots: 0x647077e8 is a pointer to class: 
+stack at sp + 1 slots: 0x7637e95c is pointing into the stack for thread: 0x762102d0
+stack at sp + 2 slots: 0x65b9eed0 is an oop: [Lcom.pi4j.library.pigpio.PiGpioState; 
+{0x65b9eed0} - klass: 'com/pi4j/library/pigpio/PiGpioState'[]
+ - length: 3
+stack at sp + 3 slots: 0x762102d0 is a thread
+stack at sp + 4 slots: 0x65b725d8 is an oop: [Lcom.pi4j.library.pigpio.PiGpioState; 
+{0x65b725d8} - klass: 'com/pi4j/library/pigpio/PiGpioState'[]
+ - length: 3
+stack at sp + 5 slots: 0x76d5c6a0: <offset 0x0078a6a0> in /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so at 0x765d2000
+stack at sp + 6 slots: 0x762102d0 is a thread
+stack at sp + 7 slots: 0x0 is NULL
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x6550dda8, length=11, elements={
+0x762102d0, 0x7628f7f8, 0x76290998, 0x762b1f60,
+0x762b2f90, 0x762b3f98, 0x762b5010, 0x762a8460,
+0x638210f8, 0x638267d8, 0x63c00d60
+}
+
+Java Threads: ( => current thread )
+=>0x762102d0 JavaThread "main" [_thread_in_native, id=3128, stack(0x76330000,0x76380000)]
+  0x7628f7f8 JavaThread "Reference Handler" daemon [_thread_blocked, id=3130, stack(0x65611000,0x65661000)]
+  0x76290998 JavaThread "Finalizer" daemon [_thread_blocked, id=3131, stack(0x654b0000,0x65500000)]
+  0x762b1f60 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3132, stack(0x65460000,0x654b0000)]
+  0x762b2f90 JavaThread "Service Thread" daemon [_thread_blocked, id=3133, stack(0x65410000,0x65460000)]
+  0x762b3f98 JavaThread "Monitor Deflation Thread" daemon [_thread_blocked, id=3134, stack(0x63d36000,0x63d86000)]
+  0x762b5010 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=3135, stack(0x63980000,0x63a00000)]
+  0x762a8460 JavaThread "Sweeper thread" daemon [_thread_blocked, id=3136, stack(0x63930000,0x63980000)]
+  0x638210f8 JavaThread "Notification Thread" daemon [_thread_blocked, id=3137, stack(0x637b0000,0x63800000)]
+  0x638267d8 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=3139, stack(0x636df000,0x6372f000)]
+  0x63c00d60 JavaThread "SIGINT handler" daemon [_thread_blocked, id=3144, stack(0x62f5b000,0x62fab000)]
+
+Other Threads:
+  0x76287f98 VMThread "VM Thread" [stack: 0x65662000,0x656e2000] [id=3129]
+  0x63822360 WatcherThread [stack: 0x63730000,0x637b0000] [id=3138]
+
+Threads with active compile tasks:
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Precious Log:
+ CPUs: 4 total, 4 available
+ Memory: 921M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Disabled
+ Heap Min Capacity: 6M
+ Heap Initial Capacity: 16M
+ Heap Max Capacity: 232M
+ Pre-touch: Disabled
+
+Heap:
+ def new generation   total 4864K, used 4537K [0x65800000, 0x65d40000, 0x6a540000)
+  eden space 4352K,  92% used [0x65800000, 0x65bee500, 0x65c40000)
+  from space 512K, 100% used [0x65cc0000, 0x65d40000, 0x65d40000)
+  to   space 512K,   0% used [0x65c40000, 0x65c40000, 0x65cc0000)
+ tenured generation   total 11008K, used 478K [0x6a540000, 0x6b000000, 0x74000000)
+   the space 11008K,   4% used [0x6a540000, 0x6a5b7b58, 0x6a5b7c00, 0x6b000000)
+ Metaspace       used 6591K, committed 6720K, reserved 16384K
+
+Card table byte_map: [0x6578b000,0x65800000] _byte_map_base: 0x6545f000
+
+Polling page: 0x76f75000
+
+Metaspace:
+
+Usage:
+    6.44 MB used.
+
+Virtual space:
+     16.00 MB reserved,       6.56 MB ( 41%) committed,  1 nodes.
+
+Chunk freelists:
+8.92 MB
+
+MaxMetaspaceSize: unlimited
+No class space
+Initial GC threshold: 16.00 MB
+Current GC threshold: 16.00 MB
+CDS: off
+MetaspaceReclaimPolicy: balanced
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 16384.
+ - virtual_space_node_default_size: 4194304.
+ - enlarge_chunks_in_place: 1.
+ - new_chunks_are_fully_committed: 0.
+ - uncommit_free_chunks: 1.
+ - use_allocation_guard: 0.
+ - handle_deallocations: 1.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 0.
+num_arena_births: 24.
+num_arena_deaths: 0.
+num_vsnodes_births: 1.
+num_vsnodes_deaths: 0.
+num_space_committed: 105.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 0.
+num_chunks_taken_from_freelist: 80.
+num_chunk_merges: 0.
+num_chunk_splits: 55.
+num_chunks_enlarged: 50.
+num_inconsistent_stats: 0.
+
+CodeCache: size=32768Kb used=768Kb max_used=768Kb free=31999Kb
+ bounds [0x74099000, 0x74161000, 0x76099000]
+ total_blobs=562 nmethods=371 adapters=126
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (20 events):
+Event: 11.480 Thread 0x762b5010  361             com.pi4j.io.gpio.digital.DigitalOutputBase::state (5 bytes)
+Event: 11.481 Thread 0x762b5010 nmethod 361 0x74157508 code [0x74157600, 0x74157688]
+Event: 16.337 Thread 0x762b5010  362             com.pi4j.io.gpio.digital.DigitalState::getValue (5 bytes)
+Event: 16.338 Thread 0x762b5010 nmethod 362 0x741576c8 code [0x741577c0, 0x74157848]
+Event: 25.898 Thread 0x762b5010  363             java.lang.Integer::valueOf (32 bytes)
+Event: 25.899 Thread 0x762b5010 nmethod 363 0x74157888 code [0x74157990, 0x74157a98]
+Event: 34.152 Thread 0x762b5010  364             java.lang.invoke.MethodHandles$Lookup::previousLookupClass (5 bytes)
+Event: 34.153 Thread 0x762b5010 nmethod 364 0x74157b48 code [0x74157c40, 0x74157cc8]
+Event: 34.165 Thread 0x762b5010  366             jdk.internal.org.objectweb.asm.MethodWriter::visitTypeInsn (116 bytes)
+Event: 34.166 Thread 0x762b5010 nmethod 366 0x74157e48 code [0x74157f70, 0x741580fc]
+Event: 34.167 Thread 0x762b5010  367             java.lang.Class::getPackageName (81 bytes)
+Event: 34.169 Thread 0x762b5010 nmethod 367 0x74158288 code [0x741583e0, 0x74158608]
+Event: 34.187 Thread 0x762b5010  368             jdk.internal.reflect.ClassFileAssembler::emitByte (11 bytes)
+Event: 34.188 Thread 0x762b5010 nmethod 368 0x74158848 code [0x74158950, 0x74158a24]
+Event: 34.188 Thread 0x762b5010  369             jdk.internal.reflect.ByteVectorImpl::add (38 bytes)
+Event: 34.188 Thread 0x762b5010 nmethod 369 0x74158ac8 code [0x74158bd0, 0x74158cd4]
+Event: 34.191 Thread 0x762b5010  370             com.pi4j.common.IdentityBase::id (5 bytes)
+Event: 34.191 Thread 0x762b5010 nmethod 370 0x74158d88 code [0x74158e80, 0x74158f08]
+Event: 34.194 Thread 0x762b5010  371             jdk.internal.org.objectweb.asm.ClassReader::readUnsignedShort (26 bytes)
+Event: 34.195 Thread 0x762b5010 nmethod 371 0x74158f48 code [0x74159040, 0x74159118]
+
+GC Heap History (2 events):
+Event: 1.119 GC heap before
+{Heap before GC invocations=0 (full 0):
+ def new generation   total 4864K, used 4352K [0x65800000, 0x65d40000, 0x6a540000)
+  eden space 4352K, 100% used [0x65800000, 0x65c40000, 0x65c40000)
+  from space 512K,   0% used [0x65c40000, 0x65c40000, 0x65cc0000)
+  to   space 512K,   0% used [0x65cc0000, 0x65cc0000, 0x65d40000)
+ tenured generation   total 11008K, used 0K [0x6a540000, 0x6b000000, 0x74000000)
+   the space 11008K,   0% used [0x6a540000, 0x6a540000, 0x6a540200, 0x6b000000)
+ Metaspace       used 5559K, committed 5632K, reserved 16384K
+}
+Event: 1.133 GC heap after
+{Heap after GC invocations=1 (full 0):
+ def new generation   total 4864K, used 512K [0x65800000, 0x65d40000, 0x6a540000)
+  eden space 4352K,   0% used [0x65800000, 0x65800000, 0x65c40000)
+  from space 512K, 100% used [0x65cc0000, 0x65d40000, 0x65d40000)
+  to   space 512K,   0% used [0x65c40000, 0x65c40000, 0x65cc0000)
+ tenured generation   total 11008K, used 478K [0x6a540000, 0x6b000000, 0x74000000)
+   the space 11008K,   4% used [0x6a540000, 0x6a5b7b58, 0x6a5b7c00, 0x6b000000)
+ Metaspace       used 5559K, committed 5632K, reserved 16384K
+}
+
+Dll operation events (7 events):
+Event: 0.009 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+Event: 0.309 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+Event: 0.339 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+Event: 0.407 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+Event: 0.434 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+Event: 0.440 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+Event: 1.641 Loaded shared library /tmp/libpi4j-pigpio16874537523235556929.so
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (6 events):
+Event: 0.691 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x659c8210}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x659c8210) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 0.881 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65ae41c0}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65ae41c0) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 1.050 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65be26d8}: 'java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65be26d8) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 1.399 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65a24ad8}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65a24ad8) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 1.738 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65b65520}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65b65520) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 34.164 Thread 0x653011f0 Exception <a 'java/lang/NoSuchMethodError'{0x65bd0ab8}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65bd0ab8) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+
+VM Operations (8 events):
+Event: 0.351 Executing VM operation: HandshakeAllThreads
+Event: 0.351 Executing VM operation: HandshakeAllThreads done
+Event: 0.568 Executing VM operation: HandshakeAllThreads
+Event: 0.568 Executing VM operation: HandshakeAllThreads done
+Event: 1.119 Executing VM operation: GenCollectForAllocation
+Event: 1.133 Executing VM operation: GenCollectForAllocation done
+Event: 2.133 Executing VM operation: Cleanup
+Event: 2.134 Executing VM operation: Cleanup done
+
+Events (20 events):
+Event: 34.179 loading class jdk/internal/reflect/ByteVectorImpl
+Event: 34.179 loading class jdk/internal/reflect/ByteVector
+Event: 34.179 loading class jdk/internal/reflect/ByteVector done
+Event: 34.179 loading class jdk/internal/reflect/ByteVectorImpl done
+Event: 34.179 loading class jdk/internal/reflect/ClassFileAssembler
+Event: 34.180 loading class jdk/internal/reflect/ClassFileAssembler done
+Event: 34.180 loading class jdk/internal/reflect/UTF8
+Event: 34.181 loading class jdk/internal/reflect/UTF8 done
+Event: 34.183 loading class jdk/internal/reflect/Label
+Event: 34.183 loading class jdk/internal/reflect/Label done
+Event: 34.183 loading class jdk/internal/reflect/Label$PatchInfo
+Event: 34.183 loading class jdk/internal/reflect/Label$PatchInfo done
+Event: 34.184 loading class jdk/internal/reflect/MethodAccessorGenerator$1
+Event: 34.184 loading class jdk/internal/reflect/MethodAccessorGenerator$1 done
+Event: 34.185 loading class jdk/internal/reflect/ClassDefiner
+Event: 34.185 loading class jdk/internal/reflect/ClassDefiner done
+Event: 34.185 loading class jdk/internal/reflect/ClassDefiner$1
+Event: 34.185 loading class jdk/internal/reflect/ClassDefiner$1 done
+Event: 34.186 loading class java/lang/Class$1
+Event: 34.186 loading class java/lang/Class$1 done
+
+
+Dynamic libraries:
+00010000-00011000 r-xp 00000000 b3:02 275690     /usr/lib/jvm/java-17-openjdk-armhf/bin/java
+00011000-00012000 r--p 00000000 b3:02 275690     /usr/lib/jvm/java-17-openjdk-armhf/bin/java
+00012000-00013000 rw-p 00001000 b3:02 275690     /usr/lib/jvm/java-17-openjdk-armhf/bin/java
+01a69000-01b60000 rw-p 00000000 00:00 0          [heap]
+62f0b000-62f0e000 ---p 00000000 00:00 0 
+62f0e000-62f5b000 rw-p 00000000 00:00 0 
+62f5b000-62f5e000 ---p 00000000 00:00 0 
+62f5e000-62fab000 rw-p 00000000 00:00 0 
+62fab000-62fac000 ---p 00000000 00:00 0 
+62fac000-62fec000 rw-p 00000000 00:00 0 
+63410000-6344d000 r-xp 00000000 b3:02 135924     /usr/lib/libpigpio.so.1
+6344d000-6345d000 ---p 0003d000 b3:02 135924     /usr/lib/libpigpio.so.1
+6345d000-6345e000 r--p 0003d000 b3:02 135924     /usr/lib/libpigpio.so.1
+6345e000-63460000 rw-p 0003e000 b3:02 135924     /usr/lib/libpigpio.so.1
+63460000-634f4000 rw-p 00000000 00:00 0 
+63500000-635aa000 rw-p 00000000 00:00 0 
+635aa000-63600000 ---p 00000000 00:00 0 
+636df000-636e2000 ---p 00000000 00:00 0 
+636e2000-6372f000 rw-p 00000000 00:00 0 
+6372f000-63730000 ---p 00000000 00:00 0 
+63730000-637b0000 rw-p 00000000 00:00 0 
+637b0000-637b3000 ---p 00000000 00:00 0 
+637b3000-63800000 rw-p 00000000 00:00 0 
+63800000-638f7000 rw-p 00000000 00:00 0 
+638f7000-63900000 ---p 00000000 00:00 0 
+63930000-63933000 ---p 00000000 00:00 0 
+63933000-63980000 rw-p 00000000 00:00 0 
+63980000-63983000 ---p 00000000 00:00 0 
+63983000-63a00000 rw-p 00000000 00:00 0 
+63a00000-63a21000 rw-p 00000000 00:00 0 
+63a21000-63b00000 ---p 00000000 00:00 0 
+63b00000-63b21000 rw-p 00000000 00:00 0 
+63b21000-63c00000 ---p 00000000 00:00 0 
+63c00000-63c21000 rw-p 00000000 00:00 0 
+63c21000-63d00000 ---p 00000000 00:00 0 
+63d20000-63d26000 r-xp 00000000 b3:02 209378     /tmp/libpi4j-pigpio16874537523235556929.so (deleted)
+63d26000-63d2e000 ---p 00006000 b3:02 209378     /tmp/libpi4j-pigpio16874537523235556929.so (deleted)
+63d2e000-63d2f000 rw-p 00006000 b3:02 209378     /tmp/libpi4j-pigpio16874537523235556929.so (deleted)
+63d36000-63d39000 ---p 00000000 00:00 0 
+63d39000-63d86000 rw-p 00000000 00:00 0 
+63d86000-64000000 r--p 0006f000 b3:02 145530     /usr/lib/locale/locale-archive
+64000000-643f0000 rw-p 00000000 00:00 0 
+643f0000-644f0000 rw-p 00000000 00:00 0 
+644f0000-64670000 rw-p 00000000 00:00 0 
+64670000-64700000 ---p 00000000 00:00 0 
+64700000-64720000 rw-p 00000000 00:00 0 
+64720000-65000000 ---p 00000000 00:00 0 
+65000000-65200000 r--p 00000000 b3:02 145530     /usr/lib/locale/locale-archive
+65200000-65221000 rw-p 00000000 00:00 0 
+65221000-65300000 ---p 00000000 00:00 0 
+65300000-65321000 rw-p 00000000 00:00 0 
+65321000-65400000 ---p 00000000 00:00 0 
+65409000-65410000 r--s 00000000 b3:02 137822     /usr/lib/arm-linux-gnueabihf/gconv/gconv-modules.cache
+65410000-65413000 ---p 00000000 00:00 0 
+65413000-65460000 rw-p 00000000 00:00 0 
+65460000-65463000 ---p 00000000 00:00 0 
+65463000-654b0000 rw-p 00000000 00:00 0 
+654b0000-654b3000 ---p 00000000 00:00 0 
+654b3000-65500000 rw-p 00000000 00:00 0 
+65500000-65521000 rw-p 00000000 00:00 0 
+65521000-65600000 ---p 00000000 00:00 0 
+65606000-6560f000 r-xp 00000000 b3:02 275836     /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+6560f000-65610000 r--p 00009000 b3:02 275836     /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+65610000-65611000 rw-p 0000a000 b3:02 275836     /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+65611000-65614000 ---p 00000000 00:00 0 
+65614000-65661000 rw-p 00000000 00:00 0 
+65661000-65662000 ---p 00000000 00:00 0 
+65662000-65743000 rw-p 00000000 00:00 0 
+65743000-6578b000 ---p 00000000 00:00 0 
+6578b000-6578e000 rw-p 00000000 00:00 0 
+6578e000-657b1000 ---p 00000000 00:00 0 
+657b1000-657b7000 rw-p 00000000 00:00 0 
+657b7000-657ff000 ---p 00000000 00:00 0 
+657ff000-65d40000 rw-p 00000000 00:00 0 
+65d40000-6a540000 ---p 00000000 00:00 0 
+6a540000-6b000000 rw-p 00000000 00:00 0 
+6b000000-74000000 ---p 00000000 00:00 0 
+74005000-74017000 r-xp 00000000 b3:02 275829     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+74017000-74018000 r--p 00011000 b3:02 275829     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+74018000-74019000 rw-p 00012000 b3:02 275829     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+74019000-7401d000 rw-p 00000000 00:00 0 
+7401d000-74099000 ---p 00000000 00:00 0 
+74099000-74161000 rwxp 00000000 00:00 0 
+74161000-76099000 ---p 00000000 00:00 0 
+76099000-76200000 r--s 00000000 b3:02 275838     /usr/lib/jvm/java-17-openjdk-armhf/lib/modules
+76200000-76300000 rw-p 00000000 00:00 0 
+76303000-76312000 r-xp 00000000 b3:02 275830     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+76312000-76313000 r--p 0000e000 b3:02 275830     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+76313000-76314000 rw-p 0000f000 b3:02 275830     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+76314000-7632e000 r-xp 00000000 b3:02 275817     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+7632e000-7632f000 r--p 00019000 b3:02 275817     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+7632f000-76330000 rw-p 0001a000 b3:02 275817     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+76330000-76333000 ---p 00000000 00:00 0 
+76333000-76380000 rw-p 00000000 00:00 0 
+76380000-7639b000 r-xp 00000000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+7639b000-763af000 ---p 0001b000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763af000-763b0000 r--p 0001f000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763b0000-763b1000 rw-p 00020000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763b4000-763b5000 rw-s 3f100000 00:05 3          /dev/mem
+763b9000-763fe000 r-xp 00000000 b3:02 136615     /usr/lib/arm-linux-gnueabihf/libm.so.6
+763fe000-763ff000 r--p 00044000 b3:02 136615     /usr/lib/arm-linux-gnueabihf/libm.so.6
+763ff000-76400000 rw-p 00045000 b3:02 136615     /usr/lib/arm-linux-gnueabihf/libm.so.6
+76400000-765af000 r-xp 00000000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765af000-765bb000 ---p 001af000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765bb000-765c0000 r--p 001bb000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765c0000-765c2000 rw-p 001c0000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765c2000-765c4000 rw-p 00000000 00:00 0 
+765c7000-765c8000 r-xp 00000000 b3:02 136775     /usr/lib/arm-linux-gnueabihf/libpthread.so.0
+765c8000-765c9000 r--p 00000000 b3:02 136775     /usr/lib/arm-linux-gnueabihf/libpthread.so.0
+765c9000-765ca000 rw-p 00001000 b3:02 136775     /usr/lib/arm-linux-gnueabihf/libpthread.so.0
+765ca000-765d0000 r-xp 00000000 b3:02 275837     /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+765d0000-765d1000 r--p 00005000 b3:02 275837     /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+765d1000-765d2000 rw-p 00006000 b3:02 275837     /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+765d2000-76d4a000 r-xp 00000000 b3:02 275798     /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so
+76d4a000-76d61000 r--p 00778000 b3:02 275798     /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so
+76d61000-76d71000 rw-p 0078f000 b3:02 275798     /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so
+76d71000-76d97000 rw-p 00000000 00:00 0 
+76d97000-76f03000 r-xp 00000000 b3:02 136261     /usr/lib/arm-linux-gnueabihf/libc.so.6
+76f03000-76f05000 r--p 0016c000 b3:02 136261     /usr/lib/arm-linux-gnueabihf/libc.so.6
+76f05000-76f06000 rw-p 0016e000 b3:02 136261     /usr/lib/arm-linux-gnueabihf/libc.so.6
+76f06000-76f10000 rw-p 00000000 00:00 0 
+76f10000-76f26000 r-xp 00000000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f26000-76f3f000 ---p 00016000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f3f000-76f40000 r--p 0001f000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f40000-76f41000 rw-p 00020000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f41000-76f4d000 r-xp 00000000 b3:02 275821     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjli.so
+76f4d000-76f4e000 r--p 0000c000 b3:02 275821     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjli.so
+76f4e000-76f4f000 rw-p 0000d000 b3:02 275821     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjli.so
+76f50000-76f51000 r-xp 00000000 b3:02 136801     /usr/lib/arm-linux-gnueabihf/librt.so.1
+76f51000-76f52000 r--p 00000000 b3:02 136801     /usr/lib/arm-linux-gnueabihf/librt.so.1
+76f52000-76f53000 rw-p 00001000 b3:02 136801     /usr/lib/arm-linux-gnueabihf/librt.so.1
+76f53000-76f5b000 rw-s 00000000 b3:02 262183     /tmp/hsperfdata_root/3127
+76f5b000-76f5e000 r-xp 00000000 b3:02 275820     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+76f5e000-76f5f000 r--p 00003000 b3:02 275820     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+76f5f000-76f60000 rw-p 00004000 b3:02 275820     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+76f60000-76f64000 r-xp 00000000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f64000-76f73000 ---p 00004000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f73000-76f74000 r--p 00003000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f74000-76f75000 rw-p 00004000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f75000-76f76000 ---p 00000000 00:00 0 
+76f76000-76f77000 r--p 00000000 00:00 0 
+76f77000-76f78000 ---p 00000000 00:00 0 
+76f78000-76f7c000 rw-p 00000000 00:00 0 
+76f7c000-76fa3000 r-xp 00000000 b3:02 135968     /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+76fa3000-76fa4000 r--p 00027000 b3:02 135968     /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+76fa4000-76fa5000 rw-p 00028000 b3:02 135968     /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+7ed7e000-7ed9f000 rw-p 00000000 00:00 0          [stack]
+7eedf000-7eee0000 r-xp 00000000 00:00 0          [sigpage]
+7eee0000-7eee1000 r--p 00000000 00:00 0          [vvar]
+7eee1000-7eee2000 r-xp 00000000 00:00 0          [vdso]
+ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+
+VM Arguments:
+java_command: target/school-work-0.0.1-SNAPSHOT.jar
+java_class_path (initial): target/school-work-0.0.1-SNAPSHOT.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 1                                         {product} {ergonomic}
+    uintx CodeCacheExpansionSize                   = 32768                                  {pd product} {ergonomic}
+    uintx InitialCodeCacheSize                     = 163840                                 {pd product} {ergonomic}
+   size_t InitialHeapSize                          = 16777216                                  {product} {ergonomic}
+   size_t MaxHeapSize                              = 243269632                                 {product} {ergonomic}
+   size_t MaxNewSize                               = 81002496                                  {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 131072                                    {product} {ergonomic}
+   size_t MinHeapSize                              = 6291456                                   {product} {ergonomic}
+     bool NeverActAsServerClassMachine             = true                                   {pd product} {ergonomic}
+   size_t NewSize                                  = 5505024                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5242880                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 0                                      {pd product} {ergonomic}
+   size_t OldSize                                  = 11272192                                  {product} {ergonomic}
+     bool ProfileInterpreter                       = false                                  {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 33554432                               {pd product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 243269632                              {manageable} {ergonomic}
+     bool UseSerialGC                              = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+SHELL=/bin/bash
+LANG=en_GB.UTF-8
+TERM=xterm-256color
+
+Active Locale:
+LC_ALL=en_GB.UTF-8
+LC_COLLATE=en_GB.UTF-8
+LC_CTYPE=en_GB.UTF-8
+LC_MESSAGES=en_GB.UTF-8
+LC_MONETARY=en_GB.UTF-8
+LC_NUMERIC=en_GB.UTF-8
+LC_TIME=en_GB.UTF-8
+
+Signal Handlers:
+   SIGSEGV: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGBUS: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGFPE: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGPIPE: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGXFSZ: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGILL: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGUSR2: SR_handler in libjvm.so, mask=00000000000000000000000000000000, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGHUP: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGINT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTERM: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGQUIT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTRAP: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+
+
+Periodic native trim disabled
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+PRETTY_NAME="Raspbian GNU/Linux 12 (bookworm)"
+NAME="Raspbian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=raspbian
+ID_LIKE=debian
+HOME_URL="http://www.raspbian.org/"
+SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
+BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
+uname: Linux 6.1.0-rpi7-rpi-v7 #1 SMP Raspbian 1:6.1.63-1+rpt1 (2023-11-24) armv7l
+OS uptime: 0 days 1:22 hours
+libc: glibc 2.36 NPTL 2.36 
+rlimit (soft/hard): STACK 8192k/infinity , CORE 0k/0k , NPROC 5197/5197 , NOFILE 1048576/1048576 , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK 118008k/118008k
+load average: 0.43 0.30 0.28
+
+/proc/meminfo:
+MemTotal:         944092 kB
+MemFree:          268188 kB
+MemAvailable:     713836 kB
+Buffers:           31296 kB
+Cached:           453844 kB
+SwapCached:            0 kB
+Active:           356180 kB
+Inactive:         251624 kB
+Active(anon):     125704 kB
+Inactive(anon):     1264 kB
+Active(file):     230476 kB
+Inactive(file):   250360 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:        102396 kB
+SwapFree:         102396 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:               120 kB
+Writeback:             0 kB
+AnonPages:        122704 kB
+Mapped:           140276 kB
+Shmem:              4292 kB
+KReclaimable:      19736 kB
+Slab:              37432 kB
+SReclaimable:      19736 kB
+SUnreclaim:        17696 kB
+KernelStack:        1896 kB
+PageTables:         4256 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      574440 kB
+Committed_AS:    1031184 kB
+VmallocTotal:    1114112 kB
+VmallocUsed:        8296 kB
+VmallocChunk:          0 kB
+Percpu:              464 kB
+CmaTotal:         262144 kB
+CmaFree:          201520 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled: <Not Available>
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter): <Not Available>
+
+Process Memory:
+Virtual Size: 326364K (peak: 336444K)
+Resident Set Size: 30740K (peak: 35820K) (anon: 19360K, file: 11380K, shmem: 0K)
+Swapped out: 0K
+C-Heap outstanding allocations: 6196K, retained: 1227K
+glibc malloc tunables: (default)
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads): 10395
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have): 65530
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers): 32768
+
+/etc/ld.so.preload:
+/usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so
+
+container information not found.
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU: total 4 (initial active 4) (ARMv7), vfp, mp_ext
+/proc/cpuinfo:
+processor	: 0
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 57.60
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 57.60
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 57.60
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 57.60
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+Hardware	: BCM2835
+Revision	: a02082
+Serial		: 000000004324d5f8
+Model		: Raspberry Pi 3 Model B Rev 1.2
+
+Online cpus: 0-3
+Offline cpus: 
+
+Memory: 4k page, physical 944092k(268188k free), swap 102396k(102396k free)
+Page Sizes: 4k
+
+vm_info: OpenJDK Client VM (17.0.9+9-Raspbian-1deb12u1rpt1) for linux-arm JRE (17.0.9+9-Raspbian-1deb12u1rpt1), built on Nov  7 2023 13:06:05 by "" with gcc 12.2.0
+
+END.
