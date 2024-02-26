@@ -19,7 +19,7 @@ import com.pi4j.util.Console;
  */
 public class ProjectOneB {
 	//private final int TEMP_SENSOR = 4; // PIN 38 = BCM 4
-	private final int THRESHOLD_VALUE = 120;
+	private final int THRESHOLD_VALUE = 78;
 	
 	private final int LED = 22; // Pin 15 = BCM 22
 	
@@ -50,10 +50,11 @@ public class ProjectOneB {
 		// Infinite Loop
 		while(true) {
 			temp = getTemperature();
-			if(temp <= THRESHOLD_VALUE)
-				led.high();
-			else
+			
+			if(temp >= THRESHOLD_VALUE)
 				led.low();
+			else
+				led.high();
 			
 			try {
 				Thread.sleep(3000L);
