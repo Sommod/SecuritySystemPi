@@ -14,7 +14,13 @@ import org.eclipse.californium.elements.util.NetworkInterfacesUtil;
 
 public class CoAP_Server extends CoapServer {
 
-	private static final int COAP_PORT = Configuration.getStandard().get(CoapConfig.COAP_PORT);
+	static {
+		CoapConfig.register();
+	}
+	private static final int COAP_PORT = 
+			Configuration
+			.getStandard()
+			.get(CoapConfig.COAP_PORT);
 	private static final String tempUnit = "F";
 	float temperature = 70;
 
