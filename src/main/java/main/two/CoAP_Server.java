@@ -18,6 +18,8 @@ public class CoAP_Server extends CoapServer {
 	private static final String tempUnit = "F";
 	float temperature = 70;
 
+	// Temp Remove
+	
 	public static void main(String[] args) {
 		try {
 			CoAP_Server server = new CoAP_Server();
