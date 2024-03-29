@@ -1,0 +1,153 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x63424188, pid=3917, tid=3918
+#
+# JRE version: OpenJDK Runtime Environment (17.0.9+9) (build 17.0.9+9-Raspbian-1deb12u1rpt1)
+# Java VM: OpenJDK Client VM (17.0.9+9-Raspbian-1deb12u1rpt1, mixed mode, emulated-client, serial gc, linux-arm)
+# Problematic frame:
+# C  [libpigpio.so.1+0x14188]  gpioWrite+0x138
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   Unknown
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: target/school-work-0.0.1-SNAPSHOT.jar
+
+Host: rev 4 (v7l), 4 cores, 921M, Raspbian GNU/Linux 12 (bookworm)
+Time: Sun Feb 25 19:16:50 2024 EST elapsed time: 47.707586 seconds (0d 0h 0m 47s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x762102d0):  JavaThread "main" [_thread_in_native, id=3918, stack(0x76320000,0x76370000)]
+
+Stack: [0x76320000,0x76370000],  sp=0x7636e8b0,  free space=314k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libpigpio.so.1+0x14188]  gpioWrite+0x138
+C  0x7636e9d0
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  com.pi4j.library.pigpio.internal.PIGPIO.gpioWrite(II)I+0
+j  com.pi4j.library.pigpio.impl.PiGpioNativeImpl.gpioWrite(ILcom/pi4j/library/pigpio/PiGpioState;)V+53
+j  com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput.state(Lcom/pi4j/io/gpio/digital/DigitalState;)Lcom/pi4j/io/gpio/digital/DigitalOutput;+15
+j  com.pi4j.io.gpio.digital.DigitalOutput.high()Lcom/pi4j/io/gpio/digital/DigitalOutput;+4
+j  main.one.ProjectOneA.run()V+455
+j  main.one.ProjectOneA.<init>(Lcom/pi4j/context/Context;)V+55
+j  main.Main.main([Ljava/lang/String;)V+113
+v  ~StubRoutines::call_stub
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x00000007
+
+Registers:
+  r0  = 0x00000001
+  r1  = 0xffffffff
+  r2  = 0x0000000a
+  r3  = 0x00000002
+  r4  = 0x00000002
+  r5  = 0x00000001
+  r6  = 0x76f91d7c
+  r7  = 0x00400000
+  r8  = 0x00000007
+  r9  = 0x0000002c
+  r10 = 0x762102d0
+  fp  = 0x7636e998
+  r12 = 0x00000007
+  sp  = 0x7636e8b0
+  lr  = 0x7409e23c
+  pc  = 0x63424188
+  cpsr = 0x20000010
+
+
+Register to memory mapping:
+
+  r0  = 0x00000001 is an unknown value
+  r1  = 0xffffffff is an unknown value
+  r2  = 0x0000000a is an unknown value
+  r3  = 0x00000002 is an unknown value
+  r4  = 0x00000002 is an unknown value
+  r5  = 0x00000001 is an unknown value
+  r6  = 0x76f91d7c: __stack_chk_guard+0x00000000 in /lib/ld-linux-armhf.so.3 at 0x76f6a000
+  r7  = 0x00400000 is an unknown value
+  r8  = 0x00000007 is an unknown value
+  r9  = 0x0000002c is an unknown value
+  r10 = 0x762102d0 is a thread
+  fp  = 0x7636e998 is pointing into the stack for thread: 0x762102d0
+  r12 = 0x00000007 is an unknown value
+  sp  = 0x7636e8b0 is pointing into the stack for thread: 0x762102d0
+  lr  = 0x7409e23c is at code_begin+540 in an Interpreter codelet
+method entry point (kind = native)  [0x7409e020, 0x7409e370]  848 bytes
+  pc  = 0x63424188: gpioWrite+0x00000138 in /lib/libpigpio.so.1 at 0x63410000
+
+
+Top of Stack: (sp=0x7636e8b0)
+0x7636e8b0:   6a540000 7636e8e4 64726278 7636e8e4
+0x7636e8c0:   658120f8 762102d0 65c54060 00000000
+0x7636e8d0:   7636e938 76d4c6a0 7636e8f8 fffffffe
+0x7636e8e0:   7636e92c 76abbcf4 00000000 982d6700
+0x7636e8f0:   740b47d0 63d139e8 7409ce38 00000000
+0x7636e900:   7636e9a8 6470df58 762102d0 7409e23c
+0x7636e910:   762102d0 76d4c6a0 00000003 640ecec8
+0x7636e920:   7636e958 7409bc7c 7636e974 00000000
+0x7636e930:   6a56e390 00000016 7636e938 644a7190
+0x7636e940:   7636e974 644acd88 00000000 6a5bab38
+0x7636e950:   644a7208 00000000 7636e96c 7636e99c
+0x7636e960:   7409bdcc 00000035 00000000 00000000
+0x7636e970:   00000016 7636e974 00000000 7636e9a8
+0x7636e980:   64713660 00000000 65c41bf8 6470df58
+0x7636e990:   00000000 7636e9a4 7636e9d0 7409bc7c
+0x7636e9a0:   65c41bf8 00000001 00000016 7636e9ac
+0x7636e9b0:   644a277d 7636e9e4 644ad5a0 00000000
+0x7636e9c0:   6a5bab98 644a2800 7636e9a4 7636e9dc
+0x7636e9d0:   7636ea0c 7409c1b4 00000000 65c54048
+0x7636e9e0:   00000016 6a559870 7636e9e8 6472df17
+0x7636e9f0:   7636ea1c 6472a250 00000000 65c407e8
+0x7636ea00:   6472df80 7636e9dc 7636ea18 7636ea44
+0x7636ea10:   7409c010 00000000 65c54430 65c51558
+0x7636ea20:   7636ea20 64456584 7636ea4c 64727e20
+0x7636ea30:   00000000 6a5bcf98 644565a8 7636ea18
+0x7636ea40:   7636ea4c 7636ea74 7409c010 65c51558
+0x7636ea50:   7636ea50 644d56c7 7636eaa8 644d5c98
+0x7636ea60:   00000000 65c42188 644d57f0 7636ea4c
+0x7636ea70:   7636eaa8 7636ead0 7409bdcc 00000000
+0x7636ea80:   0000000e 65c515b0 65c51598 65c51558
+0x7636ea90:   65c51540 65c51500 65c514c0 65c514a8
+0x7636eaa0:   65c51498 6a5e38c8 65c51470 7636eaac 
+
+Instructions: (pc=0x63424188)
+0x63424088:   02 00 00 9a 34 10 92 e5 01 1b 11 e2 49 00 00 0a
+0x63424098:   44 33 9f e5 03 30 8f e0 0c 37 13 e5 00 00 53 e3
+0x634240a8:   9e 00 00 0a 35 00 54 e3 b1 00 00 8a 01 00 55 e3
+0x634240b8:   84 00 00 8a 84 90 a0 e1 20 33 9f e5 04 10 89 e0
+0x634240c8:   03 30 8f e0 01 31 83 e0 14 23 9f e5 b8 36 d3 e5
+0x634240d8:   01 70 a0 e3 02 20 8f e0 1f 00 04 e2 07 00 53 e1
+0x634240e8:   3c 10 92 e5 17 70 a0 e1 a4 82 a0 e1 19 00 00 0a
+0x634240f8:   00 00 55 e3 0a 20 88 02 07 20 88 12 02 30 43 e2
+0x63424108:   02 71 81 e7 03 00 53 e3 03 f1 8f 90 0b 00 00 ea
+0x63424118:   5c 00 00 ea 4b 00 00 ea 00 00 00 ea ff ff ff ea
+0x63424128:   c0 22 9f e5 04 00 89 e0 02 20 8f e0 6b 3e 82 e2
+0x63424138:   08 30 83 e2 00 31 83 e0 00 20 a0 e3 b2 20 c3 e1
+0x63424148:   a4 32 9f e5 04 90 89 e0 03 30 8f e0 09 91 83 e0
+0x63424158:   01 20 a0 e3 b8 26 c9 e5 90 32 9f e5 01 00 a0 e3
+0x63424168:   07 c0 a0 e3 93 24 83 e0 00 00 55 e3 a3 31 a0 e1
+0x63424178:   0a 80 88 02 03 21 83 e0 07 80 88 12 12 40 44 e0
+0x63424188:   03 21 91 e7 14 40 84 e0 1c 24 c2 e1 10 44 82 e1
+0x63424198:   05 00 a0 01 00 00 a0 13 03 41 81 e7 08 71 81 e7
+0x634241a8:   3c 20 9d e5 00 30 96 e5 03 00 52 e1 86 00 00 1a
+0x634241b8:   40 d0 8d e2 f0 87 bd e8 34 32 9f e5 34 82 9f e5
+0x634241c8:   08 a0 8d e2 03 30 97 e7 08 80 8f e0 0a 00 a0 e1
+0x634241d8:   00 90 93 e5 94 bf ff eb 08 31 98 e5 08 20 9d e5
+0x634241e8:   03 00 52 e1 0b 00 00 0a 0a 00 a0 e1 10 a0 8d e2
+0x634241f8:   0a 10 a0 e1 50 bf ff eb fc 21 9f e5 0a 30 a0 e1
+0x63424208:   02 20 8f e0 20 10 a0 e3 11 0e 88 e2 c2 bf ff eb
+0x63424218:   08 30 9d e5 08 31 88 e5 e0 31 9f e5 e0 21 9f e5
+0x63424228:   e0 11 9f e5 03 30 8f e0 02 20 8f e0 f0 40 cd e1
+0x63424238:   09 00 a0 e1 0e 3d 83 e2 11 2e 82 e2 01 10 8f e0
+0x63424248:   09 c0 ff eb 91 ff ff ea bc 21 9f e5 04 a0 89 e0
+0x63424258:   02 20 8f e0 6b 3e 82 e2 08 30 83 e2 0a a1 83 e0
+0x63424268:   00 20 a0 e3 b2 10 da e1 04 

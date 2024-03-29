@@ -1,0 +1,1585 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x63424188, pid=3206, tid=3207
+#
+# JRE version: OpenJDK Runtime Environment (17.0.9+9) (build 17.0.9+9-Raspbian-1deb12u1rpt1)
+# Java VM: OpenJDK Client VM (17.0.9+9-Raspbian-1deb12u1rpt1, mixed mode, emulated-client, serial gc, linux-arm)
+# Problematic frame:
+# C  [libpigpio.so.1+0x14188]  gpioWrite+0x138
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   Unknown
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: target/school-work-0.0.1-SNAPSHOT.jar
+
+Host: rev 4 (v7l), 4 cores, 921M, Raspbian GNU/Linux 12 (bookworm)
+Time: Sun Feb 25 17:27:24 2024 EST elapsed time: 177.452165 seconds (0d 0h 2m 57s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x762102d0):  JavaThread "main" [_thread_in_native, id=3207, stack(0x76340000,0x76390000)]
+
+Stack: [0x76340000,0x76390000],  sp=0x7638e8e8,  free space=314k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libpigpio.so.1+0x14188]  gpioWrite+0x138
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 384  com.pi4j.library.pigpio.internal.PIGPIO.gpioWrite(II)I (0 bytes) @ 0x7415bbc8 [0x7415bb80+0x00000048]
+J 383 c1 com.pi4j.library.pigpio.impl.PiGpioNativeImpl.gpioWrite(ILcom/pi4j/library/pigpio/PiGpioState;)V (118 bytes) @ 0x7415c190 [0x7415be90+0x00000300]
+J 378 c1 com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput.state(Lcom/pi4j/io/gpio/digital/DigitalState;)Lcom/pi4j/io/gpio/digital/DigitalOutput; (57 bytes) @ 0x7415a2a0 [0x7415a220+0x00000080]
+j  com.pi4j.io.gpio.digital.DigitalOutput.high()Lcom/pi4j/io/gpio/digital/DigitalOutput;+4
+j  main.Main.main([Ljava/lang/String;)V+449
+v  ~StubRoutines::call_stub
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 1 (SEGV_MAPERR), si_addr: 0x00000007
+
+Registers:
+  r0  = 0x00000001
+  r1  = 0xffffffff
+  r2  = 0x0000000a
+  r3  = 0x00000002
+  r4  = 0x00000002
+  r5  = 0x00000001
+  r6  = 0x76fb2d7c
+  r7  = 0x00400000
+  r8  = 0x00000007
+  r9  = 0x0000002c
+  r10 = 0x762102d0
+  fp  = 0x7638e960
+  r12 = 0x00000007
+  sp  = 0x7638e8e8
+  lr  = 0x7415bbe4
+  pc  = 0x63424188
+  cpsr = 0x20000010
+
+
+Register to memory mapping:
+
+  r0  = 0x00000001 is an unknown value
+  r1  = 0xffffffff is an unknown value
+  r2  = 0x0000000a is an unknown value
+  r3  = 0x00000002 is an unknown value
+  r4  = 0x00000002 is an unknown value
+  r5  = 0x00000001 is an unknown value
+  r6  = 0x76fb2d7c: __stack_chk_guard+0x00000000 in /lib/ld-linux-armhf.so.3 at 0x76f8b000
+  r7  = 0x00400000 is an unknown value
+  r8  = 0x00000007 is an unknown value
+  r9  = 0x0000002c is an unknown value
+  r10 = 0x762102d0 is a thread
+  fp  = 0x7638e960 is pointing into the stack for thread: 0x762102d0
+  r12 = 0x00000007 is an unknown value
+  sp  = 0x7638e8e8 is pointing into the stack for thread: 0x762102d0
+  lr  = 0x7415bbe4 is at entry_point+100 in (nmethod*)0x7415ba88
+Compiled method (n/a)  177457  384     n       com.pi4j.library.pigpio.internal.PIGPIO::gpioWrite (native)
+ total in heap  [0x7415ba88,0x7415bc8c] = 516
+ relocation     [0x7415bb6c,0x7415bb74] = 8
+ main code      [0x7415bb80,0x7415bc84] = 260
+ oops           [0x7415bc84,0x7415bc8c] = 8
+  pc  = 0x63424188: gpioWrite+0x00000138 in /lib/libpigpio.so.1 at 0x63410000
+
+
+Top of Stack: (sp=0x7638e8e8)
+0x7638e8e8:   65b725d8 76d6c6a0 762102d0 65b725d8
+0x7638e8f8:   76d6c6a0 76288910 7638e96c 76a1b3e8
+0x7638e908:   762102d0 762102d0 76210090 76210094
+0x7638e918:   762102d0 76d7ff08 7638e954 7afe5c00
+0x7638e928:   00000000 6a5584f8 00000016 6445701c
+0x7638e938:   00000000 64709ca0 762102d0 7415bbe4
+0x7638e948:   65a723d0 762102d0 00000000 6a56c560
+0x7638e958:   65cf9518 64457b48 7638eac0 7415c190
+0x7638e968:   76288910 65bc83d0 65b725d8 76c631ec
+0x7638e978:   65cf1740 76d6c6a0 7638e990 76210e00
+0x7638e988:   7638eac0 7415b53c 00000000 762102d0
+0x7638e998:   7638e990 65cf1700 7638e9c8 762102d0
+0x7638e9a8:   65cf9518 00000001 6a5584f8 00000016
+0x7638e9b8:   65b72560 65b72560 7638ea2c 76a325c4
+0x7638e9c8:   7638eac0 7415a2a0 7638e9f8 64702688
+0x7638e9d8:   00000000 76d8da70 762102d0 76d7ff08
+0x7638e9e8:   7638ea1c 76bcd3a8 00000000 00000000
+0x7638e9f8:   00000000 762102d0 00000005 7409ce38
+0x7638ea08:   00000000 7638eac8 64035918 762102d0
+0x7638ea18:   7638ea2c 76c68b18 7638ebbc 00000005
+0x7638ea28:   7638eab8 7409e27c 7638ea8c 7693d478
+0x7638ea38:   7638ea94 7693d478 00000000 65b8ab38
+0x7638ea48:   6470a520 00000000 6a5584f8 00000016
+0x7638ea58:   65b8ae40 65a69a38 65b95968 65bc83a0
+0x7638ea68:   65b95980 65cf1740 65b959b8 65b959d0
+0x7638ea78:   65cf1740 00000002 00000000 7638eac8
+0x7638ea88:   7638eac0 7409c010 7638eaf0 65a69a38
+0x7638ea98:   65b8ae40 7638ea9c 6445701c 7638eac8
+0x7638eaa8:   64704b40 00000000 65cc3538 64457040
+0x7638eab8:   7638ea94 7638eac8 7638eaf0 7409c010
+0x7638eac8:   65b8ae40 7638eacc 644009b1 7638eb24
+0x7638ead8:   64400f90 00000000 65cc7268 64400ae0 
+
+Instructions: (pc=0x63424188)
+0x63424088:   02 00 00 9a 34 10 92 e5 01 1b 11 e2 49 00 00 0a
+0x63424098:   44 33 9f e5 03 30 8f e0 0c 37 13 e5 00 00 53 e3
+0x634240a8:   9e 00 00 0a 35 00 54 e3 b1 00 00 8a 01 00 55 e3
+0x634240b8:   84 00 00 8a 84 90 a0 e1 20 33 9f e5 04 10 89 e0
+0x634240c8:   03 30 8f e0 01 31 83 e0 14 23 9f e5 b8 36 d3 e5
+0x634240d8:   01 70 a0 e3 02 20 8f e0 1f 00 04 e2 07 00 53 e1
+0x634240e8:   3c 10 92 e5 17 70 a0 e1 a4 82 a0 e1 19 00 00 0a
+0x634240f8:   00 00 55 e3 0a 20 88 02 07 20 88 12 02 30 43 e2
+0x63424108:   02 71 81 e7 03 00 53 e3 03 f1 8f 90 0b 00 00 ea
+0x63424118:   5c 00 00 ea 4b 00 00 ea 00 00 00 ea ff ff ff ea
+0x63424128:   c0 22 9f e5 04 00 89 e0 02 20 8f e0 6b 3e 82 e2
+0x63424138:   08 30 83 e2 00 31 83 e0 00 20 a0 e3 b2 20 c3 e1
+0x63424148:   a4 32 9f e5 04 90 89 e0 03 30 8f e0 09 91 83 e0
+0x63424158:   01 20 a0 e3 b8 26 c9 e5 90 32 9f e5 01 00 a0 e3
+0x63424168:   07 c0 a0 e3 93 24 83 e0 00 00 55 e3 a3 31 a0 e1
+0x63424178:   0a 80 88 02 03 21 83 e0 07 80 88 12 12 40 44 e0
+0x63424188:   03 21 91 e7 14 40 84 e0 1c 24 c2 e1 10 44 82 e1
+0x63424198:   05 00 a0 01 00 00 a0 13 03 41 81 e7 08 71 81 e7
+0x634241a8:   3c 20 9d e5 00 30 96 e5 03 00 52 e1 86 00 00 1a
+0x634241b8:   40 d0 8d e2 f0 87 bd e8 34 32 9f e5 34 82 9f e5
+0x634241c8:   08 a0 8d e2 03 30 97 e7 08 80 8f e0 0a 00 a0 e1
+0x634241d8:   00 90 93 e5 94 bf ff eb 08 31 98 e5 08 20 9d e5
+0x634241e8:   03 00 52 e1 0b 00 00 0a 0a 00 a0 e1 10 a0 8d e2
+0x634241f8:   0a 10 a0 e1 50 bf ff eb fc 21 9f e5 0a 30 a0 e1
+0x63424208:   02 20 8f e0 20 10 a0 e3 11 0e 88 e2 c2 bf ff eb
+0x63424218:   08 30 9d e5 08 31 88 e5 e0 31 9f e5 e0 21 9f e5
+0x63424228:   e0 11 9f e5 03 30 8f e0 02 20 8f e0 f0 40 cd e1
+0x63424238:   09 00 a0 e1 0e 3d 83 e2 11 2e 82 e2 01 10 8f e0
+0x63424248:   09 c0 ff eb 91 ff ff ea bc 21 9f e5 04 a0 89 e0
+0x63424258:   02 20 8f e0 6b 3e 82 e2 08 30 83 e2 0a a1 83 e0
+0x63424268:   00 20 a0 e3 b2 10 da e1 04 00 a0 e1 8a cb ff eb
+0x63424278:   98 31 9f e5 00 20 a0 e3 03 30 8f e0 b2 20 ca e1 
+
+
+Stack slot to memory mapping:
+stack at sp + 0 slots: 0x65b725d8 is an oop: [Lcom.pi4j.library.pigpio.PiGpioState; 
+{0x65b725d8} - klass: 'com/pi4j/library/pigpio/PiGpioState'[]
+ - length: 3
+stack at sp + 1 slots: 0x76d6c6a0: <offset 0x0078a6a0> in /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so at 0x765e2000
+stack at sp + 2 slots: 0x762102d0 is a thread
+stack at sp + 3 slots: 0x65b725d8 is an oop: [Lcom.pi4j.library.pigpio.PiGpioState; 
+{0x65b725d8} - klass: 'com/pi4j/library/pigpio/PiGpioState'[]
+ - length: 3
+stack at sp + 4 slots: 0x76d6c6a0: <offset 0x0078a6a0> in /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so at 0x765e2000
+stack at sp + 5 slots: 0x76288910 points into unknown readable memory: 0x65bc83d0 | d0 83 bc 65
+stack at sp + 6 slots: 0x7638e96c is pointing into the stack for thread: 0x762102d0
+stack at sp + 7 slots: 0x76a1b3e8: JVM_Clone+0x0000023c in /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so at 0x765e2000
+
+
+Compiled method (n/a)  177482  384     n       com.pi4j.library.pigpio.internal.PIGPIO::gpioWrite (native)
+ total in heap  [0x7415ba88,0x7415bc8c] = 516
+ relocation     [0x7415bb6c,0x7415bb74] = 8
+ main code      [0x7415bb80,0x7415bc84] = 260
+ oops           [0x7415bc84,0x7415bc8c] = 8
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x644e74b8} 'gpioWrite' '(II)I' in 'com/pi4j/library/pigpio/internal/PIGPIO'
+  # parm0:    r0        = int
+  # parm1:    r1        = int
+  #           [sp+0x20]  (sp of caller)
+  0x7415bb80: 04c0 90e5 | 0800 5ce1 | 0000 000a 
+
+  0x7415bb8c: ;   {runtime_call ic_miss_stub}
+  0x7415bb8c: 4fbd fdea 
+[Verified Entry Point]
+  0x7415bb90: 50cc 4de2 | 0000 cce5 | 0048 2de9 | 0db0 a0e1 | 18d0 4de2 | 0130 a0e1 | 0020 a0e1 
+
+  0x7415bbac: ;   {oop(a 'java/lang/Class'{0x65a723d0} = 'com/pi4j/library/pigpio/internal/PIGPIO')}
+  0x7415bbac: d0c3 02e3 | a7c5 46e3 | 0010 8de2 | 00c0 8de5 | f0b1 8ae5 | ecf1 8ae5 | e8d1 8ae5 | 5ef0 7ff5 
+  0x7415bbcc: 7e0f 8ae2 | 04c0 a0e3 | 44c2 8ae5 | e8e9 03e3 | d2e3 46e3 | 3eff 2fe1 | 05c0 a0e3 | 44c2 8ae5 
+  0x7415bbec: 5ff0 7ff5 | 4822 9ae5 | 0000 12e3 | 1400 000a | 3832 9ae5 | 0000 53e3 | 1100 001a | 08c0 a0e3 
+  0x7415bc0c: 6822 9ae5 | 44c2 8ae5 | 0200 52e3 | 1300 000a | b8e0 9ae5 | 00c0 a0e3 | e8c1 8ae5 | f0c1 8ae5 
+  0x7415bc2c: ecc1 8ae5 | 80c0 8ee5 | 04c0 9ae5 | 0bd0 a0e1 | 0000 5ce3 | 0088 bd08 | 04b0 9d14 | 0450 9d14 
+  0x7415bc4c: ;   {runtime_call StubRoutines (1)}
+  0x7415bc4c: 5ff5 fcea | 0300 2de9 | 0a00 a0e1 | a8ea 08e3 | c6e6 47e3 | 3eff 2fe1 | 0300 bde8 | e6ff ffea 
+  0x7415bc6c: 0300 2de9 | bce7 04e3 | bde6 47e3 | 3eff 2fe1 | 0300 bde8 | e5ff ffea 
+[/MachCode]
+
+
+Compiled method (c1)  177491  383             com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite (118 bytes)
+ total in heap  [0x7415bcc8,0x7415cbc0] = 3832
+ relocation     [0x7415bdac,0x7415be88] = 220
+ main code      [0x7415be90,0x7415c630] = 1952
+ stub code      [0x7415c630,0x7415c6a0] = 112
+ oops           [0x7415c6a0,0x7415c6d0] = 48
+ metadata       [0x7415c6d0,0x7415c720] = 80
+ scopes data    [0x7415c720,0x7415c8c4] = 420
+ scopes pcs     [0x7415c8c4,0x7415cb34] = 624
+ dependencies   [0x7415cb34,0x7415cb44] = 16
+ nul chk table  [0x7415cb44,0x7415cbc0] = 124
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x644a32b0} 'gpioWrite' '(ILcom/pi4j/library/pigpio/PiGpioState;)V' in 'com/pi4j/library/pigpio/impl/PiGpioNativeImpl'
+  # this:     r0        = 'com/pi4j/library/pigpio/impl/PiGpioNativeImpl'
+  # parm0:    r1        = int
+  # parm1:    r2        = 'com/pi4j/library/pigpio/PiGpioState'
+  #           [sp+0x68]  (sp of caller)
+  0x7415be90: 04c0 90e5 | 0800 5ce1 | 0000 000a 
+
+  0x7415be9c: ;   {runtime_call ic_miss_stub}
+  0x7415be9c: 8bbc fdea 
+[Verified Entry Point]
+  0x7415bea0: 50cc 4de2 | 0000 cce5 | 0048 2de9 | 60d0 4de2 | 4800 8de5 | 4c10 8de5 | 5020 8de5 | 2440 90e5 
+  0x7415bec0: 0250 a0e1 | 0320 a0e3 | 0160 a0e1 
+
+  0x7415becc: ;   {metadata('java/lang/Object'[])}
+  0x7415becc: c81e 0ce3 | 0e14 46e3 | 4007 52e3 | 9a01 002a | 13c0 a0e3 | 02c1 8ce0 | 07c0 cce3 | d000 9ae5 
+  0x7415beec: d880 9ae5 | 0c30 80e0 | 0800 53e1 | 9201 008a | d030 8ae5 | 0180 a0e3 | 0080 80e5 | 0410 80e5 
+  0x7415bf0c: 0820 80e5 | 0ce0 80e2 | 0080 a0e3 | 0300 5ee1 | 0480 8e34 | fcff ff3a | 5ef0 7ff5 | 0030 a0e1 
+  0x7415bf2c: 7f10 e0e3 | 0100 56e1 | 0100 00ba | 7f00 56e3 | 1100 00da 
+
+  0x7415bf40: ;   {metadata('java/lang/Integer')}
+  0x7415bf40: 1016 04e3 | 0e14 46e3 | d000 9ae5 | d880 9ae5 | 1020 80e2 | 0800 52e1 | 7c01 008a | d020 8ae5 
+  0x7415bf60: 0180 a0e3 | 0080 80e5 | 0410 80e5 | 0080 a0e3 | 0880 80e5 | 0c80 80e5 | 5ef0 7ff5 | 0860 80e5 
+  0x7415bf80: 5ef0 7ff5 | 0400 00ea | 8000 86e2 
+
+  0x7415bf8c: ;   {oop(a 'java/lang/Integer'[256] {0x65d01668})}
+  0x7415bf8c: 6816 01e3 | d015 46e3 | 0001 81e0 
+
+  0x7415bf98: ; implicit exception: dispatches to 0x7415c558
+  0x7415bf98: 0c00 90e5 | 0020 a0e1 | 0000 52e3 | 0d00 000a 
+
+  0x7415bfa8: ; implicit exception: dispatches to 0x7415c55c
+  0x7415bfa8: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415bfc8: 10c0 91e5 | 1800 5ce3 | 6201 001a 
+
+  0x7415bfd4: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415bfd4: 0d49 fdeb | 0000 50e3 | 5f01 000a | 0c00 83e2 | 0020 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 
+  0x7415bff4: ; implicit exception: dispatches to 0x7415c568
+  0x7415bff4: 0c20 95e5 | 0000 52e3 | 0d00 000a 
+
+  0x7415c000: ; implicit exception: dispatches to 0x7415c56c
+  0x7415c000: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415c020: 10c0 91e5 | 1800 5ce3 | 5001 001a 
+
+  0x7415c02c: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415c02c: f748 fdeb | 0000 50e3 | 4d01 000a | 1010 83e2 | 0020 81e5 | 00e0 0fe3 | 45e5 46e3 | a1e4 cee7 
+  0x7415c04c: 1020 95e5 | 7f10 e0e3 | 0100 52e1 | 0100 00ba | 7f00 52e3 | 1100 00da 
+
+  0x7415c064: ;   {metadata('java/lang/Integer')}
+  0x7415c064: 1016 04e3 | 0e14 46e3 | d000 9ae5 | d890 9ae5 | 1080 80e2 | 0900 58e1 | 3d01 008a | d080 8ae5 
+  0x7415c084: 0190 a0e3 | 0090 80e5 | 0410 80e5 | 0090 a0e3 | 0890 80e5 | 0c90 80e5 | 5ef0 7ff5 | 0820 80e5 
+  0x7415c0a4: 5ef0 7ff5 | 0400 00ea | 8000 82e2 
+
+  0x7415c0b0: ;   {oop(a 'java/lang/Integer'[256] {0x65d01668})}
+  0x7415c0b0: 6816 01e3 | d015 46e3 | 0001 81e0 
+
+  0x7415c0bc: ; implicit exception: dispatches to 0x7415c580
+  0x7415c0bc: 0c00 90e5 | 0020 a0e1 | 0000 52e3 | 0d00 000a 
+
+  0x7415c0cc: ; implicit exception: dispatches to 0x7415c584
+  0x7415c0cc: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415c0ec: 10c0 91e5 | 1800 5ce3 | 2301 001a 
+
+  0x7415c0f8: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415c0f8: c448 fdeb | 0000 50e3 | 2001 000a | 1400 83e2 | 0020 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 
+  0x7415c118: 0420 b0e1 | 0600 000a 
+
+  0x7415c120: ;   {metadata('org/slf4j/impl/SimpleLogger')}
+  0x7415c120: 7010 0de3 | 4014 46e3 | 0400 9215 | 0200 000a | 2cc0 90e5 | 0100 5ce1 | 1401 001a 
+
+  0x7415c13c: ; implicit exception: dispatches to 0x7415c598
+  0x7415c13c: 00c0 94e5 
+
+  0x7415c140: ;   {oop("[GPIO::SET] -> PIN: {}; {}({});"{0x65b8dd58})}
+  0x7415c140: 582d 0de3 | b825 46e3 | 0010 a0e3 | 0400 a0e1 
+
+  0x7415c150: ; ImmutableOopMap {[72]=Oop [80]=Oop }
+              ;*invokespecial formatAndLog {reexecute=0 rethrow=0 return_oop=0}
+              ; - org.slf4j.impl.SimpleLogger::trace@4 (line 429)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@34 (line 265)
+              ;   {optimized virtual_call}
+  0x7415c150: 4aef ffeb | 4800 9de5 | 0810 d0e5 | 0000 51e3 | da00 000a | 4c10 9de5 | 0130 a0e1 | 0310 a0e1 
+  0x7415c170: 0020 a0e3 | 0050 a0e1 | 0500 a0e1 
+
+  0x7415c17c: ; ImmutableOopMap {[72]=Oop [80]=Oop }
+              ;*invokevirtual validatePin {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validatePin@3 (line 140)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@45 (line 267)
+              ;   {optimized virtual_call}
+  0x7415c17c: bbfd ffeb | 5020 9de5 | 1010 92e5 | 4c00 9de5 
+
+  0x7415c18c: ; ImmutableOopMap {[72]=Oop [80]=Oop }
+              ;*invokestatic gpioWrite {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@53 (line 268)
+              ;   {static_call}
+  0x7415c18c: 7ffe ffeb | 4840 9de5 | 2450 94e5 | 0420 a0e3 
+
+  0x7415c19c: ;   {metadata('java/lang/Object'[])}
+  0x7415c19c: c81e 0ce3 | 0e14 46e3 | 0060 a0e1 | 4007 52e3 | fa00 002a | 13c0 a0e3 | 02c1 8ce0 | 07c0 cce3 
+  0x7415c1bc: d000 9ae5 | d870 9ae5 | 0c30 80e0 | 0700 53e1 | f200 008a | d030 8ae5 | 0170 a0e3 | 0070 80e5 
+  0x7415c1dc: 0410 80e5 | 0820 80e5 | 0ce0 80e2 | 0070 a0e3 | 0300 5ee1 | 0470 8e34 | fcff ff3a | 5ef0 7ff5 
+  0x7415c1fc: 0030 a0e1 | 7f10 e0e3 | 4c20 9de5 | 0100 52e1 | 0100 00ba | 7f00 52e3 | 1100 00da 
+
+  0x7415c218: ;   {metadata('java/lang/Integer')}
+  0x7415c218: 1016 04e3 | 0e14 46e3 | d000 9ae5 | d880 9ae5 | 1070 80e2 | 0800 57e1 | db00 008a | d070 8ae5 
+  0x7415c238: 0180 a0e3 | 0080 80e5 | 0410 80e5 | 0080 a0e3 | 0880 80e5 | 0c80 80e5 | 5ef0 7ff5 | 0820 80e5 
+  0x7415c258: 5ef0 7ff5 | 0400 00ea | 8000 82e2 
+
+  0x7415c264: ;   {oop(a 'java/lang/Integer'[256] {0x65d01668})}
+  0x7415c264: 6816 01e3 | d015 46e3 | 0001 81e0 
+
+  0x7415c270: ; implicit exception: dispatches to 0x7415c5ac
+  0x7415c270: 0c00 90e5 | 0020 a0e1 | 5070 9de5 | 0000 52e3 | 0d00 000a 
+
+  0x7415c284: ; implicit exception: dispatches to 0x7415c5b0
+  0x7415c284: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415c2a4: 10c0 91e5 | 1800 5ce3 | c000 001a 
+
+  0x7415c2b0: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415c2b0: 5648 fdeb | 0000 50e3 | bd00 000a | 0c00 83e2 | 0020 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 
+  0x7415c2d0: 0c20 97e5 | 0000 52e3 | 0d00 000a 
+
+  0x7415c2dc: ; implicit exception: dispatches to 0x7415c5bc
+  0x7415c2dc: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415c2fc: 10c0 91e5 | 1800 5ce3 | ad00 001a 
+
+  0x7415c308: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415c308: 4048 fdeb | 0000 50e3 | aa00 000a | 1010 83e2 | 0020 81e5 | 00e0 0fe3 | 45e5 46e3 | a1e4 cee7 
+  0x7415c328: 1020 97e5 | 7f10 e0e3 | 0100 52e1 | 0100 00ba | 7f00 52e3 | 1100 00da 
+
+  0x7415c340: ;   {metadata('java/lang/Integer')}
+  0x7415c340: 1016 04e3 | 0e14 46e3 | d000 9ae5 | d880 9ae5 | 1070 80e2 | 0800 57e1 | 9a00 008a | d070 8ae5 
+  0x7415c360: 0180 a0e3 | 0080 80e5 | 0410 80e5 | 0080 a0e3 | 0880 80e5 | 0c80 80e5 | 5ef0 7ff5 | 0820 80e5 
+  0x7415c380: 5ef0 7ff5 | 0400 00ea | 8000 82e2 
+
+  0x7415c38c: ;   {oop(a 'java/lang/Integer'[256] {0x65d01668})}
+  0x7415c38c: 6816 01e3 | d015 46e3 | 0001 81e0 
+
+  0x7415c398: ; implicit exception: dispatches to 0x7415c5d0
+  0x7415c398: 0c00 90e5 | 0020 a0e1 | 0000 52e3 | 0d00 000a 
+
+  0x7415c3a8: ; implicit exception: dispatches to 0x7415c5d4
+  0x7415c3a8: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415c3c8: 10c0 91e5 | 1800 5ce3 | 8000 001a 
+
+  0x7415c3d4: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415c3d4: 0d48 fdeb | 0000 50e3 | 7d00 000a | 1400 83e2 | 0020 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 
+  0x7415c3f4: 0000 56e3 
+
+  0x7415c3f8: ;   {oop(a 'java/lang/Boolean'{0x65cec850} = false)}
+  0x7415c3f8: 5028 0cb3 | ce25 46b3 
+
+  0x7415c400: ;   {oop(a 'java/lang/Boolean'{0x65d02368} = true)}
+  0x7415c400: 6823 02a3 | d025 46a3 | 0000 52e3 | 0d00 000a 
+
+  0x7415c410: ; implicit exception: dispatches to 0x7415c5e0
+  0x7415c410: 0410 93e5 | 0400 92e5 | 8810 91e5 | 10c0 91e5 | 0cc0 90e7 | 0100 50e1 | 0100 5c11 | 0500 000a 
+  0x7415c430: 10c0 91e5 | 1800 5ce3 | 6900 001a 
+
+  0x7415c43c: ;   {runtime_call slow_subtype_check Runtime1 stub}
+  0x7415c43c: f347 fdeb | 0000 50e3 | 6600 000a | 1800 83e2 | 0020 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 
+  0x7415c45c: 0520 b0e1 | 0600 000a 
+
+  0x7415c464: ;   {metadata('org/slf4j/impl/SimpleLogger')}
+  0x7415c464: 7010 0de3 | 4014 46e3 | 0400 9215 | 0200 000a | 2cc0 90e5 | 0100 5ce1 | 5a00 001a 
+
+  0x7415c480: ; implicit exception: dispatches to 0x7415c5f4
+  0x7415c480: 00c0 95e5 
+
+  0x7415c484: ;   {oop("[GPIO::SET] <- PIN: {}; {}({}); SUCCESS={}"{0x65b8de98})}
+  0x7415c484: 982e 0de3 | b825 46e3 | 0010 a0e3 | 0500 a0e1 | 5460 8de5 
+
+  0x7415c498: ; ImmutableOopMap {[72]=Oop }
+              ;*invokespecial formatAndLog {reexecute=0 rethrow=0 return_oop=0}
+              ; - org.slf4j.impl.SimpleLogger::trace@4 (line 429)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@106 (line 269)
+              ;   {optimized virtual_call}
+  0x7415c498: 78ee ffeb | 5400 9de5 | c01f a0e1 | 0020 a0e1 | 0130 a0e1 | 0100 a0e3 | 0000 8de5 | 4800 9de5 
+  0x7415c4b8: ; ImmutableOopMap {}
+              ;*invokevirtual validateResult {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateResult@3 (line 251)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@114 (line 270)
+              ;   {optimized virtual_call}
+  0x7415c4b8: e8f9 ffeb | 60d0 8de2 | 0048 bde8 | 4cc2 9ae5 
+
+  0x7415c4c8: ;   {poll_return}
+  0x7415c4c8: 00c0 9ce5 | 1eff 2fe1 
+
+  0x7415c4d0: ;   {metadata('com/pi4j/library/pigpio/PiGpioException')}
+  0x7415c4d0: d816 0de3 | 4a14 46e3 | bf50 d1e5 
+
+  0x7415c4dc: ; implicit exception: dispatches to 0x7415c5f8
+  0x7415c4dc: 0400 55e3 | 4500 001a | d000 9ae5 | d860 9ae5 | 2050 80e2 | 0600 55e1 | 4000 008a | d050 8ae5 
+  0x7415c4fc: 0160 a0e3 | 0060 80e5 | 0410 80e5 | 0060 a0e3 | 0860 80e5 | 0c60 80e5 | 1060 80e5 | 1460 80e5 
+  0x7415c51c: 1860 80e5 | 1c60 80e5 | 5ef0 7ff5 
+
+  0x7415c528: ;   {oop("PIGPIO NOT INITIALIZED; make sure you call the PiGpio::initialize() function first."{0x6582ae38})}
+  0x7415c528: 381e 0ae3 | 8215 46e3 | 0050 a0e1 | 0500 a0e1 | 5850 8de5 
+
+  0x7415c53c: ; ImmutableOopMap {[88]=Oop [72]=Oop [80]=Oop }
+              ;*invokespecial <init> {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateInitialized@13 (line 94)
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateReady@1 (line 86)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@40 (line 266)
+              ;   {optimized virtual_call}
+  0x7415c53c: 23bb fdeb | 5840 9de5 | 3300 00ea 
+
+  0x7415c548: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop }
+              ;*anewarray {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@7 (line 265)
+              ;   {runtime_call new_object_array Runtime1 stub}
+  0x7415c548: 3049 fdeb | 75fe ffea 
+
+  0x7415c550: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@23 (line 1081)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@13 (line 265)
+              ;   {runtime_call fast_new_instance Runtime1 stub}
+  0x7415c550: be49 fdeb | 88fe ffea 
+
+  0x7415c558: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop }
+              ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@21 (line 1080)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@13 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c558: 4c4a fdeb 
+
+  0x7415c55c: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@16 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c55c: 4b4a fdeb | 0020 8de5 
+
+  0x7415c564: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@16 (line 265)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c564: 3948 fdeb 
+
+  0x7415c568: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop }
+              ;*invokevirtual name {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@20 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c568: 484a fdeb 
+
+  0x7415c56c: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@23 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c56c: 474a fdeb | 0020 8de5 
+
+  0x7415c574: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@23 (line 265)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c574: 3548 fdeb 
+
+  0x7415c578: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@23 (line 1081)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@30 (line 265)
+              ;   {runtime_call fast_new_instance Runtime1 stub}
+  0x7415c578: b449 fdeb | c7fe ffea 
+
+  0x7415c580: ; ImmutableOopMap {r4=Oop r5=Oop [80]=Oop [72]=Oop r3=Oop }
+              ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@21 (line 1080)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@30 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c580: 424a fdeb 
+
+  0x7415c584: ; ImmutableOopMap {r4=Oop r3=Oop r2=Oop [80]=Oop [72]=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@33 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c584: 414a fdeb | 0020 8de5 
+
+  0x7415c58c: ; ImmutableOopMap {r4=Oop r3=Oop r2=Oop [80]=Oop [72]=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@33 (line 265)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c58c: 2f48 fdeb | 0020 8de5 
+
+  0x7415c594: ; ImmutableOopMap {r4=Oop r3=Oop [80]=Oop [72]=Oop }
+              ;*invokeinterface trace {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@34 (line 265)
+              ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x7415c594: cd47 fdeb 
+
+  0x7415c598: ; ImmutableOopMap {r4=Oop r3=Oop [80]=Oop [72]=Oop }
+              ;*invokeinterface trace {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@34 (line 265)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c598: 3c4a fdeb 
+
+  0x7415c59c: ; ImmutableOopMap {[80]=Oop r4=Oop [72]=Oop r5=Oop }
+              ;*anewarray {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@64 (line 269)
+              ;   {runtime_call new_object_array Runtime1 stub}
+  0x7415c59c: 1b49 fdeb | 15ff ffea 
+
+  0x7415c5a4: ; ImmutableOopMap {[80]=Oop r4=Oop [72]=Oop r5=Oop r3=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@23 (line 1081)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@70 (line 269)
+              ;   {runtime_call fast_new_instance Runtime1 stub}
+  0x7415c5a4: a949 fdeb | 29ff ffea 
+
+  0x7415c5ac: ; ImmutableOopMap {[80]=Oop r4=Oop [72]=Oop r5=Oop r3=Oop }
+              ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@21 (line 1080)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@70 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5ac: 374a fdeb 
+
+  0x7415c5b0: ; ImmutableOopMap {r4=Oop [72]=Oop r5=Oop r3=Oop r2=Oop r7=Oop [80]=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@73 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5b0: 364a fdeb | 0020 8de5 
+
+  0x7415c5b8: ; ImmutableOopMap {r4=Oop [72]=Oop r5=Oop r3=Oop r2=Oop r7=Oop [80]=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@73 (line 269)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c5b8: 2448 fdeb 
+
+  0x7415c5bc: ; ImmutableOopMap {r4=Oop [72]=Oop r5=Oop r3=Oop r7=Oop [80]=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@80 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5bc: 334a fdeb | 0020 8de5 
+
+  0x7415c5c4: ; ImmutableOopMap {r4=Oop [72]=Oop r5=Oop r3=Oop r7=Oop [80]=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@80 (line 269)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c5c4: 2148 fdeb 
+
+  0x7415c5c8: ; ImmutableOopMap {r4=Oop [72]=Oop r5=Oop r3=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@23 (line 1081)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@87 (line 269)
+              ;   {runtime_call fast_new_instance Runtime1 stub}
+  0x7415c5c8: a049 fdeb | 6aff ffea 
+
+  0x7415c5d0: ; ImmutableOopMap {r4=Oop [72]=Oop r5=Oop r3=Oop }
+              ;*aaload {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.Integer::valueOf@21 (line 1080)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@87 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5d0: 2e4a fdeb 
+
+  0x7415c5d4: ; ImmutableOopMap {r5=Oop r3=Oop r2=Oop [72]=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@90 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5d4: 2d4a fdeb | 0020 8de5 
+
+  0x7415c5dc: ; ImmutableOopMap {r5=Oop r3=Oop r2=Oop [72]=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@90 (line 269)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c5dc: 1b48 fdeb 
+
+  0x7415c5e0: ; ImmutableOopMap {r5=Oop r3=Oop [72]=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@105 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5e0: 2a4a fdeb | 0020 8de5 
+
+  0x7415c5e8: ; ImmutableOopMap {r5=Oop r3=Oop [72]=Oop r2=Oop }
+              ;*aastore {reexecute=1 rethrow=0 return_oop=0}
+              ; - (reexecute) com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@105 (line 269)
+              ;   {runtime_call throw_array_store_exception Runtime1 stub}
+  0x7415c5e8: 1848 fdeb | 0020 8de5 
+
+  0x7415c5f0: ; ImmutableOopMap {r5=Oop r3=Oop [72]=Oop }
+              ;*invokeinterface trace {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@106 (line 269)
+              ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x7415c5f0: b647 fdeb 
+
+  0x7415c5f4: ; ImmutableOopMap {r5=Oop r3=Oop [72]=Oop }
+              ;*invokeinterface trace {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@106 (line 269)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5f4: 254a fdeb 
+
+  0x7415c5f8: ; ImmutableOopMap {[80]=Oop [72]=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateInitialized@7 (line 94)
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateReady@1 (line 86)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@40 (line 266)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415c5f8: 244a fdeb 
+
+  0x7415c5fc: ; ImmutableOopMap {[80]=Oop [72]=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateInitialized@7 (line 94)
+              ; - com.pi4j.library.pigpio.impl.PiGpioBase::validateReady@1 (line 86)
+              ; - com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite@40 (line 266)
+              ;   {runtime_call fast_new_instance_init_check Runtime1 stub}
+  0x7415c5fc: 6349 fdeb | c8ff ffea | 0000 a0e1 | 00c0 a0e3 | 7c42 9ae5 | 7cc2 8ae5 | 80c2 8ae5 | 60d0 8de2 
+  0x7415c61c: 0048 bde8 
+
+  0x7415c620: ;   {runtime_call unwind_exception Runtime1 stub}
+  0x7415c620: 0a4b fdea | ffff ffff | ffff ffff | ffff ffff 
+[Stub Code]
+  0x7415c630: ;   {no_reloc}
+  0x7415c630: 0090 9fe5 | feff ffea 
+
+  0x7415c638: ;   {metadata(NULL)}
+  0x7415c638: 0000 0000 
+
+  0x7415c63c: ;   {static_stub}
+  0x7415c63c: 0090 9fe5 | feff ffea 
+
+  0x7415c644: ;   {metadata(NULL)}
+  0x7415c644: 0000 0000 
+
+  0x7415c648: ;   {static_stub}
+  0x7415c648: 0090 9fe5 | feff ffea 
+
+  0x7415c650: ;   {metadata(NULL)}
+  0x7415c650: 0000 0000 
+
+  0x7415c654: ;   {static_stub}
+  0x7415c654: 0090 9fe5 | feff ffea 
+
+  0x7415c65c: ;   {metadata(NULL)}
+  0x7415c65c: 0000 0000 
+
+  0x7415c660: ;   {static_stub}
+  0x7415c660: 0090 9fe5 | feff ffea 
+
+  0x7415c668: ;   {metadata(NULL)}
+  0x7415c668: 0000 0000 
+
+  0x7415c66c: ;   {static_stub}
+  0x7415c66c: 0090 9fe5 | feff ffea 
+
+  0x7415c674: ;   {metadata(NULL)}
+  0x7415c674: 0000 0000 
+[Exception Handler]
+  0x7415c678: ;   {runtime_call handle_exception_from_callee Runtime1 stub}
+  0x7415c678: 2448 fdeb | ffdf 2de9 | 0400 9fe5 | 0d10 a0e1 | 00f0 9fe5 | 2cc5 ce76 | 90ea ab76 
+[Deopt Handler Code]
+  0x7415c694: 08e0 4fe2 | 04e0 2de5 
+
+  0x7415c69c: ;   {runtime_call DeoptimizationBlob}
+  0x7415c69c: afcb fdea 
+[/MachCode]
+
+
+Compiled method (c1)  177550  378   !         com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state (57 bytes)
+ total in heap  [0x7415a088,0x7415aaa0] = 2584
+ relocation     [0x7415a16c,0x7415a21c] = 176
+ main code      [0x7415a220,0x7415a5a0] = 896
+ stub code      [0x7415a5a0,0x7415a640] = 160
+ oops           [0x7415a640,0x7415a658] = 24
+ metadata       [0x7415a658,0x7415a6bc] = 100
+ scopes data    [0x7415a6bc,0x7415a830] = 372
+ scopes pcs     [0x7415a830,0x7415a9c0] = 400
+ dependencies   [0x7415a9c0,0x7415a9dc] = 28
+ handler table  [0x7415a9dc,0x7415aa54] = 120
+ nul chk table  [0x7415aa54,0x7415aaa0] = 76
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x64709ca0} 'state' '(Lcom/pi4j/io/gpio/digital/DigitalState;)Lcom/pi4j/io/gpio/digital/DigitalOutput;' in 'com/pi4j/plugin/pigpio/provider/gpio/digital/PiGpioDigitalOutput'
+  # this:     r0        = 'com/pi4j/plugin/pigpio/provider/gpio/digital/PiGpioDigitalOutput'
+  # parm0:    r1        = 'com/pi4j/io/gpio/digital/DigitalState'
+  #           [sp+0xc0]  (sp of caller)
+  0x7415a220: 04c0 90e5 | 0800 5ce1 | 0000 000a 
+
+  0x7415a22c: ;   {runtime_call ic_miss_stub}
+  0x7415a22c: a7c3 fdea 
+[Verified Entry Point]
+  0x7415a230: 50cc 4de2 | 0000 cce5 | 0048 2de9 | b8d0 4de2 | 8800 8de5 | 3420 90e5 | 3030 90e5 
+
+  0x7415a24c: ; implicit exception: dispatches to 0x7415a530
+  0x7415a24c: 1040 91e5 | 0400 a0e1 | 8c10 8de5 | 8430 8de5 | 8020 8de5 
+
+  0x7415a260: ; ImmutableOopMap {[136]=Oop [128]=Oop [140]=Oop }
+              ;*invokestatic from {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@12 (line 84)
+              ;   {static_call}
+  0x7415a260: 9204 00eb | 0020 a0e1 | 8030 9de5 | 0340 b0e1 | 0600 000a 
+
+  0x7415a274: ;   {metadata('com/pi4j/library/pigpio/impl/PiGpioNativeImpl')}
+  0x7415a274: 3819 0ce3 | 4a14 46e3 | 0400 9415 | 0200 000a | 28c0 90e5 | 0100 5ce1 | a800 001a 
+
+  0x7415a290: ; implicit exception: dispatches to 0x7415a53c
+  0x7415a290: 00c0 93e5 | 8410 9de5 | 0300 a0e1 
+
+  0x7415a29c: ; ImmutableOopMap {[136]=Oop [140]=Oop }
+              ;*invokeinterface gpioWrite {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@15 (line 84)
+              ;   {optimized virtual_call}
+  0x7415a29c: ff06 00eb | 8800 9de5 | 2c10 90e5 
+
+  0x7415a2a8: ; implicit exception: dispatches to 0x7415a540
+  0x7415a2a8: 00c0 91e5 | 8c20 9de5 | 0200 51e1 | 0010 a013 | 0110 a003 | 0110 01e2 | 0110 01e2 | 0000 51e3 
+  0x7415a2c8: 5400 001a | 2c20 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 
+
+  0x7415a2dc: ;   {metadata('com/pi4j/io/gpio/digital/DigitalStateChangeEvent')}
+  0x7415a2dc: a817 01e3 | 7014 46e3 | 0030 a0e1 | d000 9ae5 | d850 9ae5 | 1040 80e2 | 0500 54e1 | 9100 008a 
+  0x7415a2fc: d040 8ae5 | 0150 a0e3 | 0050 80e5 | 0410 80e5 | 0050 a0e3 | 0850 80e5 | 0c50 80e5 | 5ef0 7ff5 
+  0x7415a31c: 9400 8de5 | 0820 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 | 0c30 80e5 | 00e0 0fe3 | 45e5 46e3 
+  0x7415a33c: a0e4 cee7 | 2420 93e5 | 9020 8de5 
+
+  0x7415a348: ; implicit exception: dispatches to 0x7415a54c
+  0x7415a348: 1040 92e5 
+
+  0x7415a34c: ;   {oop(a 'jdk/internal/misc/Unsafe'{0x65cf1740})}
+  0x7415a34c: 4057 01e3 | cf55 46e3 
+
+  0x7415a354: ;   {oop(a 'java/lang/Class'{0x65b911f0} = 'com/pi4j/event/EventManager$$Lambda$46+0x6470c768')}
+  0x7415a354: f011 01e3 | b915 46e3 | 0500 a0e1 | 9c50 8de5 | 9840 8de5 
+
+  0x7415a368: ; ImmutableOopMap {[148]=Oop [156]=Oop [152]=Oop [144]=Oop [136]=Oop }
+              ;*invokevirtual allocateInstance {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.invoke.DirectMethodHandle::allocateInstance@12 (line 520)
+              ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@1
+              ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@6
+              ; - com.pi4j.event.EventManager::dispatch@6 (line 62)
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@5 (line 113)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {optimized virtual_call}
+  0x7415a368: 24fb ffeb | 9020 9de5 
+
+  0x7415a370: ; implicit exception: dispatches to 0x7415a550
+  0x7415a370: 0820 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 | 9430 9de5 | 0c30 80e5 | 00e0 0fe3 | 45e5 46e3 
+  0x7415a390: a0e4 cee7 | 5ef0 7ff5 | 0010 a0e1 | 9800 9de5 | f085 08e3 | 5684 46e3 
+
+  0x7415a3a8: ; ImmutableOopMap {[156]=Oop [136]=Oop [148]=Oop [144]=Oop }
+              ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.event.EventManager::dispatch@11 (line 62)
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@5 (line 113)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {virtual_call}
+  0x7415a3a8: 88fa ffeb | 9020 9de5 | 0c10 92e5 | 8800 9de5 | 2820 90e5 | a020 8de5 
+
+  0x7415a3c0: ; implicit exception: dispatches to 0x7415a554
+  0x7415a3c0: 1030 92e5 
+
+  0x7415a3c4: ;   {oop(a 'java/lang/Class'{0x65b949b0} = 'com/pi4j/io/binding/BindingManager$$Lambda$47+0x6470cb78')}
+  0x7415a3c4: b019 04e3 | b915 46e3 | 9c00 9de5 | a430 8de5 
+
+  0x7415a3d4: ; ImmutableOopMap {[148]=Oop [136]=Oop [164]=Oop [160]=Oop }
+              ;*invokevirtual allocateInstance {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.invoke.DirectMethodHandle::allocateInstance@12 (line 520)
+              ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@1
+              ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@6
+              ; - com.pi4j.io.binding.BindingManager::process@6 (line 52)
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@14 (line 114)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {optimized virtual_call}
+  0x7415a3d4: 09fb ffeb | a020 9de5 
+
+  0x7415a3dc: ; implicit exception: dispatches to 0x7415a558
+  0x7415a3dc: 0820 80e5 | 00e0 0fe3 | 45e5 46e3 | a0e4 cee7 | 9410 9de5 | 0c10 80e5 | 00e0 0fe3 | 45e5 46e3 
+  0x7415a3fc: a0e4 cee7 | 5ef0 7ff5 | 0010 a0e1 | a400 9de5 | f085 08e3 | 5684 46e3 
+
+  0x7415a414: ; ImmutableOopMap {[136]=Oop [160]=Oop }
+              ;*invokeinterface forEach {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.io.binding.BindingManager::process@11 (line 52)
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@14 (line 114)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {virtual_call}
+  0x7415a414: 6dfa ffeb | a020 9de5 | 0c00 92e5 | 8800 9de5 | b8d0 8de2 | 0048 bde8 | 4cc2 9ae5 
+
+  0x7415a430: ;   {poll_return}
+  0x7415a430: 00c0 9ce5 | 1eff 2fe1 | 8800 9de5 | 7c42 9ae5 | 00c0 a0e3 | 7cc2 8ae5 | 00c0 a0e3 | 80c2 8ae5 
+  0x7415a450: 3810 90e5 | 0400 a0e1 | ac40 8de5 | a810 8de5 | ff8f 0fe3 | ff8f 4fe3 
+
+  0x7415a468: ; ImmutableOopMap {[168]=Oop [172]=Oop }
+              ;*invokevirtual getMessage {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@29 (line 86)
+              ;   {virtual_call}
+  0x7415a468: 98c3 fdeb | 0020 a0e1 | a840 9de5 | 0430 b0e1 | 0600 000a 
+
+  0x7415a47c: ;   {metadata('org/slf4j/impl/SimpleLogger')}
+  0x7415a47c: 7010 0de3 | 4014 46e3 | 0400 9315 | 0200 000a | 2cc0 90e5 | 0100 5ce1 | 3000 001a 
+
+  0x7415a498: ; implicit exception: dispatches to 0x7415a564
+  0x7415a498: 00c0 94e5 | 2810 a0e3 | ac30 9de5 | 0400 a0e1 
+
+  0x7415a4a8: ; ImmutableOopMap {[172]=Oop }
+              ;*invokespecial log {reexecute=0 rethrow=0 return_oop=0}
+              ; - org.slf4j.impl.SimpleLogger::error@5 (line 602)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@33 (line 86)
+              ;   {optimized virtual_call}
+  0x7415a4a8: 48c3 fdeb 
+
+  0x7415a4ac: ;   {metadata('com/pi4j/io/exception/IOException')}
+  0x7415a4ac: 901c 00e3 | 4214 46e3 | bf20 d1e5 
+
+  0x7415a4b8: ; implicit exception: dispatches to 0x7415a568
+  0x7415a4b8: 0400 52e3 | 2a00 001a | d000 9ae5 | d830 9ae5 | 2020 80e2 | 0300 52e1 | 2500 008a | d020 8ae5 
+  0x7415a4d8: 0130 a0e3 | 0030 80e5 | 0410 80e5 | 0030 a0e3 | 0830 80e5 | 0c30 80e5 | 1030 80e5 | 1430 80e5 
+  0x7415a4f8: 1830 80e5 | 1c30 80e5 | 5ef0 7ff5 | b000 8de5 | ac00 9de5 | ff8f 0fe3 | ff8f 4fe3 
+
+  0x7415a514: ; ImmutableOopMap {[172]=Oop [176]=Oop }
+              ;*invokevirtual getMessage {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@43 (line 87)
+              ;   {virtual_call}
+  0x7415a514: 6dc3 fdeb | 0010 a0e1 | ac20 9de5 | b000 9de5 
+
+  0x7415a524: ; ImmutableOopMap {[176]=Oop }
+              ;*invokespecial <init> {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@47 (line 87)
+              ;   {optimized virtual_call}
+  0x7415a524: 29c3 fdeb | b040 9de5 | 1500 00ea 
+
+  0x7415a530: ; ImmutableOopMap {r0=Oop [136]=Oop r1=Oop r2=Oop }
+              ;*invokevirtual value {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@9 (line 84)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a530: 5652 fdeb | 0040 8de5 
+
+  0x7415a538: ; ImmutableOopMap {[136]=Oop [140]=Oop r2=Oop r3=Oop }
+              ;*invokeinterface gpioWrite {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@15 (line 84)
+              ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x7415a538: e44f fdeb 
+
+  0x7415a53c: ; ImmutableOopMap {[136]=Oop [140]=Oop r2=Oop r3=Oop }
+              ;*invokeinterface gpioWrite {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@15 (line 84)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a53c: 5352 fdeb 
+
+  0x7415a540: ; ImmutableOopMap {[140]=Oop r0=Oop [136]=Oop r1=Oop }
+              ;*invokevirtual equals {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.io.gpio.digital.Digital::equals@7 (line 76)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@2 (line 77)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a540: 5252 fdeb 
+
+  0x7415a544: ; ImmutableOopMap {r2=Oop r3=Oop [136]=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@14 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {runtime_call fast_new_instance Runtime1 stub}
+  0x7415a544: c151 fdeb | 73ff ffea 
+
+  0x7415a54c: ; ImmutableOopMap {r3=Oop [136]=Oop r0=Oop [148]=Oop r2=Oop [144]=Oop }
+              ;*invokevirtual dispatch {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@5 (line 113)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a54c: 4f52 fdeb 
+
+  0x7415a550: ; ImmutableOopMap {[148]=Oop [156]=Oop [152]=Oop [136]=Oop r0=Oop r2=Oop [144]=Oop }
+              ;*invokestatic linkToSpecial {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@19
+              ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@6
+              ; - com.pi4j.event.EventManager::dispatch@6 (line 62)
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@5 (line 113)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a550: 4e52 fdeb 
+
+  0x7415a554: ; ImmutableOopMap {[156]=Oop [148]=Oop r0=Oop [136]=Oop r2=Oop [160]=Oop }
+              ;*invokevirtual process {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@14 (line 114)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a554: 4d52 fdeb 
+
+  0x7415a558: ; ImmutableOopMap {[148]=Oop [136]=Oop [164]=Oop r0=Oop r2=Oop [160]=Oop }
+              ;*invokestatic linkToSpecial {reexecute=0 rethrow=0 return_oop=0}
+              ; - java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial@19
+              ; - java.lang.invoke.Invokers$Holder::linkToTargetMethod@6
+              ; - com.pi4j.io.binding.BindingManager::process@6 (line 52)
+              ; - com.pi4j.io.gpio.digital.DigitalBase::dispatch@14 (line 114)
+              ; - com.pi4j.io.gpio.digital.DigitalOutputBase::state@26 (line 79)
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@53 (line 89)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a558: 4c52 fdeb | 0030 8de5 
+
+  0x7415a560: ; ImmutableOopMap {[172]=Oop r2=Oop r4=Oop }
+              ;*invokeinterface error {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@33 (line 86)
+              ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x7415a560: da4f fdeb 
+
+  0x7415a564: ; ImmutableOopMap {[172]=Oop r2=Oop r4=Oop }
+              ;*invokeinterface error {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@33 (line 86)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a564: 4952 fdeb 
+
+  0x7415a568: ; ImmutableOopMap {[172]=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@38 (line 87)
+              ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x7415a568: 4852 fdeb 
+
+  0x7415a56c: ; ImmutableOopMap {[172]=Oop }
+              ;*new {reexecute=0 rethrow=0 return_oop=0}
+              ; - com.pi4j.plugin.pigpio.provider.gpio.digital.PiGpioDigitalOutput::state@38 (line 87)
+              ;   {runtime_call fast_new_instance_init_check Runtime1 stub}
+  0x7415a56c: 8751 fdeb | e3ff ffea | 0000 a0e1 | 00c0 a0e3 | 7c42 9ae5 | 7cc2 8ae5 | 80c2 8ae5 | b8d0 8de2 
+  0x7415a58c: 0048 bde8 
+
+  0x7415a590: ;   {runtime_call unwind_exception Runtime1 stub}
+  0x7415a590: 2e53 fdea | ffff ffff | ffff ffff | ffff ffff 
+[Stub Code]
+  0x7415a5a0: ;   {no_reloc}
+  0x7415a5a0: 0090 9fe5 | 27c2 fdea 
+
+  0x7415a5a8: ;   {metadata({method} {0x64707318} 'from' '(Ljava/lang/Number;)Lcom/pi4j/library/pigpio/PiGpioState;' in 'com/pi4j/library/pigpio/PiGpioState')}
+  0x7415a5a8: 1873 7064 
+
+  0x7415a5ac: ;   {static_stub}
+  0x7415a5ac: 0090 9fe5 | 06d5 fdea 
+
+  0x7415a5b4: ;   {metadata({method} {0x644a32b0} 'gpioWrite' '(ILcom/pi4j/library/pigpio/PiGpioState;)V' in 'com/pi4j/library/pigpio/impl/PiGpioNativeImpl')}
+  0x7415a5b4: b032 4a64 
+
+  0x7415a5b8: ;   {static_stub}
+  0x7415a5b8: 0090 9fe5 | feff ffea 
+
+  0x7415a5c0: ;   {metadata(NULL)}
+  0x7415a5c0: 0000 0000 
+
+  0x7415a5c4: ;   {static_stub}
+  0x7415a5c4: 0090 9fe5 | feff ffea 
+
+  0x7415a5cc: ;   {metadata(NULL)}
+  0x7415a5cc: 0000 0000 
+
+  0x7415a5d0: ;   {static_stub}
+  0x7415a5d0: 0090 9fe5 | feff ffea 
+
+  0x7415a5d8: ;   {metadata(NULL)}
+  0x7415a5d8: 0000 0000 
+
+  0x7415a5dc: ;   {static_stub}
+  0x7415a5dc: 0090 9fe5 | feff ffea 
+
+  0x7415a5e4: ;   {metadata(NULL)}
+  0x7415a5e4: 0000 0000 
+
+  0x7415a5e8: ;   {static_stub}
+  0x7415a5e8: 0090 9fe5 | feff ffea 
+
+  0x7415a5f0: ;   {metadata(NULL)}
+  0x7415a5f0: 0000 0000 
+
+  0x7415a5f4: ;   {static_stub}
+  0x7415a5f4: 0090 9fe5 | feff ffea 
+
+  0x7415a5fc: ;   {metadata(NULL)}
+  0x7415a5fc: 0000 0000 
+
+  0x7415a600: ;   {static_stub}
+  0x7415a600: 0090 9fe5 | feff ffea 
+
+  0x7415a608: ;   {metadata(NULL)}
+  0x7415a608: 0000 0000 
+
+  0x7415a60c: ;   {static_stub}
+  0x7415a60c: 0090 9fe5 | feff ffea 
+
+  0x7415a614: ;   {metadata(NULL)}
+  0x7415a614: 0000 0000 
+[Exception Handler]
+  0x7415a618: ;   {runtime_call handle_exception_from_callee Runtime1 stub}
+  0x7415a618: 3c50 fdeb | ffdf 2de9 | 0400 9fe5 | 0d10 a0e1 | 00f0 9fe5 | 2cc5 ce76 | 90ea ab76 
+[Deopt Handler Code]
+  0x7415a634: 08e0 4fe2 | 04e0 2de5 
+
+  0x7415a63c: ;   {runtime_call DeoptimizationBlob}
+  0x7415a63c: c7d3 fdea 
+[/MachCode]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x65505d68, length=11, elements={
+0x762102d0, 0x7628f7f8, 0x76290998, 0x762b1f60,
+0x762b2f90, 0x762b3f98, 0x762b5010, 0x762a8460,
+0x638210f8, 0x638267d8, 0x63c00d60
+}
+
+Java Threads: ( => current thread )
+=>0x762102d0 JavaThread "main" [_thread_in_native, id=3207, stack(0x76340000,0x76390000)]
+  0x7628f7f8 JavaThread "Reference Handler" daemon [_thread_blocked, id=3209, stack(0x65611000,0x65661000)]
+  0x76290998 JavaThread "Finalizer" daemon [_thread_blocked, id=3210, stack(0x654b0000,0x65500000)]
+  0x762b1f60 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3211, stack(0x65460000,0x654b0000)]
+  0x762b2f90 JavaThread "Service Thread" daemon [_thread_blocked, id=3212, stack(0x65410000,0x65460000)]
+  0x762b3f98 JavaThread "Monitor Deflation Thread" daemon [_thread_blocked, id=3213, stack(0x63d36000,0x63d86000)]
+  0x762b5010 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=3214, stack(0x63980000,0x63a00000)]
+  0x762a8460 JavaThread "Sweeper thread" daemon [_thread_blocked, id=3215, stack(0x63930000,0x63980000)]
+  0x638210f8 JavaThread "Notification Thread" daemon [_thread_blocked, id=3216, stack(0x637b0000,0x63800000)]
+  0x638267d8 JavaThread "Common-Cleaner" daemon [_thread_blocked, id=3218, stack(0x636df000,0x6372f000)]
+  0x63c00d60 JavaThread "SIGINT handler" daemon [_thread_blocked, id=3233, stack(0x62f5b000,0x62fab000)]
+
+Other Threads:
+  0x76287f98 VMThread "VM Thread" [stack: 0x65662000,0x656e2000] [id=3208]
+  0x63822360 WatcherThread [stack: 0x63730000,0x637b0000] [id=3217]
+
+Threads with active compile tasks:
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Precious Log:
+ CPUs: 4 total, 4 available
+ Memory: 921M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Disabled
+ Heap Min Capacity: 6M
+ Heap Initial Capacity: 16M
+ Heap Max Capacity: 232M
+ Pre-touch: Disabled
+
+Heap:
+ def new generation   total 4864K, used 4707K [0x65800000, 0x65d40000, 0x6a540000)
+  eden space 4352K,  96% used [0x65800000, 0x65c18f00, 0x65c40000)
+  from space 512K, 100% used [0x65cc0000, 0x65d40000, 0x65d40000)
+  to   space 512K,   0% used [0x65c40000, 0x65c40000, 0x65cc0000)
+ tenured generation   total 11008K, used 478K [0x6a540000, 0x6b000000, 0x74000000)
+   the space 11008K,   4% used [0x6a540000, 0x6a5b7b58, 0x6a5b7c00, 0x6b000000)
+ Metaspace       used 6591K, committed 6720K, reserved 16384K
+
+Card table byte_map: [0x6578b000,0x65800000] _byte_map_base: 0x6545f000
+
+Polling page: 0x76f69000
+
+Metaspace:
+
+Usage:
+    6.44 MB used.
+
+Virtual space:
+     16.00 MB reserved,       6.56 MB ( 41%) committed,  1 nodes.
+
+Chunk freelists:
+8.92 MB
+
+MaxMetaspaceSize: unlimited
+No class space
+Initial GC threshold: 16.00 MB
+Current GC threshold: 16.00 MB
+CDS: off
+MetaspaceReclaimPolicy: balanced
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 16384.
+ - virtual_space_node_default_size: 4194304.
+ - enlarge_chunks_in_place: 1.
+ - new_chunks_are_fully_committed: 0.
+ - uncommit_free_chunks: 1.
+ - use_allocation_guard: 0.
+ - handle_deallocations: 1.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 0.
+num_arena_births: 24.
+num_arena_deaths: 0.
+num_vsnodes_births: 1.
+num_vsnodes_deaths: 0.
+num_space_committed: 105.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 0.
+num_chunks_taken_from_freelist: 80.
+num_chunk_merges: 0.
+num_chunk_splits: 55.
+num_chunks_enlarged: 50.
+num_inconsistent_stats: 0.
+
+CodeCache: size=32768Kb used=788Kb max_used=788Kb free=31979Kb
+ bounds [0x74099000, 0x74161000, 0x76099000]
+ total_blobs=583 nmethods=392 adapters=126
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (20 events):
+Event: 126.917 Thread 0x762b5010  381             com.pi4j.library.pigpio.PiGpioState::from (44 bytes)
+Event: 126.919 Thread 0x762b5010 nmethod 381 0x7415b388 code [0x7415b4b0, 0x7415b620]
+Event: 139.726 Thread 0x762b5010  382             com.pi4j.library.pigpio.impl.PiGpioBase::validatePin (44 bytes)
+Event: 139.728 Thread 0x762b5010 nmethod 382 0x7415b748 code [0x7415b860, 0x7415b9b0]
+Event: 140.527 Thread 0x762b5010  383             com.pi4j.library.pigpio.impl.PiGpioNativeImpl::gpioWrite (118 bytes)
+Event: 140.534 Thread 0x762b5010 nmethod 383 0x7415bcc8 code [0x7415be90, 0x7415c6a0]
+Event: 177.374 Thread 0x762b5010  385             java.lang.invoke.MethodHandles$Lookup::previousLookupClass (5 bytes)
+Event: 177.375 Thread 0x762b5010 nmethod 385 0x7415cbc8 code [0x7415ccc0, 0x7415cd48]
+Event: 177.391 Thread 0x762b5010  387             jdk.internal.org.objectweb.asm.MethodWriter::visitTypeInsn (116 bytes)
+Event: 177.394 Thread 0x762b5010 nmethod 387 0x7415cec8 code [0x7415cff0, 0x7415d17c]
+Event: 177.394 Thread 0x762b5010  388             java.lang.Class::getPackageName (81 bytes)
+Event: 177.398 Thread 0x762b5010 nmethod 388 0x7415d308 code [0x7415d460, 0x7415d688]
+Event: 177.420 Thread 0x762b5010  389             jdk.internal.reflect.ClassFileAssembler::emitByte (11 bytes)
+Event: 177.421 Thread 0x762b5010 nmethod 389 0x7415d8c8 code [0x7415d9d0, 0x7415daa4]
+Event: 177.421 Thread 0x762b5010  390             jdk.internal.reflect.ByteVectorImpl::add (38 bytes)
+Event: 177.422 Thread 0x762b5010 nmethod 390 0x7415db48 code [0x7415dc50, 0x7415dd54]
+Event: 177.425 Thread 0x762b5010  391             com.pi4j.common.IdentityBase::id (5 bytes)
+Event: 177.425 Thread 0x762b5010 nmethod 391 0x7415de08 code [0x7415df00, 0x7415df88]
+Event: 177.429 Thread 0x762b5010  392             jdk.internal.org.objectweb.asm.ClassReader::readUnsignedShort (26 bytes)
+Event: 177.430 Thread 0x762b5010 nmethod 392 0x7415dfc8 code [0x7415e0c0, 0x7415e198]
+
+GC Heap History (2 events):
+Event: 1.142 GC heap before
+{Heap before GC invocations=0 (full 0):
+ def new generation   total 4864K, used 4352K [0x65800000, 0x65d40000, 0x6a540000)
+  eden space 4352K, 100% used [0x65800000, 0x65c40000, 0x65c40000)
+  from space 512K,   0% used [0x65c40000, 0x65c40000, 0x65cc0000)
+  to   space 512K,   0% used [0x65cc0000, 0x65cc0000, 0x65d40000)
+ tenured generation   total 11008K, used 0K [0x6a540000, 0x6b000000, 0x74000000)
+   the space 11008K,   0% used [0x6a540000, 0x6a540000, 0x6a540200, 0x6b000000)
+ Metaspace       used 5559K, committed 5632K, reserved 16384K
+}
+Event: 1.157 GC heap after
+{Heap after GC invocations=1 (full 0):
+ def new generation   total 4864K, used 512K [0x65800000, 0x65d40000, 0x6a540000)
+  eden space 4352K,   0% used [0x65800000, 0x65800000, 0x65c40000)
+  from space 512K, 100% used [0x65cc0000, 0x65d40000, 0x65d40000)
+  to   space 512K,   0% used [0x65c40000, 0x65c40000, 0x65cc0000)
+ tenured generation   total 11008K, used 478K [0x6a540000, 0x6b000000, 0x74000000)
+   the space 11008K,   4% used [0x6a540000, 0x6a5b7b58, 0x6a5b7c00, 0x6b000000)
+ Metaspace       used 5559K, committed 5632K, reserved 16384K
+}
+
+Dll operation events (7 events):
+Event: 0.009 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+Event: 0.330 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+Event: 0.360 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+Event: 0.429 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+Event: 0.455 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+Event: 0.462 Loaded shared library /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+Event: 1.666 Loaded shared library /tmp/libpi4j-pigpio14103653753217365827.so
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (6 events):
+Event: 0.713 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x659c8210}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x659c8210) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 0.903 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65ae41c0}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65ae41c0) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 1.074 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65be26d0}: 'java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65be26d0) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 1.423 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65a24ad8}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65a24ad8) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 1.762 Thread 0x762102d0 Exception <a 'java/lang/NoSuchMethodError'{0x65b65520}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65b65520) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+Event: 177.390 Thread 0x653011f0 Exception <a 'java/lang/NoSuchMethodError'{0x65bfb4f8}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x65bfb4f8) 
+thrown [../../src/hotspot/share/interpreter/linkResolver.cpp, line 758]
+
+VM Operations (10 events):
+Event: 0.372 Executing VM operation: HandshakeAllThreads
+Event: 0.372 Executing VM operation: HandshakeAllThreads done
+Event: 0.590 Executing VM operation: HandshakeAllThreads
+Event: 0.590 Executing VM operation: HandshakeAllThreads done
+Event: 1.142 Executing VM operation: GenCollectForAllocation
+Event: 1.157 Executing VM operation: GenCollectForAllocation done
+Event: 2.157 Executing VM operation: Cleanup
+Event: 2.157 Executing VM operation: Cleanup done
+Event: 60.210 Executing VM operation: HandshakeAllThreads
+Event: 60.210 Executing VM operation: HandshakeAllThreads done
+
+Events (20 events):
+Event: 177.410 loading class jdk/internal/reflect/ByteVectorImpl
+Event: 177.410 loading class jdk/internal/reflect/ByteVector
+Event: 177.410 loading class jdk/internal/reflect/ByteVector done
+Event: 177.410 loading class jdk/internal/reflect/ByteVectorImpl done
+Event: 177.410 loading class jdk/internal/reflect/ClassFileAssembler
+Event: 177.411 loading class jdk/internal/reflect/ClassFileAssembler done
+Event: 177.412 loading class jdk/internal/reflect/UTF8
+Event: 177.412 loading class jdk/internal/reflect/UTF8 done
+Event: 177.415 loading class jdk/internal/reflect/Label
+Event: 177.415 loading class jdk/internal/reflect/Label done
+Event: 177.415 loading class jdk/internal/reflect/Label$PatchInfo
+Event: 177.416 loading class jdk/internal/reflect/Label$PatchInfo done
+Event: 177.417 loading class jdk/internal/reflect/MethodAccessorGenerator$1
+Event: 177.417 loading class jdk/internal/reflect/MethodAccessorGenerator$1 done
+Event: 177.417 loading class jdk/internal/reflect/ClassDefiner
+Event: 177.417 loading class jdk/internal/reflect/ClassDefiner done
+Event: 177.417 loading class jdk/internal/reflect/ClassDefiner$1
+Event: 177.417 loading class jdk/internal/reflect/ClassDefiner$1 done
+Event: 177.419 loading class java/lang/Class$1
+Event: 177.419 loading class java/lang/Class$1 done
+
+
+Dynamic libraries:
+00010000-00011000 r-xp 00000000 b3:02 275690     /usr/lib/jvm/java-17-openjdk-armhf/bin/java
+00011000-00012000 r--p 00000000 b3:02 275690     /usr/lib/jvm/java-17-openjdk-armhf/bin/java
+00012000-00013000 rw-p 00001000 b3:02 275690     /usr/lib/jvm/java-17-openjdk-armhf/bin/java
+00bd2000-00cc9000 rw-p 00000000 00:00 0          [heap]
+62f0b000-62f0e000 ---p 00000000 00:00 0 
+62f0e000-62f5b000 rw-p 00000000 00:00 0 
+62f5b000-62f5e000 ---p 00000000 00:00 0 
+62f5e000-62fab000 rw-p 00000000 00:00 0 
+62fab000-62fac000 ---p 00000000 00:00 0 
+62fac000-62fec000 rw-p 00000000 00:00 0 
+63410000-6344d000 r-xp 00000000 b3:02 135924     /usr/lib/libpigpio.so.1
+6344d000-6345d000 ---p 0003d000 b3:02 135924     /usr/lib/libpigpio.so.1
+6345d000-6345e000 r--p 0003d000 b3:02 135924     /usr/lib/libpigpio.so.1
+6345e000-63460000 rw-p 0003e000 b3:02 135924     /usr/lib/libpigpio.so.1
+63460000-634f4000 rw-p 00000000 00:00 0 
+63500000-635aa000 rw-p 00000000 00:00 0 
+635aa000-63600000 ---p 00000000 00:00 0 
+636df000-636e2000 ---p 00000000 00:00 0 
+636e2000-6372f000 rw-p 00000000 00:00 0 
+6372f000-63730000 ---p 00000000 00:00 0 
+63730000-637b0000 rw-p 00000000 00:00 0 
+637b0000-637b3000 ---p 00000000 00:00 0 
+637b3000-63800000 rw-p 00000000 00:00 0 
+63800000-638f7000 rw-p 00000000 00:00 0 
+638f7000-63900000 ---p 00000000 00:00 0 
+63930000-63933000 ---p 00000000 00:00 0 
+63933000-63980000 rw-p 00000000 00:00 0 
+63980000-63983000 ---p 00000000 00:00 0 
+63983000-63a00000 rw-p 00000000 00:00 0 
+63a00000-63a21000 rw-p 00000000 00:00 0 
+63a21000-63b00000 ---p 00000000 00:00 0 
+63b00000-63b21000 rw-p 00000000 00:00 0 
+63b21000-63c00000 ---p 00000000 00:00 0 
+63c00000-63c21000 rw-p 00000000 00:00 0 
+63c21000-63d00000 ---p 00000000 00:00 0 
+63d20000-63d26000 r-xp 00000000 b3:02 209378     /tmp/libpi4j-pigpio14103653753217365827.so (deleted)
+63d26000-63d2e000 ---p 00006000 b3:02 209378     /tmp/libpi4j-pigpio14103653753217365827.so (deleted)
+63d2e000-63d2f000 rw-p 00006000 b3:02 209378     /tmp/libpi4j-pigpio14103653753217365827.so (deleted)
+63d36000-63d39000 ---p 00000000 00:00 0 
+63d39000-63d86000 rw-p 00000000 00:00 0 
+63d86000-64000000 r--p 0006f000 b3:02 145530     /usr/lib/locale/locale-archive
+64000000-643f0000 rw-p 00000000 00:00 0 
+643f0000-644f0000 rw-p 00000000 00:00 0 
+644f0000-64670000 rw-p 00000000 00:00 0 
+64670000-64700000 ---p 00000000 00:00 0 
+64700000-64720000 rw-p 00000000 00:00 0 
+64720000-65000000 ---p 00000000 00:00 0 
+65000000-65200000 r--p 00000000 b3:02 145530     /usr/lib/locale/locale-archive
+65200000-65221000 rw-p 00000000 00:00 0 
+65221000-65300000 ---p 00000000 00:00 0 
+65300000-65321000 rw-p 00000000 00:00 0 
+65321000-65400000 ---p 00000000 00:00 0 
+65410000-65413000 ---p 00000000 00:00 0 
+65413000-65460000 rw-p 00000000 00:00 0 
+65460000-65463000 ---p 00000000 00:00 0 
+65463000-654b0000 rw-p 00000000 00:00 0 
+654b0000-654b3000 ---p 00000000 00:00 0 
+654b3000-65500000 rw-p 00000000 00:00 0 
+65500000-65521000 rw-p 00000000 00:00 0 
+65521000-65600000 ---p 00000000 00:00 0 
+6560a000-65611000 r--s 00000000 b3:02 137822     /usr/lib/arm-linux-gnueabihf/gconv/gconv-modules.cache
+65611000-65614000 ---p 00000000 00:00 0 
+65614000-65661000 rw-p 00000000 00:00 0 
+65661000-65662000 ---p 00000000 00:00 0 
+65662000-65743000 rw-p 00000000 00:00 0 
+65743000-6578b000 ---p 00000000 00:00 0 
+6578b000-6578e000 rw-p 00000000 00:00 0 
+6578e000-657b1000 ---p 00000000 00:00 0 
+657b1000-657b7000 rw-p 00000000 00:00 0 
+657b7000-657ff000 ---p 00000000 00:00 0 
+657ff000-65d40000 rw-p 00000000 00:00 0 
+65d40000-6a540000 ---p 00000000 00:00 0 
+6a540000-6b000000 rw-p 00000000 00:00 0 
+6b000000-74000000 ---p 00000000 00:00 0 
+74005000-74017000 r-xp 00000000 b3:02 275829     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+74017000-74018000 r--p 00011000 b3:02 275829     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+74018000-74019000 rw-p 00012000 b3:02 275829     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnet.so
+74019000-7401d000 rw-p 00000000 00:00 0 
+7401d000-74099000 ---p 00000000 00:00 0 
+74099000-74161000 rwxp 00000000 00:00 0 
+74161000-76099000 ---p 00000000 00:00 0 
+76099000-76200000 r--s 00000000 b3:02 275838     /usr/lib/jvm/java-17-openjdk-armhf/lib/modules
+76200000-76300000 rw-p 00000000 00:00 0 
+76308000-76311000 r-xp 00000000 b3:02 275836     /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+76311000-76312000 r--p 00009000 b3:02 275836     /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+76312000-76313000 rw-p 0000a000 b3:02 275836     /usr/lib/jvm/java-17-openjdk-armhf/lib/libverify.so
+76313000-76322000 r-xp 00000000 b3:02 275830     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+76322000-76323000 r--p 0000e000 b3:02 275830     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+76323000-76324000 rw-p 0000f000 b3:02 275830     /usr/lib/jvm/java-17-openjdk-armhf/lib/libnio.so
+76324000-7633e000 r-xp 00000000 b3:02 275817     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+7633e000-7633f000 r--p 00019000 b3:02 275817     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+7633f000-76340000 rw-p 0001a000 b3:02 275817     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjava.so
+76340000-76343000 ---p 00000000 00:00 0 
+76343000-76390000 rw-p 00000000 00:00 0 
+76390000-763ab000 r-xp 00000000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763ab000-763bf000 ---p 0001b000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763bf000-763c0000 r--p 0001f000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763c0000-763c1000 rw-p 00020000 b3:02 136409     /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1
+763c3000-763c4000 rw-s 3f100000 00:05 3          /dev/mem
+763c9000-7640e000 r-xp 00000000 b3:02 136615     /usr/lib/arm-linux-gnueabihf/libm.so.6
+7640e000-7640f000 r--p 00044000 b3:02 136615     /usr/lib/arm-linux-gnueabihf/libm.so.6
+7640f000-76410000 rw-p 00045000 b3:02 136615     /usr/lib/arm-linux-gnueabihf/libm.so.6
+76410000-765bf000 r-xp 00000000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765bf000-765cb000 ---p 001af000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765cb000-765d0000 r--p 001bb000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765d0000-765d2000 rw-p 001c0000 b3:02 136862     /usr/lib/arm-linux-gnueabihf/libstdc++.so.6.0.30
+765d2000-765d4000 rw-p 00000000 00:00 0 
+765d4000-765d5000 r-xp 00000000 b3:02 136775     /usr/lib/arm-linux-gnueabihf/libpthread.so.0
+765d5000-765d6000 r--p 00000000 b3:02 136775     /usr/lib/arm-linux-gnueabihf/libpthread.so.0
+765d6000-765d7000 rw-p 00001000 b3:02 136775     /usr/lib/arm-linux-gnueabihf/libpthread.so.0
+765d7000-765d8000 r-xp 00000000 b3:02 136801     /usr/lib/arm-linux-gnueabihf/librt.so.1
+765d8000-765d9000 r--p 00000000 b3:02 136801     /usr/lib/arm-linux-gnueabihf/librt.so.1
+765d9000-765da000 rw-p 00001000 b3:02 136801     /usr/lib/arm-linux-gnueabihf/librt.so.1
+765da000-765e0000 r-xp 00000000 b3:02 275837     /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+765e0000-765e1000 r--p 00005000 b3:02 275837     /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+765e1000-765e2000 rw-p 00006000 b3:02 275837     /usr/lib/jvm/java-17-openjdk-armhf/lib/libzip.so
+765e2000-76d5a000 r-xp 00000000 b3:02 275798     /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so
+76d5a000-76d71000 r--p 00778000 b3:02 275798     /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so
+76d71000-76d81000 rw-p 0078f000 b3:02 275798     /usr/lib/jvm/java-17-openjdk-armhf/lib/client/libjvm.so
+76d81000-76da7000 rw-p 00000000 00:00 0 
+76da7000-76f13000 r-xp 00000000 b3:02 136261     /usr/lib/arm-linux-gnueabihf/libc.so.6
+76f13000-76f15000 r--p 0016c000 b3:02 136261     /usr/lib/arm-linux-gnueabihf/libc.so.6
+76f15000-76f16000 rw-p 0016e000 b3:02 136261     /usr/lib/arm-linux-gnueabihf/libc.so.6
+76f16000-76f20000 rw-p 00000000 00:00 0 
+76f20000-76f36000 r-xp 00000000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f36000-76f4f000 ---p 00016000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f4f000-76f50000 r--p 0001f000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f50000-76f51000 rw-p 00020000 b3:02 136994     /usr/lib/arm-linux-gnueabihf/libz.so.1.2.13
+76f51000-76f5d000 r-xp 00000000 b3:02 275821     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjli.so
+76f5d000-76f5e000 r--p 0000c000 b3:02 275821     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjli.so
+76f5e000-76f5f000 rw-p 0000d000 b3:02 275821     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjli.so
+76f61000-76f69000 rw-s 00000000 b3:02 262183     /tmp/hsperfdata_root/3206
+76f69000-76f6a000 ---p 00000000 00:00 0 
+76f6a000-76f6b000 r--p 00000000 00:00 0 
+76f6b000-76f6e000 r-xp 00000000 b3:02 275820     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+76f6e000-76f6f000 r--p 00003000 b3:02 275820     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+76f6f000-76f70000 rw-p 00004000 b3:02 275820     /usr/lib/jvm/java-17-openjdk-armhf/lib/libjimage.so
+76f70000-76f74000 r-xp 00000000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f74000-76f83000 ---p 00004000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f83000-76f84000 r--p 00003000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f84000-76f85000 rw-p 00004000 b3:02 136198     /usr/lib/arm-linux-gnueabihf/libarmmem-v7l.so
+76f85000-76f86000 r--p 00000000 b3:02 227972     /usr/share/locale/en_GB/LC_MESSAGES/libc.mo
+76f86000-76f87000 ---p 00000000 00:00 0 
+76f87000-76f8b000 rw-p 00000000 00:00 0 
+76f8b000-76fb2000 r-xp 00000000 b3:02 135968     /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+76fb2000-76fb3000 r--p 00027000 b3:02 135968     /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+76fb3000-76fb4000 rw-p 00028000 b3:02 135968     /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3
+7eb50000-7eb71000 rw-p 00000000 00:00 0          [stack]
+7ec05000-7ec06000 r-xp 00000000 00:00 0          [sigpage]
+7ec06000-7ec07000 r--p 00000000 00:00 0          [vvar]
+7ec07000-7ec08000 r-xp 00000000 00:00 0          [vdso]
+ffff0000-ffff1000 r-xp 00000000 00:00 0          [vectors]
+
+
+VM Arguments:
+java_command: target/school-work-0.0.1-SNAPSHOT.jar
+java_class_path (initial): target/school-work-0.0.1-SNAPSHOT.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 1                                         {product} {ergonomic}
+    uintx CodeCacheExpansionSize                   = 32768                                  {pd product} {ergonomic}
+    uintx InitialCodeCacheSize                     = 163840                                 {pd product} {ergonomic}
+   size_t InitialHeapSize                          = 16777216                                  {product} {ergonomic}
+   size_t MaxHeapSize                              = 243269632                                 {product} {ergonomic}
+   size_t MaxNewSize                               = 81002496                                  {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 131072                                    {product} {ergonomic}
+   size_t MinHeapSize                              = 6291456                                   {product} {ergonomic}
+     bool NeverActAsServerClassMachine             = true                                   {pd product} {ergonomic}
+   size_t NewSize                                  = 5505024                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 5242880                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 0                                      {pd product} {ergonomic}
+   size_t OldSize                                  = 11272192                                  {product} {ergonomic}
+     bool ProfileInterpreter                       = false                                  {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 33554432                               {pd product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 243269632                              {manageable} {ergonomic}
+     bool UseSerialGC                              = true                                      {product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+SHELL=/bin/bash
+LANG=en_GB.UTF-8
+TERM=xterm-256color
+
+Active Locale:
+LC_ALL=en_GB.UTF-8
+LC_COLLATE=en_GB.UTF-8
+LC_CTYPE=en_GB.UTF-8
+LC_MESSAGES=en_GB.UTF-8
+LC_MONETARY=en_GB.UTF-8
+LC_NUMERIC=en_GB.UTF-8
+LC_TIME=en_GB.UTF-8
+
+Signal Handlers:
+   SIGSEGV: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGBUS: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+    SIGFPE: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGPIPE: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGXFSZ: javaSignalHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGILL: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+   SIGUSR2: SR_handler in libjvm.so, mask=00000000000000000000000000000000, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGHUP: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+    SIGINT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTERM: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGQUIT: UserHandler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, blocked
+   SIGTRAP: crash_handler in libjvm.so, mask=11100100010111111101111111111110, flags=SA_RESTART|SA_SIGINFO, unblocked
+
+
+Periodic native trim disabled
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+PRETTY_NAME="Raspbian GNU/Linux 12 (bookworm)"
+NAME="Raspbian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=raspbian
+ID_LIKE=debian
+HOME_URL="http://www.raspbian.org/"
+SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
+BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
+uname: Linux 6.1.0-rpi7-rpi-v7 #1 SMP Raspbian 1:6.1.63-1+rpt1 (2023-11-24) armv7l
+OS uptime: 0 days 1:33 hours
+libc: glibc 2.36 NPTL 2.36 
+rlimit (soft/hard): STACK 8192k/infinity , CORE 0k/0k , NPROC 5197/5197 , NOFILE 1048576/1048576 , AS infinity/infinity , CPU infinity/infinity , DATA infinity/infinity , FSIZE infinity/infinity , MEMLOCK 118008k/118008k
+load average: 0.28 0.27 0.27
+
+/proc/meminfo:
+MemTotal:         944092 kB
+MemFree:          266352 kB
+MemAvailable:     712516 kB
+Buffers:           31616 kB
+Cached:           454024 kB
+SwapCached:            0 kB
+Active:           356360 kB
+Inactive:         252008 kB
+Active(anon):     125756 kB
+Inactive(anon):     1268 kB
+Active(file):     230604 kB
+Inactive(file):   250740 kB
+Unevictable:          20 kB
+Mlocked:              20 kB
+SwapTotal:        102396 kB
+SwapFree:         102396 kB
+Zswap:                 0 kB
+Zswapped:              0 kB
+Dirty:                80 kB
+Writeback:             0 kB
+AnonPages:        122756 kB
+Mapped:           140320 kB
+Shmem:              4296 kB
+KReclaimable:      19752 kB
+Slab:              37576 kB
+SReclaimable:      19752 kB
+SUnreclaim:        17824 kB
+KernelStack:        1896 kB
+PageTables:         4292 kB
+SecPageTables:         0 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      574440 kB
+Committed_AS:    1031184 kB
+VmallocTotal:    1114112 kB
+VmallocUsed:        8304 kB
+VmallocChunk:          0 kB
+Percpu:              464 kB
+CmaTotal:         262144 kB
+CmaFree:          200808 kB
+
+/sys/kernel/mm/transparent_hugepage/enabled: <Not Available>
+/sys/kernel/mm/transparent_hugepage/defrag (defrag/compaction efforts parameter): <Not Available>
+
+Process Memory:
+Virtual Size: 326368K (peak: 336444K)
+Resident Set Size: 30496K (peak: 35812K) (anon: 19112K, file: 11384K, shmem: 0K)
+Swapped out: 0K
+C-Heap outstanding allocations: 6171K, retained: 1252K
+glibc malloc tunables: (default)
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads): 10395
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have): 65530
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers): 32768
+
+/etc/ld.so.preload:
+/usr/lib/arm-linux-gnueabihf/libarmmem-${PLATFORM}.so
+
+container information not found.
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU: total 4 (initial active 4) (ARMv7), vfp, mp_ext
+/proc/cpuinfo:
+processor	: 0
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 76.80
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 1
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 76.80
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 2
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 76.80
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+processor	: 3
+model name	: ARMv7 Processor rev 4 (v7l)
+BogoMIPS	: 76.80
+Features	: half thumb fastmult vfp edsp neon vfpv3 tls vfpv4 idiva idivt vfpd32 lpae evtstrm crc32 
+CPU implementer	: 0x41
+CPU architecture: 7
+CPU variant	: 0x0
+CPU part	: 0xd03
+CPU revision	: 4
+
+Hardware	: BCM2835
+Revision	: a02082
+Serial		: 000000004324d5f8
+Model		: Raspberry Pi 3 Model B Rev 1.2
+
+Online cpus: 0-3
+Offline cpus: 
+
+Memory: 4k page, physical 944092k(266352k free), swap 102396k(102396k free)
+Page Sizes: 4k
+
+vm_info: OpenJDK Client VM (17.0.9+9-Raspbian-1deb12u1rpt1) for linux-arm JRE (17.0.9+9-Raspbian-1deb12u1rpt1), built on Nov  7 2023 13:06:05 by "" with gcc 12.2.0
+
+END.
