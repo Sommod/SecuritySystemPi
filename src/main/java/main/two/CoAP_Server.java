@@ -1,5 +1,9 @@
 package main.two;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
@@ -13,7 +17,12 @@ import org.eclipse.californium.elements.config.Configuration;
 import org.eclipse.californium.elements.util.NetworkInterfacesUtil;
 
 public class CoAP_Server extends CoapServer {
-
+	
+	private final String W1_DEVICES_PATH = "/sys/bus/w1/devices/";
+	private final String W1_DEVICE = "28-0000000782bd";
+	private final String W1_SLAVE = "/w1_slave";
+	private File slaveFile = new File(W1_DEVICES_PATH + W1_DEVICE + W1_SLAVE);
+	
 	static {
 		CoapConfig.register();
 	}
@@ -67,8 +76,34 @@ public class CoAP_Server extends CoapServer {
 		@Override
 		public void handleGET(CoapExchange exchange) {
 			// get latest temperature reading and return it
-			temperature = 70F; 
+			temperature = getTemperature(); 
 			exchange.respond(temperature + " degrees " + tempUnit);
 		}
+	}
+	
+	private float getTemperature() {
+		String temp = "";
+		float ret = 0F;
+		
+		try (BufferedReader reader = new BufferedReader(new FileReader(slaveFile))) {
+			String line = "";
+			
+			while((line = reader.readLine()) != null) {
+				if(line.contains("t="))  {
+					temp = line;
+					break;
+				}
+			}
+			
+			temp = temp.split("t=")[1];
+			ret = ((Float.parseFloat(temp) / 1000) * 1.8F) + 32; // F Degrees
+			
+			reader.close();
+		} catch (IOException | ArithmeticException e) {
+			System.err.println("Could not read the File... Exiting Program");
+			return -1;
+		}
+		
+		return ret;
 	}
 }
