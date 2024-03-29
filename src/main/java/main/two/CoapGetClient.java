@@ -18,7 +18,7 @@ public class CoapGetClient {
 
 	public static void main(String args[]) throws URISyntaxException {
 		// make synchronous get call
-		URI uri = new URI("coap://127.0.0.1:5683/temp");
+		URI uri = new URI("coap://192.168.1.168:5683/temp");
 		CoapClient client = new CoapClient(uri);
 		CoapResponse response;
 		try {
