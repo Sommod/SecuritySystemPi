@@ -64,14 +64,12 @@ public class NumPad {
 	private class Temp implements DigitalStateChangeListener {
 		
 		private int id;
-		private boolean triggered;
 		
 		public Temp(int id) { this.id = id; }
 
 		@Override
 		public void onDigitalStateChange(DigitalStateChangeEvent event) {
-			triggered = true;
-			sendMessage(id);
+			System.out.println("Event Occurred.");
 		}
 	}
 }
