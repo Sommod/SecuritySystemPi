@@ -1,11 +1,13 @@
-main\three\Client.class
 main\one\ProjectOneA.class
-main\three\LightController.class
+main\three\AlarmSystem$Run.class
+main\three\sensors\SmokerDetectorSensor$Temp.class
 main\two\CoapGetClient.class
 main\two\CoAP_Server.class
-main\three\sensors\BeeperSensor.class
 main\one\ProjectOneB.class
+main\three\sensors\NoiseController.class
 main\Main.class
+main\three\AlarmSystem.class
+main\three\Manager.class
 main\three\Server.class
 main\two\CoAP_Server$TemperatureResource.class
 main\three\sensors\NumPad.class
