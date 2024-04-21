@@ -13,6 +13,7 @@ import org.eclipse.californium.elements.exception.ConnectorException;
 import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalInput;
 import com.pi4j.io.gpio.digital.DigitalInputConfigBuilder;
+import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.DigitalStateChangeEvent;
 import com.pi4j.io.gpio.digital.DigitalStateChangeListener;
 import com.pi4j.io.gpio.digital.PullResistance;
@@ -86,7 +87,8 @@ public class SmokerDetectorSensor {
 		@SuppressWarnings("rawtypes")
 		@Override
 		public void onDigitalStateChange(DigitalStateChangeEvent event) {
-			getResponse();
+			if(event.state() == DigitalState.LOW)
+				getResponse();
 		}
 		
 	}
