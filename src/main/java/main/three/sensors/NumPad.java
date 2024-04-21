@@ -16,11 +16,12 @@ public class NumPad {
 		String code = "123A";
 		String checker = "";
 		try {
+			System.out.println("Enter in code:");
 			Process p = Runtime.getRuntime().exec("python numpad.py");
-			
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			
-			System.out.println("Enter in code:");
+			p.waitFor();
+			
 			while((line = stdInput.readLine()) != null) {
 				System.out.println(line);
 				checker += line;
@@ -30,9 +31,7 @@ public class NumPad {
 				System.out.println("You have entered the correct code.");
 			else
 				System.out.println("Incorrect code.");
-			
-			System.exit(0);
-		} catch(IOException e) {
+		} catch(IOException | InterruptedException e) {
 		}
 	}
 }
