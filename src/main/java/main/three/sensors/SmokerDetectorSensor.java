@@ -1,5 +1,14 @@
 package main.three.sensors;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapResponse;
+import org.eclipse.californium.core.Utils;
+import org.eclipse.californium.elements.exception.ConnectorException;
+
 import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalInput;
 import com.pi4j.io.gpio.digital.DigitalInputConfigBuilder;
@@ -11,7 +20,19 @@ public class SmokerDetectorSensor {
 	private DigitalInput smoker;
 	private final int SMOKE_PIN = 27;
 	
-	public SmokerDetectorSensor(Context context) {
+	private URI uri;
+	private CoapClient client;
+	private	CoapResponse response;
+	
+	private NoiseController noiseController;
+	
+	public SmokerDetectorSensor(Context context, NoiseController controller) {
+		noiseController = controller;
+		setupURI();
+		createSmokeInput(context);
+	}
+	
+	private void createSmokeInput(Context context) {
 		DigitalInputConfigBuilder smokeBuilder = DigitalInput.newConfigBuilder(context).id("smoker").address(SMOKE_PIN)
 				.pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
 		
@@ -19,15 +40,46 @@ public class SmokerDetectorSensor {
 		smoker.addListener(new Temp());
 	}
 	
-	private void sendMessage() {
-		System.out.println("digital state of smoker has changed.");
+	private void setupURI() {
+		try {
+			uri = new URI("coap://192.168.1.128/smoke");
+			client = new CoapClient(uri);
+			
+		} catch(URISyntaxException e) { }
+	}
+	
+	private void getResponse() {
+		try {
+			response = client.get();
+			
+			if(response != null) {
+				byte[] bytes = response.getPayload();
+				System.out.println(response.getCode());
+				System.out.println(response.getOptions());
+				System.out.println(response.getResponseText());
+				System.out.println("\nDETAILED RESPONSE:");
+				System.out.println(Utils.prettyPrint(response));
+				
+				for(int i = 0; i < 3; i++) {
+					if(noiseController.isLightOn())
+						noiseController.turnLightOff();
+					else
+						noiseController.turnLightOn();
+					
+					Thread.sleep(500L);
+				}
+				
+			} else {
+				System.out.println("Response is NULL");
+			}
+		} catch (IOException | InterruptedException | ConnectorException e) { }
 	}
 	
 	private class Temp implements DigitalStateChangeListener {
 
 		@Override
 		public void onDigitalStateChange(DigitalStateChangeEvent event) {
-			sendMessage();
+			getResponse();
 		}
 		
 	}

@@ -37,12 +37,12 @@ public class Manager {
 	}
 	
 	private void InitializeSensors() {
-//		noiseController = new NoiseController(context);
+		noiseController = new NoiseController(context);
 //		distanceSensor = new DistanceSensor(context);
-		smokerDetectorSensor = new SmokerDetectorSensor(context);
+		smokerDetectorSensor = new SmokerDetectorSensor(context, noiseController);
 //		numPad = new NumPad(context);
 		
-//		alarm = new AlarmSystem();
+		alarm = new AlarmSystem();
 		
 		short time = 30;
 		
