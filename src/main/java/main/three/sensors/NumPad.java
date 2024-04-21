@@ -6,7 +6,10 @@ package main.three.sensors;
  *
  */
 public class NumPad {
+											//Row			//Col
+	private static final int[][] PIN_IDS = {{25, 8, 7, 1}, {12, 16, 20, 21}};
 	
-	//TODO: Have Python driver for NumPad
-	
+	public NumPad() {
+		
+	}
 }
