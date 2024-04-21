@@ -16,7 +16,7 @@ import main.three.LightController;
  */
 public class Main {
 	// Numbers of the Programs
-	private static final int programs[] = {-1, 1, 2};
+	private static final int programs[] = {-1, 1, 2, 3};
 	
 	public static void main(String[] args) {
 		
