@@ -40,7 +40,8 @@ public class Manager {
 //		noiseController = new NoiseController(context);
 //		distanceSensor = new DistanceSensor(context);
 //		smokerDetectorSensor = new SmokerDetectorSensor(context, noiseController);
-		numPad = new NumPad(context);
+//		numPad = new NumPad(context);
+		new NumPad();
 		
 //		alarm = new AlarmSystem();
 		
