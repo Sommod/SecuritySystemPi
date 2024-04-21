@@ -19,8 +19,8 @@ public class NumPad {
 			Process p = Runtime.getRuntime().exec("python numpad.py");
 			
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 			
+			System.out.println("Enter in code:");
 			while((line = stdInput.readLine()) != null) {
 				System.out.println(line);
 				checker += line;
