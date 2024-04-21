@@ -1,10 +1,10 @@
 package main.three.sensors;
 
-import org.eclipse.californium.core.CoapResource;
+import com.pi4j.context.Context;
 
-public class SmokerDetectorSensor extends CoapResource {
+public class SmokerDetectorSensor {
 
-	public SmokerDetectorSensor() {
-		super("smoke");
+	public SmokerDetectorSensor(Context context) {
+		
 	}
 }
