@@ -16,7 +16,7 @@ public class DistanceSensor extends CoapResource {
 	
 	public void triggerCountdown() {
 		//TODO: Need to create loop for 30s.
-		//TODO: If cancel action is given, then stop timer
+		//TODO: If cancel action is given, then stop timer+
 		countDownTimer = 30F;
 	}
 	
