@@ -23,10 +23,10 @@ public class LightController {
 			try {
 				if(isLightOn()) {
 					turnLightOff();
-					wait(500L);
+					Thread.sleep(500L);
 				} else {
 					turnLightOn();
-					wait(500L);
+					Thread.sleep(500L);
 				}
 			} catch(InterruptedException e) {
 				
