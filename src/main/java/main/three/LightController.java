@@ -18,20 +18,6 @@ public class LightController {
 	public LightController(Context context) {
 		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		led = context.create(ledConfig);
-		
-		while(true) {
-			try {
-				if(isLightOn()) {
-					turnLightOff();
-					Thread.sleep(500L);
-				} else {
-					turnLightOn();
-					Thread.sleep(500L);
-				}
-			} catch(InterruptedException e) {
-				
-			}
-		}
 	}
 	
 	public void turnLightOn() { led.low(); }
