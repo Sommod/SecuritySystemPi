@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 counter = 0
+max_input = 4
 # these GPIO pins are connected to the keypad
 # change these according to your connections!
 L1 = 25
@@ -56,7 +57,7 @@ def readLine(line, characters):
     GPIO.output(line, GPIO.LOW)
 
 try:
-    while (counter < 16):
+    while (counter < max_input):
         # call the readLine function for each row of the keypad
         readLine(L1, ["1","2","3","A"])
         readLine(L2, ["4","5","6","B"])
