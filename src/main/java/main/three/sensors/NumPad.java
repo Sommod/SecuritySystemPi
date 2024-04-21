@@ -31,6 +31,7 @@ public class NumPad {
 			else
 				System.out.println("Incorrect code.");
 			
+			System.exit(0);
 		} catch(IOException e) {
 		}
 	}
