@@ -19,19 +19,24 @@ public class NumPad {
 			System.out.println("Enter in code:");
 			Process p = Runtime.getRuntime().exec("python numpad.py");
 			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			
-			p.waitFor();
+			BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 			
 			while((line = stdInput.readLine()) != null) {
 				System.out.println(line);
 				checker += line;
 			}
 			
+			while ((line = stdError.readLine()) != null) {
+                System.out.println(line);
+            }
+			
 			if(checker.equals(code))
 				System.out.println("You have entered the correct code.");
 			else
 				System.out.println("Incorrect code.");
-		} catch(IOException | InterruptedException e) {
+			
+			System.exit(0);
+		} catch(IOException e) {
 		}
 	}
 }
