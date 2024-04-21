@@ -6,6 +6,7 @@ import com.pi4j.Pi4J;
 
 import main.one.ProjectOneA;
 import main.one.ProjectOneB;
+import main.three.LightController;
 
 /**
  * Main class of the Project
@@ -29,7 +30,7 @@ public class Main {
 		
 		// Loop for getting user input of program or exit number
 		while(userInput == -1) {
-			System.out.print("Project 1-1: 1\nProject 1-2: 2\nExit: -1\nEnter in Project to run: ");
+			System.out.print("Project 1-1: 1\nProject 1-2: 2\nFinal Project: 3\nExit: -1\nEnter in Project to run: ");
 			getter = scan.next();
 			
 			try {
@@ -52,6 +53,9 @@ public class Main {
 				break;
 			case 2:
 				new ProjectOneB(context);
+				break;
+			case 3:
+				new LightController(context);
 				break;
 			case -1:
 				System.out.println("Exiting Program...");
