@@ -1,5 +1,6 @@
 package main;
 
+import java.net.SocketException;
 import java.util.Scanner;
 
 import com.pi4j.Pi4J;
@@ -7,6 +8,7 @@ import com.pi4j.Pi4J;
 import main.one.ProjectOneA;
 import main.one.ProjectOneB;
 import main.three.Manager;
+import main.three.Server;
 
 /**
  * Main class of the Project
@@ -16,7 +18,7 @@ import main.three.Manager;
  */
 public class Main {
 	// Numbers of the Programs
-	private static final int programs[] = {-1, 1, 2, 3};
+	private static final int programs[] = {-1, 1, 2, 3, 4};
 	
 	public static void main(String[] args) {
 		
@@ -30,7 +32,7 @@ public class Main {
 		
 		// Loop for getting user input of program or exit number
 		while(userInput == -1) {
-			System.out.print("Project 1-1: 1\nProject 1-2: 2\nFinal Project: 3\nExit: -1\nEnter in Project to run: ");
+			System.out.print("Project 1-1: 1\nProject 1-2: 2\nFinal Project (Main): 3\nFinal Project (Server): 4\nExit: -1\nEnter in Project to run: ");
 			getter = scan.next();
 			
 			try {
@@ -56,6 +58,13 @@ public class Main {
 				break;
 			case 3:
 				new Manager(context);
+				break;
+			case 4:
+				try {
+					new Server();
+				} catch(SocketException e) {
+					e.printStackTrace();
+				}
 				break;
 			case -1:
 				System.out.println("Exiting Program...");
