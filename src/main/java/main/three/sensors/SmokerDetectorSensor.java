@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.Utils;
+import org.eclipse.californium.core.config.CoapConfig;
 import org.eclipse.californium.elements.exception.ConnectorException;
 
 import com.pi4j.context.Context;
@@ -25,6 +26,10 @@ public class SmokerDetectorSensor {
 	private	CoapResponse response;
 	
 	private NoiseController noiseController;
+	
+	static {
+		CoapConfig.register();
+	}
 	
 	public SmokerDetectorSensor(Context context, NoiseController controller) {
 		noiseController = controller;
@@ -53,6 +58,7 @@ public class SmokerDetectorSensor {
 			response = client.get();
 			
 			if(response != null) {
+				@SuppressWarnings("unused")
 				byte[] bytes = response.getPayload();
 				System.out.println(response.getCode());
 				System.out.println(response.getOptions());
@@ -77,6 +83,7 @@ public class SmokerDetectorSensor {
 	
 	private class Temp implements DigitalStateChangeListener {
 
+		@SuppressWarnings("rawtypes")
 		@Override
 		public void onDigitalStateChange(DigitalStateChangeEvent event) {
 			getResponse();
