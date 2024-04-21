@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Built-By: Sommod
+Build-Jdk: 17.0.4.1
+Class-Path: lib/javafx-web-11.0.2.jar lib/javafx-web-11.0.2-win.jar lib/
+ javafx-controls-11.0.2.jar lib/javafx-controls-11.0.2-win.jar lib/javaf
+ x-graphics-11.0.2.jar lib/javafx-graphics-11.0.2-win.jar lib/javafx-bas
+ e-11.0.2.jar lib/javafx-base-11.0.2-win.jar lib/javafx-media-11.0.2.jar
+  lib/javafx-media-11.0.2-win.jar lib/log4j-core-2.13.1.jar lib/log4j-ap
+ i-2.13.1.jar lib/slf4j-api-1.7.32.jar lib/slf4j-simple-1.7.32.jar lib/p
+ i4j-core-2.3.0.jar lib/pi4j-plugin-raspberrypi-2.3.0.jar lib/pi4j-plugi
+ n-pigpio-2.3.0.jar lib/pi4j-library-pigpio-2.3.0.jar lib/californium-co
+ re-3.11.0.jar lib/californium-legal-3.11.0.jar lib/element-connector-3.
+ 11.0.jar
+Main-Class: main.Main
+Created-By: Maven Integration for Eclipse
+
