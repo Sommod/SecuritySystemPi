@@ -13,7 +13,7 @@ public class SmokerDetectorSensor {
 	
 	public SmokerDetectorSensor(Context context) {
 		DigitalInputConfigBuilder smokeBuilder = DigitalInput.newConfigBuilder(context).id("smoker").address(SMOKE_PIN)
-				.pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digitial-input");
+				.pull(PullResistance.PULL_DOWN).debounce(3000L).provider("pigpio-digital-input");
 		
 		smoker = context.create(smokeBuilder);
 		smoker.addListener(new Temp());
