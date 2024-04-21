@@ -6,7 +6,7 @@ import com.pi4j.Pi4J;
 
 import main.one.ProjectOneA;
 import main.one.ProjectOneB;
-import main.three.LightController;
+import main.three.Manager;
 
 /**
  * Main class of the Project
@@ -55,7 +55,7 @@ public class Main {
 				new ProjectOneB(context);
 				break;
 			case 3:
-				new LightController(context);
+				new Manager(context);
 				break;
 			case -1:
 				System.out.println("Exiting Program...");
