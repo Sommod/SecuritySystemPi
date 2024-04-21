@@ -37,12 +37,19 @@ public class Manager {
 	}
 	
 	private void InitializeSensors() {
-		noiseController = new NoiseController(context);
-		distanceSensor = new DistanceSensor(context);
+//		noiseController = new NoiseController(context);
+//		distanceSensor = new DistanceSensor(context);
 		smokerDetectorSensor = new SmokerDetectorSensor(context);
-		numPad = new NumPad(context);
+//		numPad = new NumPad(context);
 		
-		alarm = new AlarmSystem();
+//		alarm = new AlarmSystem();
+		
+		short time = 30;
+		
+		while(time > 0) {
+			try { Thread.sleep(1000L); time--; }
+			catch(InterruptedException e) { }
+		}
 	}
 	
 	public void run() {
