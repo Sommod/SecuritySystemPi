@@ -73,6 +73,7 @@ public class Server extends CoapServer {
 		@Override
 		public void handleGET(CoapExchange exchange) {
 			exchange.respond("Smoke has been Detected! Alerting the Fire Department!");
+			System.out.println("Smoke Has Been Detected! Alerting The Fire Department!");
 		}
 	}
 	
