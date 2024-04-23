@@ -74,11 +74,6 @@ public class Server extends CoapServer {
 		}
 		
 		@Override
-		public void handleGET(CoapExchange exchange) {
-			super.handleGET(exchange);
-		}
-		
-		@Override
 		public void handlePOST(CoapExchange exchange) {
 			super.handlePOST(exchange);
 		}
