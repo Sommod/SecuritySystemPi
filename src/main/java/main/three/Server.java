@@ -30,26 +30,13 @@ public class Server extends CoapServer {
 	public Server() throws SocketException {
 		super();
 		addEndpoints();
-		add(new AckClass());
+		add(new SmokeClass());
+		add(new DistanceClass());
 		
 		instance = this;
 		instance.start();
 	}
 	
-//	public static void main(String[] args) {
-//		try {
-//			instance = new Server();
-//			instance.start();
-//		} catch(Exception e) {
-//			System.err.println("CoAP server err: " + e.getMessage());
-//		}
-//	}
-	
-//	public Server() throws SocketException {
-//		super();
-//		addEndpoints();
-//	}
-//	
 	private void addEndpoints() {
 		Configuration config = Configuration.getStandard();
 		// Add an endpoint listener for each host network interface
@@ -62,10 +49,13 @@ public class Server extends CoapServer {
 		}
 	}
 	
-	public void closeServer() { instance.destroy(); }
+	private void closeServer() {
+		instance.destroy();
+		System.exit(0);
+	}
 	
-	public class AckClass extends CoapResource {
-		public AckClass() {
+	private class SmokeClass extends CoapResource {
+		public SmokeClass() {
 			super("smoke");
 			getAttributes().setTitle("Handler for Smoke Detector.");
 		}
@@ -74,6 +64,23 @@ public class Server extends CoapServer {
 		public void handleGET(CoapExchange exchange) {
 			exchange.respond("Smoke has been Detected! Alerting the Fire Department!");
 			System.out.println("Smoke Has Been Detected! Alerting The Fire Department!");
+		}
+	}
+	
+	private class DistanceClass extends CoapResource {
+		public DistanceClass() {
+			super("distance");
+			getAttributes().setTitle("This is the handler for the Distance Sensor.");
+		}
+		
+		@Override
+		public void handleGET(CoapExchange exchange) {
+			super.handleGET(exchange);
+		}
+		
+		@Override
+		public void handlePOST(CoapExchange exchange) {
+			super.handlePOST(exchange);
 		}
 	}
 	
