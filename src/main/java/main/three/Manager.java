@@ -19,7 +19,6 @@ public class Manager {
 	private DistanceSensor distanceSensor;
 	private SmokerDetectorSensor smokerDetectorSensor;
 	private NoiseController noiseController;
-	private NumPad numPad;
 	
 	private Context context;
 	private AlarmSystem alarm;
