@@ -15,13 +15,48 @@ import com.pi4j.io.gpio.digital.DigitalState;
 public class NoiseController {
 	private static final int LED_PIN = 2;
 	private DigitalOutput led;
+	private Run run;
 	
 	public NoiseController(Context context) {
 		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		led = context.create(ledConfig);
+		run = new Run();
 	}
 	
 	public void turnLightOn() { led.low(); }
 	public void turnLightOff() { led.high(); }
 	public boolean isLightOn() { return led.isLow(); }
+	
+	public void start() { run.run(); }
+	public void end() { run.cancel(); }
+	
+	private class Run implements Runnable {
+		private boolean hitEnd = false;
+		private int i;
+		
+		@Override
+		public void run() {
+			try {
+				for(i = 0; i < 30; i++) {
+					Thread.sleep(1000L);
+					i++;
+					
+					if(i == 29)
+						hitEnd = true;
+				}
+				
+				while(hitEnd) {
+					Thread.sleep(500L);
+					
+					if(isLightOn())
+						turnLightOff();
+					else
+						turnLightOn();
+				}
+				
+			} catch (InterruptedException e) { }
+		}
+		
+		public void cancel() { i = 31; hitEnd = false; }
+	}
 }
