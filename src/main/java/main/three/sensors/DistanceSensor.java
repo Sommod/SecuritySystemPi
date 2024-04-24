@@ -7,27 +7,25 @@ import java.io.IOException;
 
 import com.pi4j.context.Context;
 
+import main.three.AlarmSystem;
+
 public class DistanceSensor {
-	private boolean isTimerOn;
 	private Process p;
 
-	private NoiseController alarm;
-	private Temp run;
+	private AlarmSystem alarm;
 
-	public DistanceSensor(Context context, NoiseController alarm) {
+	public DistanceSensor(Context context, AlarmSystem alarm) {
 		this.alarm = alarm;
-		isTimerOn = false;
 		
 		try {
 			p = Runtime.getRuntime().exec("python proximity.py");
 		} catch(IOException e) { }
 		
-		run = new Temp();
+		new Temp();
 	}
 
 	public void shutdown() {
 		p.destroy();
-		run.run();
 	}
 	
 	private class Temp implements Runnable {
@@ -44,8 +42,7 @@ public class DistanceSensor {
 				} else
 					currentDistance = Float.parseFloat(reader.readLine());
 
-				if(currentDistance <= setupDistance * .5F && !isTimerOn) {
-					isTimerOn = true;
+				if(currentDistance <= setupDistance * .5F && !(alarm.isRunning() || alarm.isStarting())) {
 					initAlarm();
 				}
 				

@@ -16,10 +16,12 @@ public class NoiseController {
 	private static final int LED_PIN = 2;
 	private DigitalOutput led;
 	private Run run;
+	private boolean isStarting;
 	
 	public NoiseController(Context context) {
 		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		led = context.create(ledConfig);
+		isStarting = false;
 		run = new Run();
 	}
 	
@@ -29,6 +31,9 @@ public class NoiseController {
 	
 	public void start() { run.run(); }
 	public void end() { run.cancel(); }
+	
+	public boolean isAlarmOn() { return run.isAlarmOn(); }
+	public boolean isAlarmStarting() { return isStarting; }
 	
 	private class Run implements Runnable {
 		private boolean hitEnd = false;
@@ -56,6 +61,8 @@ public class NoiseController {
 				
 			} catch (InterruptedException e) { }
 		}
+		
+		public boolean isAlarmOn() { return hitEnd; }
 		
 		public void cancel() { i = 31; hitEnd = false; }
 	}

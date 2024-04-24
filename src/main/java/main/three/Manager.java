@@ -4,7 +4,6 @@ import com.pi4j.context.Context;
 
 import main.three.sensors.DistanceSensor;
 import main.three.sensors.NoiseController;
-import main.three.sensors.NumPad;
 import main.three.sensors.SmokerDetectorSensor;
 
 /**
@@ -23,51 +22,28 @@ public class Manager {
 	private Context context;
 	private AlarmSystem alarm;
 	
-	private boolean soundAlarm;
-	private boolean exitCode;
-	
 	public Manager(Context context) {
 		this.context = context;
-		soundAlarm = false;
-		exitCode = false;
 		
 		InitializeSensors();
 		run();
 	}
 	
 	private void InitializeSensors() {
+		alarm = new AlarmSystem(noiseController);
 		noiseController = new NoiseController(context);
-		distanceSensor = new DistanceSensor(context, noiseController);
+		distanceSensor = new DistanceSensor(context, alarm);
 		smokerDetectorSensor = new SmokerDetectorSensor(context, noiseController);
-		
-//		alarm = new AlarmSystem();
-		
-		short time = 30;
-		
-		while(time > 0) {
-			try { Thread.sleep(1000L); time--; }
-			catch(InterruptedException e) { }
-		}
 	}
 	
 	public void run() {
-		while(!exitCode) {
-			if(!soundAlarm) { // Check Distance Sensor / Smoker Detector.
-				//TODO: Get sensors hooked up (code-wise)
-				//TODO: If Smoke Detector is going off, send message to server.
-				//TODO: Else If distance is different (by a range)... then activate 'START' method in 'alarm'.
-				//		Check if Alarm is already running, then ignore.
-				//TODO: Else check if 'didSoundAlarm' is true, then set soundAlarm to true
-			} else { // Running the alarm system.
-				if(noiseController.isLightOn())
-					noiseController.turnLightOff();
-				else
-					noiseController.turnLightOn();
-			}
-			
+		while(!alarm.isExit()) {
 			try { Thread.sleep(500L); }
 			catch(InterruptedException e) {}
 		}
+		
+		distanceSensor.shutdown();
+		smokerDetectorSensor.shutdown();
 	}
 	
 }

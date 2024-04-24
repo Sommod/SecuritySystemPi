@@ -25,6 +25,7 @@ public class SmokerDetectorSensor {
 	private URI uri;
 	private CoapClient client;
 	private	CoapResponse response;
+	private Context context;
 	
 	private NoiseController noiseController;
 	
@@ -34,6 +35,8 @@ public class SmokerDetectorSensor {
 	
 	public SmokerDetectorSensor(Context context, NoiseController controller) {
 		noiseController = controller;
+		this.context = context;
+		
 		setupURI();
 		createSmokeInput(context);
 	}
@@ -80,6 +83,10 @@ public class SmokerDetectorSensor {
 				System.out.println("Response is NULL");
 			}
 		} catch (IOException | InterruptedException | ConnectorException e) { }
+	}
+	
+	public void shutdown() {
+		smoker.shutdown(context);
 	}
 	
 	private class Temp implements DigitalStateChangeListener {

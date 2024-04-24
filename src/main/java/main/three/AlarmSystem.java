@@ -1,50 +1,30 @@
 package main.three;
 
+import main.three.sensors.NoiseController;
+import main.three.sensors.NumPad;
+
 public class AlarmSystem {
-	private final short TIMER;
-	private short countdownTimer;
-	private Run run;
+	private boolean isExitCode;
+	private NoiseController controller;
 	
-	public AlarmSystem() {
-		TIMER = 30;
-		countdownTimer = -1;
-		run = new Run();
+	public AlarmSystem(NoiseController controller) {
+		isExitCode = false;
+		this.controller = controller;
 	}
 	
 	public void start() {
-		countdownTimer = TIMER;
-		run.reset();
-		
-		run.run();
+		controller.start();
+		new NumPad(this);
 	}
 	
 	public void end() {
-		countdownTimer = -1;
-		run.reset();
+		controller.end();
 	}
 	
-	public boolean didAlarmSound() { return run.didTimerHitEnd(); }
+	public boolean isRunning() { return controller.isAlarmOn(); }
+	public boolean isStarting() { return controller.isAlarmStarting(); }
 	
-	public boolean isRunning() { return countdownTimer > 0; }
-	
-	private class Run implements Runnable {
-		
-		private boolean hitEnd = false;
+	public void setExitCode() { isExitCode = true; }
+	public boolean isExit() { return isExitCode; }
 
-		@Override
-		public void run() {
-			while(countdownTimer > 0) {
-				try { Thread.sleep(1000L); }
-				catch(InterruptedException e) { e.printStackTrace(); }
-				
-				countdownTimer--;
-				
-				if(countdownTimer == 0)
-					hitEnd = true;
-			}
-		}
-		
-		public boolean didTimerHitEnd() { return hitEnd; }
-		public void reset() { hitEnd = false; }
-	}
 }
