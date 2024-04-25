@@ -5,6 +5,8 @@ import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalState;
 
+import main.three.AlarmSystem;
+
 /**
  * Helper class for the LED light. This is only used in tangent with the Buzzer. As such,
  * this only contains a minimal amount of code for handling the LED. This simply acts as
@@ -17,6 +19,8 @@ public class NoiseController {
 	private DigitalOutput led;
 	private Run run;
 	private boolean isStarting;
+	
+	private AlarmSystem alarm;
 	
 	public NoiseController(Context context) {
 //		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
@@ -32,7 +36,7 @@ public class NoiseController {
 	public void turnLightOff() { led.high(); }
 	public boolean isLightOn() { return led.isLow(); }
 	
-	public void start() { run.run(); }
+	public void start(AlarmSystem alarm) { run.run(); this.alarm = alarm; }
 	public void end() { run.cancel(); }
 	
 	public boolean isAlarmOn() { return run.isAlarmOn(); }
@@ -45,11 +49,11 @@ public class NoiseController {
 		@Override
 		public void run() {
 			try {
-				for(i = 0; i < 30; i++) {
+				for(i = 0; i < 10; i++) {
 					Thread.sleep(1000L);
 					i++;
 					
-					if(i == 29)
+					if(i == 9)
 						hitEnd = true;
 				}
 				
@@ -60,6 +64,8 @@ public class NoiseController {
 						turnLightOff();
 					else
 						turnLightOn();
+					new NumPad(alarm);
+					Thread.sleep(30000L);
 				}
 				
 			} catch (InterruptedException e) { }

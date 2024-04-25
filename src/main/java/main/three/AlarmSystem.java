@@ -13,8 +13,8 @@ public class AlarmSystem {
 	}
 	
 	public void start() {
-		new NumPad(this);
-		controller.start();
+		controller.start(this);
+		//new NumPad(this);
 	}
 	
 	public void end() {
