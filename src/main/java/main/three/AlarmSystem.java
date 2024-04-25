@@ -14,7 +14,7 @@ public class AlarmSystem {
 	
 	public void start() {
 		controller.start(this);
-		//new NumPad(this);
+		new NumPad(this);
 	}
 	
 	public void end() {

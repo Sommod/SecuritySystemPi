@@ -98,7 +98,7 @@ public class NumPad {
 				System.out.println(Utils.prettyPrint(response));
 				
 			} else {
-//				System.out.println("Response is NULL");
+				System.out.println("Response is NULL");
 			}
 		} catch(URISyntaxException | ConnectorException | IOException e) {
 			e.printStackTrace();

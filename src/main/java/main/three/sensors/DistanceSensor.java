@@ -17,13 +17,11 @@ public class DistanceSensor {
 	public DistanceSensor(Context context, AlarmSystem alarm) {
 		this.alarm = alarm;
 		
-//		try {
-//			p = Runtime.getRuntime().exec("python proximity.py");
-//		} catch(IOException e) { }
+		try {
+			p = Runtime.getRuntime().exec("python proximity.py");
+		} catch(IOException e) { }
 		
-		//new Temp();
-		
-		alarm.start();
+		new Temp();
 	}
 
 	public void shutdown() {

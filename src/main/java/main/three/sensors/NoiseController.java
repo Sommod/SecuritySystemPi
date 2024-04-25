@@ -15,7 +15,7 @@ import main.three.AlarmSystem;
  *
  */
 public class NoiseController {
-	private static final int LED_PIN = 2	;
+	private static final int LED_PIN = 2;
 	private DigitalOutput led;
 	private Run run;
 	private boolean isStarting;
@@ -23,10 +23,8 @@ public class NoiseController {
 	private AlarmSystem alarm;
 	
 	public NoiseController(Context context) {
-//		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
 		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").name("LED Light").address(LED_PIN).shutdown(DigitalState.HIGH).initial(DigitalState.HIGH).provider("pigpio-digital-output");
 		
-//		led = context.create(ledConfig);
 		led = context.create(ledConfig);
 		isStarting = false;
 		run = new Run();
