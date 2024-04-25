@@ -75,7 +75,7 @@ public class Server extends CoapServer {
 		
 		@Override
 		public void handleGET(CoapExchange exchange) {
-			System.out.println("Notice: An alarm has been tripped, 10 seconds before emergency services are called.");
+			System.out.println("Notice: An alarm has been tripped, 30 seconds before emergency services are called.");
 		}
 		
 		@Override

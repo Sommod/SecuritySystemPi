@@ -45,7 +45,7 @@ public class NoiseController {
 		@Override
 		public void run() {
 			try {
-				for(i = 0; i < 10; i++) {
+				for(i = 0; i < 30; i++) {
 					Thread.sleep(1000L);
 					i++;
 					
