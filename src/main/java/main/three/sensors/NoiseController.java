@@ -36,7 +36,7 @@ public class NoiseController {
 	public void turnLightOff() { led.high(); }
 	public boolean isLightOn() { return led.isLow(); }
 	
-	public void start(AlarmSystem alarm) { run.run(); this.alarm = alarm; }
+	public void start(AlarmSystem alarm) { this.alarm = alarm; run.run(); }
 	public void end() { run.cancel(); }
 	
 	public boolean isAlarmOn() { return run.isAlarmOn(); }
@@ -65,7 +65,8 @@ public class NoiseController {
 					else
 						turnLightOn();
 					new NumPad(alarm);
-					Thread.sleep(30000L);
+					Thread.sleep(10000L);
+					turnLightOff();
 				}
 				
 			} catch (InterruptedException e) { }
