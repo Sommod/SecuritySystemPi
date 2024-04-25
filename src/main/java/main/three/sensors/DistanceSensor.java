@@ -18,7 +18,7 @@ public class DistanceSensor {
 		this.alarm = alarm;
 		
 		try {
-			p = Runtime.getRuntime().exec("python proximity.py");
+			p = Runtime.getRuntime().exec("python /home/ben/Documents/proximity2.py");
 		} catch(IOException e) { }
 		
 		new Temp();
