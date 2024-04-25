@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 import org.eclipse.californium.core.Utils;
+import org.eclipse.californium.core.config.CoapConfig;
 import org.eclipse.californium.elements.exception.ConnectorException;
 
 import main.three.AlarmSystem;
@@ -22,6 +23,10 @@ import main.three.AlarmSystem;
  *
  */
 public class NumPad {
+	
+	static {
+		CoapConfig.register();
+	}
 	
 	private final String[] codes = {"123A","456B"}; //Stop Alarm, Stop Program
 	private String input;
