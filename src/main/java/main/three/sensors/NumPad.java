@@ -3,6 +3,13 @@ package main.three.sensors;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapResponse;
+import org.eclipse.californium.core.Utils;
+import org.eclipse.californium.elements.exception.ConnectorException;
 
 import main.three.AlarmSystem;
 
@@ -25,6 +32,7 @@ public class NumPad {
 		codeEnter = -1;
 		this.alarm = alarm;
 		
+		handleGET();
 		new Temp().run();
 	}
 	
@@ -58,10 +66,62 @@ public class NumPad {
 				}
 			}
 			
-			if(codeEnter == 0)
+			if(codeEnter == 0) {
 				alarm.end();
-			else if(codeEnter == 1)
+				handlePOST();
+			} else if(codeEnter == 1)
 				alarm.setExitCode();
+		}
+	}
+	
+	private void handlePOST() {
+		URI uri;
+		try {
+			uri = new URI("coap://192.168.1.128/distance");
+			CoapClient client = new CoapClient(uri);
+			byte[] b = new byte[10];
+			
+			CoapResponse response = client.post(b, 1);
+			
+			if(response != null) {
+				@SuppressWarnings("unused")
+				byte[] bytes = response.getPayload();
+				System.out.println(response.getCode());
+				System.out.println(response.getOptions());
+				System.out.println(response.getResponseText());
+				System.out.println("\nDETAILED RESPONSE:");
+				System.out.println(Utils.prettyPrint(response));
+				
+			} else {
+				System.out.println("Response is NULL");
+			}
+		} catch(URISyntaxException | ConnectorException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void handleGET() {
+		URI uri;
+		try {
+			uri = new URI("coap://192.168.1.128/distance");
+			CoapClient client = new CoapClient(uri);
+			
+			CoapResponse response = client.get();
+			
+			if(response != null) {
+				@SuppressWarnings("unused")
+				byte[] bytes = response.getPayload();
+				System.out.println(response.getCode());
+				System.out.println(response.getOptions());
+				System.out.println(response.getResponseText());
+				System.out.println("\nDETAILED RESPONSE:");
+				System.out.println(Utils.prettyPrint(response));
+				
+			} else {
+				System.out.println("Response is NULL");
+			}
+		} catch(URISyntaxException | ConnectorException | IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
