@@ -76,11 +76,13 @@ public class Server extends CoapServer {
 		@Override
 		public void handleGET(CoapExchange exchange) {
 			System.out.println("Notice: An alarm has been tripped, 30 seconds before emergency services are called.");
+			exchange.respond("");
 		}
 		
 		@Override
 		public void handlePOST(CoapExchange exchange) {
 			System.out.println("Notice: Alarm has been diabled.");
+			exchange.respond("");
 		}
 	}
 	
