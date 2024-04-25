@@ -23,11 +23,7 @@ public class DistanceSensor {
 		
 		//new Temp();
 		
-		try {
-			Thread.sleep(10000L);
-			
-		} catch(InterruptedException e) {
-		}
+		alarm.start();
 	}
 
 	public void shutdown() {
