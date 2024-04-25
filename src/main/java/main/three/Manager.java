@@ -30,8 +30,8 @@ public class Manager {
 	}
 	
 	private void InitializeSensors() {
-		alarm = new AlarmSystem(noiseController);
 		noiseController = new NoiseController(context);
+		alarm = new AlarmSystem(noiseController);
 		distanceSensor = new DistanceSensor(context, alarm);
 		smokerDetectorSensor = new SmokerDetectorSensor(context, noiseController);
 	}
