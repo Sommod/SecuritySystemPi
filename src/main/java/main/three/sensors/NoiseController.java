@@ -19,7 +19,9 @@ public class NoiseController {
 	private boolean isStarting;
 	
 	public NoiseController(Context context) {
-		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
+//		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
+		DigitalOutputConfigBuilder ledConfig = DigitalOutput.newConfigBuilder(context).id("led").name("LED Light").address(LED_PIN).shutdown(DigitalState.LOW).initial(DigitalState.LOW).provider("pigpio-digital-output");
+		
 		led = context.create(ledConfig);
 		isStarting = false;
 		run = new Run();
